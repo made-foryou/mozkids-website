@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "29f3715b9d6ba3bd2897079a855554e6",
+    "content-hash": "d846f6a14fb74d5a684f1651554640d9",
     "packages": [
         {
             "name": "anourvalar/eloquent-serialize",
@@ -3723,16 +3723,16 @@
         },
         {
             "name": "made-foryou/cms",
-            "version": "0.9.0",
+            "version": "0.9.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/made-foryou/cms.git",
-                "reference": "671bcf91650e940b07b4c0a9ee1d22050bdf5bc8"
+                "reference": "7beeb2e60c216614c94cf8f8908aaf29c077ba6f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/made-foryou/cms/zipball/671bcf91650e940b07b4c0a9ee1d22050bdf5bc8",
-                "reference": "671bcf91650e940b07b4c0a9ee1d22050bdf5bc8",
+                "url": "https://api.github.com/repos/made-foryou/cms/zipball/7beeb2e60c216614c94cf8f8908aaf29c077ba6f",
+                "reference": "7beeb2e60c216614c94cf8f8908aaf29c077ba6f",
                 "shasum": ""
             },
             "require": {
@@ -3751,13 +3751,10 @@
                 "laravel/pint": "^1.0",
                 "nunomaduro/collision": "^8.0",
                 "orchestra/testbench": "^9.0",
-                "pestphp/pest": "^3.0",
-                "pestphp/pest-plugin-arch": "^3.0",
-                "pestphp/pest-plugin-laravel": "^3.0",
-                "pestphp/pest-plugin-type-coverage": "^3.0",
                 "phpstan/extension-installer": "^1.1",
                 "phpstan/phpstan-deprecation-rules": "^1.0",
-                "phpstan/phpstan-phpunit": "^1.0"
+                "phpstan/phpstan-phpunit": "^1.0",
+                "phpunit/phpunit": "^11.0.1"
             },
             "type": "library",
             "extra": {
@@ -3827,7 +3824,7 @@
                     "url": "https://github.com/made-foryou"
                 }
             ],
-            "time": "2025-02-07T15:44:21+00:00"
+            "time": "2025-02-10T12:16:25+00:00"
         },
         {
             "name": "maennchen/zipstream-php",
