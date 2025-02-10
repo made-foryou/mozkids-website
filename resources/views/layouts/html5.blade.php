@@ -3,7 +3,7 @@
 <head>
     @yield('head')
 </head>
-<body>
+<body class="antialiased">
     @yield('body')
 </body>
 </html>
