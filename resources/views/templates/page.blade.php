@@ -62,6 +62,10 @@
         <main class="flex-grow w-full pt-[96px]">
             @yield('content')
         </main>
-        <footer class="flex-none bg-white w-full h-24"></footer>
+        <footer class="flex-none bg-white w-full">
+            <x-container class="py-10">
+                @include('partials.footer')
+            </x-container>
+        </footer>
     </div>
 @endsection
