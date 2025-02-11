@@ -28,6 +28,10 @@
 @endsection
 
 @section('body')
+    <div class="made-sidebar">
+        
+    </div>
+
     <div class="flex flex-col justify-between items-center min-h-screen min-w-screen bg-secondary">
         <header class="fixed flex-none w-full bg-secondary/70 backdrop-blur-2xl py-6">
             <x-container>
