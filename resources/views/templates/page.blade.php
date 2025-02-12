@@ -8,6 +8,11 @@
     <meta name="description" content="{{ $meta?->description ?? config('app.description') }}">
     <meta name="robots" content="{{ $meta?->robot ?? '' }}">
 
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/favicon/site.webmanifest">
+
     @yield('meta')
 
     <!-- Fonts -->
@@ -28,39 +33,12 @@
 @endsection
 
 @section('body')
-    <div class="made-sidebar">
-        
-    </div>
+    @include('partials.sidebar-menu')
 
     <div class="flex flex-col justify-between items-center min-h-screen min-w-screen bg-secondary">
         <header class="fixed flex-none w-full bg-secondary/70 backdrop-blur-2xl py-6">
             <x-container>
-                <div class="flex flex-row justify-between items-center w-full space-x-10">
-                    <a href="{{ url('/') }}" class="block">
-                        @include('svg.logo')
-                    </a>
-                    <nav class="hidden lg:block">
-                        <ul class="flex flex-row justify-between items-center space-x-10 text-sm">
-                            <li>Over Moz Kids</li>
-                            <li>Activiteiten</li>
-                            <li>Nieuws</li>
-                            <li>Contact</li>
-                        </ul>
-                    </nav>
-                    <a href="#"
-                       class="hidden lg:flex items-center space-x-4 cursor-pointer rounded-full bg-red-600 px-6 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-red-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600">
-                        <span class="font-sans tracking-wide text-sm">Doneer direct</span>
-                        @include('svg.arrow-right')
-                    </a>
-                    <div class="block lg:hidden">
-                        <button
-                            type="button"
-                            class="p-4 text-black"
-                        >
-                            @include('svg.menu-bars')
-                        </button>
-                    </div>
-                </div>
+                @include('partials.navigation')
             </x-container>
         </header>
         <main class="flex-grow w-full pt-[96px]">

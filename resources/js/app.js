@@ -7,3 +7,5 @@ window.addEventListener('load', () => {
     Sidebar.initialize();
 
 });
+
+window.Sidebar = Sidebar;
