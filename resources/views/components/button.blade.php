@@ -10,7 +10,7 @@
 
         @if ($href !== null)
 
-            <a 
+            <a
                 href="{{ $href }}"
                 title="{{ $title }}"
                 rel="{{ $rel }}"

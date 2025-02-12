@@ -65,12 +65,14 @@
         </ul>
     </nav>
 
-    <x-button :href="'#'">
-        Doneer direct
-        <x-slot:icon>
-            @include('svg.arrow-right')
-        </x-slot:icon>
-    </x-button>
+    <div class="hidden lg:block">
+        <x-button :href="'#'">
+            Doneer direct
+            <x-slot:icon>
+                @include('svg.arrow-right')
+            </x-slot:icon>
+        </x-button>
+    </div>
 
 
     <div class="block lg:hidden">
