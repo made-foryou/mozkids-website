@@ -8,7 +8,7 @@
     </style>
 @endif
 
-<section class="relative block flex flex-grow w-full py-12 @if ($live === false) overflow-hidden min-h-1/2 bg-secondary @endif">
+<section class="relative flex flex-grow w-full py-12 @if ($live === false) overflow-hidden min-h-1/2 bg-secondary @endif">
     <x-container class="flex-grow flex flex-col justify-center items-center">
         <div class="py-25 flex justify-center items-center flex-col">
             <span 
