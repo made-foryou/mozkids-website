@@ -3723,16 +3723,16 @@
         },
         {
             "name": "made-foryou/cms",
-            "version": "0.11.1",
+            "version": "0.11.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/made-foryou/cms.git",
-                "reference": "38c2a030433f102e9e94e01111536597dc811067"
+                "reference": "a5bd7ae8a71388063dac062b03f6fb7ad98a4d09"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/made-foryou/cms/zipball/38c2a030433f102e9e94e01111536597dc811067",
-                "reference": "38c2a030433f102e9e94e01111536597dc811067",
+                "url": "https://api.github.com/repos/made-foryou/cms/zipball/a5bd7ae8a71388063dac062b03f6fb7ad98a4d09",
+                "reference": "a5bd7ae8a71388063dac062b03f6fb7ad98a4d09",
                 "shasum": ""
             },
             "require": {
@@ -3824,7 +3824,7 @@
                     "url": "https://github.com/made-foryou"
                 }
             ],
-            "time": "2025-02-18T11:05:49+00:00"
+            "time": "2025-02-18T12:38:15+00:00"
         },
         {
             "name": "maennchen/zipstream-php",

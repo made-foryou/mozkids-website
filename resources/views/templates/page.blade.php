@@ -36,12 +36,13 @@
     @include('partials.sidebar-menu')
 
     <div class="flex flex-col justify-between items-center min-h-screen min-w-screen bg-secondary">
-        <header class="fixed flex-none w-full bg-secondary/70 backdrop-blur-2xl py-6">
+        <header class="fixed z-20 flex-none w-full bg-secondary/70 backdrop-blur-2xl py-6">
             <x-container>
                 @include('partials.navigation')
             </x-container>
         </header>
-        <main class="flex-grow w-full pt-[96px]">
+        <main class="flex flex-col justify-start items-center flex-grow 
+                     w-full pt-[96px]">
             @yield('content')
         </main>
         <footer class="flex-none bg-white w-full">

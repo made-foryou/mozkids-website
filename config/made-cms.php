@@ -1,6 +1,9 @@
 <?php
 
 // config for Made/Cms
+
+use App\Strips\PageFillableContentStrip;
+
 return [
 
     'setup' => [
@@ -116,7 +119,7 @@ return [
              * @var class-string<\Made\Cms\Filament\Builder\ContentStrip>[]
              */
             \Made\Cms\Page\Models\Page::class => [
-                //
+                PageFillableContentStrip::class,
             ],
 
             /**
