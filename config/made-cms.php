@@ -2,7 +2,7 @@
 
 // config for Made/Cms
 
-use App\Strips\PageFillableContentStrip;
+use App\Strips;
 
 return [
 
@@ -107,7 +107,7 @@ return [
              * @var class-string<\Made\Cms\Filament\Builder\ContentStrip>[]
              */
             'default' => [
-                //
+                Strips\HeroStrip::class,
             ],
 
             /**
@@ -119,7 +119,7 @@ return [
              * @var class-string<\Made\Cms\Filament\Builder\ContentStrip>[]
              */
             \Made\Cms\Page\Models\Page::class => [
-                PageFillableContentStrip::class,
+                Strips\PageFillableContentStrip::class,
             ],
 
             /**
