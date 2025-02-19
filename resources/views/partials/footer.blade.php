@@ -89,10 +89,19 @@
 <div class="flex flex-row justify-between items-center 
             text-black text-[0.6rem] font-sans font-light
             sm:pt-6.5 sm:border-t sm:border-secondary sm:mt-10">
-    <div>
-        <a href="#">
-            Privacy- en cookieverklaring
-        </a>
+    <div class="space-x-4">
+        @foreach ($items as $item)
+
+            <a
+                href="{{ Cms::url($item->linkable) }}"
+                title="{{ $item->linkable->meta->title }}"
+                rel="{{ implode(' ', $item->rel) }}"
+                class="underline-offset-4 hover:underline"
+            >
+                {{ $item->linkName }}
+            </a>
+
+        @endforeach
     </div>
     <div>
         <a href="https://fourdesign.nl" rel="nofollow" target="_blank">
