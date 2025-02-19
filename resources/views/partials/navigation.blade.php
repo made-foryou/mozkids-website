@@ -13,54 +13,23 @@
     <nav class="hidden lg:block">
         <ul class="flex flex-row justify-between items-center space-x-4 text-sm">
 
+            @foreach ($items as $item)
+
             <li>
-                <a 
-                    href="#" 
+                <a
+                    href="{{ Cms::url($item->linkable) }}"
+                    title="{{ $item->linkable->meta->title }}"
                     class="py-2 px-4 rounded-full
-                           text-sm/4 text-black 
+                           text-sm/4 text-black
                            transition ease-in-out duration-145
                            hover:text-primary
                            focus-visible:outline-primary focus-visible:outline-2 focus-visible:outline-offset-2"
                 >
-                    Over Moz Kids
+                    {{ $item->linkName }}
                 </a>
             </li>
-            <li>
-                <a 
-                    href="#" 
-                    class="py-2 px-4 rounded-full
-                           text-sm/4 text-black 
-                           transition ease-in-out duration-145
-                           hover:text-primary
-                           focus-visible:outline-primary focus-visible:outline-2 focus-visible:outline-offset-2"
-                >
-                    Activiteiten
-                </a>    
-            </li>
-            <li>
-                <a 
-                    href="#" 
-                    class="py-2 px-4 rounded-full
-                           text-sm/4 text-black 
-                           transition ease-in-out duration-145
-                           hover:text-primary
-                           focus-visible:outline-primary focus-visible:outline-2 focus-visible:outline-offset-2"
-                >
-                    Nieuws
-                </a>
-            </li>
-            <li>
-                <a 
-                    href="#" 
-                    class="py-2 px-4 rounded-full
-                           text-sm/4 text-black 
-                           transition ease-in-out duration-145
-                           hover:text-primary
-                           focus-visible:outline-primary focus-visible:outline-2 focus-visible:outline-offset-2"
-                >
-                    Contact
-                </a>
-            </li>
+
+            @endforeach
 
         </ul>
     </nav>
