@@ -16,11 +16,13 @@
 >
     <x-container class="flex flex-col justify-center items-center max-w-[730px]">
 
-        <div
-            class="font-sans tracking-wide text-black font-semibold text-2xl lg:text-4xl text-center"
+        <span
+            class="block
+                   font-sans tracking-wide text-black font-semibold text-2xl lg:text-4xl text-center"
+            data-highlightable
         >
-            {!! $content !!}
-        </div>
+            {{ $content }}
+        </span>
 
         @if (!empty($buttons))
 

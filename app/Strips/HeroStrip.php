@@ -8,6 +8,7 @@ use App\Schemas\ButtonSchema;
 use Filament\Forms\Components\Builder\Block;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\Textarea;
 use Illuminate\Contracts\View\View;
 use Made\Cms\Filament\Builder\ContentStrip;
 
@@ -48,10 +49,9 @@ class HeroStrip implements ContentStrip
             ->label('Hero tekst')
             ->icon('heroicon-s-star')
             ->schema([
-                RichEditor::make('content')
+                Textarea::make('content')
                     ->label('Inhoud')
-                    ->helperText('')
-                    ->required(),
+                    ->helperText('Om tekst rood en uitgelicht te maken kun je de tekst omringen met [ en een ].'),
 
                 Repeater::make('buttons')
                     ->schema(ButtonSchema::schema())
