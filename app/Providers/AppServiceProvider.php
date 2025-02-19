@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\View\Composers\MainMenuItemsComposer;
+use Illuminate\Support\Facades;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +21,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Facades\View::composer('partials.navigation', MainMenuItemsComposer::class);
     }
 }
