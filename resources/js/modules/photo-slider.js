@@ -48,6 +48,7 @@ export default class PhotoSlider {
                 nextEl: this._element.querySelector(Selector.NextElement),
                 prevEl: this._element.querySelector(Selector.PreviousElement),
                 disabledClass: 'opacity-0',
+                lockClass: 'opacity-0',
             },
 
             modules: [
