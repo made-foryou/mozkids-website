@@ -22,12 +22,12 @@ class Container extends Component
     {
         $classes = [
             'mx-auto',
-            "sm:px-6",
-            "lg:px-8",
         ];
 
         if ($this->fullScreenMobile === false) {
             $classes[] = 'px-4';
+            $classes[] = "sm:px-6";
+            $classes[] = "lg:px-8";
         }
 
         return implode(' ', $classes);

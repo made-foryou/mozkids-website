@@ -1,8 +1,11 @@
 import Swiper from 'swiper';
+import { Navigation } from 'swiper/modules';
 import { v4 as uuidv4 } from 'uuid';
 
 const Selector = {
-    'PhotoSlider': '.made-photo-slider',
+    PhotoSlider: '.made-photo-slider',
+    NextElement: '.swiper-button-next',
+    PreviousElement: '.swiper-button-prev',
 };
 
 const Data = {
@@ -27,14 +30,29 @@ export default class PhotoSlider {
         PhotoSlider.instances[this._identifier] = this;
 
         this._instance = new Swiper(this._element, {
+
             slidesPerView: 'auto',
+
             spaceBetween: 19,
-            pagination: false,
+
+            loop: true,
+            lazyPreloadPrevNext: 1,
+
             breakpoints: {
                 768: {
                     spaceBetween: 22,
                 }
-            }
+            },
+
+            navigation: {
+                nextEl: this._element.querySelector(Selector.NextElement),
+                prevEl: this._element.querySelector(Selector.PreviousElement),
+                disabledClass: 'opacity-0',
+            },
+
+            modules: [
+                Navigation,
+            ],
         });
     }
 
