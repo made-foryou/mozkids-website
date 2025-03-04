@@ -51,4 +51,7 @@
             </x-container>
         </footer>
     </div>
+
+    <div class="max-w-7xl"></div>
+    <div class="max-w-6xl"></div>
 @endsection

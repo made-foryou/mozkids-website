@@ -64,9 +64,14 @@ class TextWithImageStrip implements ContentStrip
                     ->addActionLabel('Button toevoegen'),
 
                 FileUpload::make('image')
-                    ->label('Afbeelding'),
+                    ->image()
+                    ->label('Afbeelding')
+                    ->imageEditor()
+                    ->imageEditorAspectRatios([
+                        '134:125',
+                    ])
+                    ->preserveFilenames(),
 
-            ])
-            ->preview('strips.'. self::id());
+            ]);
     }
 }

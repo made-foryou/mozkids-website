@@ -2,10 +2,15 @@ import './bootstrap';
 
 import Sidebar from './modules/sidebar';
 import HighlightText, { Highlight } from './modules/highlight-text';
+import PhotoSlider from './modules/photo-slider';
+
+import 'swiper/css';
 
 window.addEventListener('load', () => {
 
     Sidebar.initialize();
+
+    PhotoSlider.initialize();
 
     const highlights = [];
 
@@ -14,8 +19,6 @@ window.addEventListener('load', () => {
     highlights.push(
         new Highlight('[', ']', 'text-primary', regex)
     );
-
-
 
     HighlightText.initialize(highlights);
 
