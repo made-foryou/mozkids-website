@@ -23,11 +23,39 @@
 
                 <div 
                     class="swiper-slide 
+                           relative
                            bg-cover bg-center bg-no-repeat
                            aspect-248/139 w-[88.92%]! md:w-[78.61%]!
                            rounded-lg" 
                     style="background-image: url('{{ $image }}')"
                 >
+
+                @if (!empty($photo['title']) && !empty($photo['description']))
+
+                    <div 
+                        class="swiper-slide-overlay 
+                               absolute
+                               top-2.5 left-2.5
+                               rounded-lg drop-shadow opacity-0
+                               w-1/3 p-7.5
+                               bg-white
+                               transition-opacity ease-in-out duration-450"
+                    >
+                        <span 
+                            class="inline-block mb-3
+                                   text-black text-base font-normal font-sans tracking-wide "
+                        >
+                            {{ $photo['title'] }}
+                        </span>
+                        <p 
+                            class="text-black text-sm font-sans font-light"
+                        >
+                            {!! nl2br($photo['description']) !!}
+                        </p>
+                    </div>
+
+                @endif
+
                 </div>
 
                 @endforeach
