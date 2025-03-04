@@ -108,6 +108,7 @@ return [
              */
             'default' => [
                 Strips\HeroStrip::class,
+                Strips\TextWithImageStrip::class,
             ],
 
             /**
