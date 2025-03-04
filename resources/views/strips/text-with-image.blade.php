@@ -11,7 +11,7 @@
            lg:py-18"
 >
     <x-container
-        class="grid md:grid-cols-2"
+        class="max-w-6xl grid md:grid-cols-2"
     >
 
         <div
@@ -61,7 +61,7 @@
 
             @endif
         </div>
-        <figure>
+        <figure class="aspect-134/125">
             <img src="{{ $image }}" alt="test" />
         </figure>
 

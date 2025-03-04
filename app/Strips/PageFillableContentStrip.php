@@ -55,7 +55,6 @@ class PageFillableContentStrip implements ContentStrip
                         ->toArray()
                     ),
             ])
-            ->columns(2)
-            ->preview('strips.page-fillable-content-strip');
+            ->columns(2);
     }
 }

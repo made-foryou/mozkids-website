@@ -11,9 +11,26 @@ class Container extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public function __construct(
+        public bool $fullScreenMobile = false,
+    )
     {
         //
+    }
+
+    public function containerClasses(): string
+    {
+        $classes = [
+            'mx-auto',
+        ];
+
+        if ($this->fullScreenMobile === false) {
+            $classes[] = 'px-4';
+            $classes[] = "sm:px-6";
+            $classes[] = "lg:px-8";
+        }
+
+        return implode(' ', $classes);
     }
 
     /**

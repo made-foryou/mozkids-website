@@ -56,7 +56,6 @@ class HeroStrip implements ContentStrip
                     ->schema(ButtonSchema::schema())
                     ->addActionLabel('Button toevoegen')
             ])
-            ->columns(2)
-            ->preview('strips.' . self::id());
+            ->columns(2);
     }
 }
