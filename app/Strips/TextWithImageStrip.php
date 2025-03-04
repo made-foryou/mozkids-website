@@ -6,13 +6,20 @@ namespace App\Strips;
 
 use App\Schemas\ButtonSchema;
 use Filament\Forms\Components\Builder\Block;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Repeater;
-use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\TextInput;
 use Illuminate\Contracts\View\View;
 use Made\Cms\Filament\Builder\ContentStrip;
 
-class HeroStrip implements ContentStrip
+class TextWithImageStrip implements ContentStrip
 {
+    public static function id(): string
+    {
+        return 'text-with-image';
+    }
+
     public static function render(array $attributes = []): View
     {
         $attributes['live'] = true;
@@ -37,26 +44,29 @@ class HeroStrip implements ContentStrip
         return view('strips.' . self::id(), $attributes);
     }
 
-    public static function id(): string
-    {
-        return 'hero-strip';
-    }
-
     public static function block(string $context = 'form'): Block
     {
         return Block::make(self::id())
-            ->label('Hero tekst')
-            ->icon('heroicon-s-star')
+            ->icon('heroicon-s-document-text')
             ->schema([
-                Textarea::make('content')
-                    ->label('Inhoud')
-                    ->helperText('Om tekst rood en uitgelicht te maken kun je de tekst omringen met [ en een ].'),
+                TextInput::make('title')
+                    ->label('Titel'),
+
+                TextInput::make('subtitle')
+                    ->label('Subtitel')
+                    ->helperText('Tekst in het rood boven de titel.'),
+
+                RichEditor::make('content')
+                    ->label('Inhoud'),
 
                 Repeater::make('buttons')
                     ->schema(ButtonSchema::schema())
-                    ->addActionLabel('Button toevoegen')
+                    ->addActionLabel('Button toevoegen'),
+
+                FileUpload::make('image')
+                    ->label('Afbeelding'),
+
             ])
-            ->columns(2)
-            ->preview('strips.' . self::id());
+            ->preview('strips.'. self::id());
     }
 }

@@ -30,7 +30,7 @@ class PageFillableContentStrip implements ContentStrip
         return 'page-fillable-content-strip';
     }
 
-    public static function block(): Block
+    public static function block(string $context = 'form'): Block
     {
         return Block::make(self::id())
             ->label('Pagina vullende inhoudsstrook')
