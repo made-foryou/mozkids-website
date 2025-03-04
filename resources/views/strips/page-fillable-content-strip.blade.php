@@ -1,14 +1,5 @@
-@php
-    $live = $live ?? false;
-@endphp
 
-@if ($live === false)
-    <style>
-        {!! \Illuminate\Support\Facades\Vite::content('resources/css/app.css') !!}
-    </style>
-@endif
-
-<section class="relative flex flex-grow w-full py-12 @if ($live === false) overflow-hidden min-h-1/2 bg-secondary @endif">
+<section class="relative flex flex-grow w-full py-12">
     <x-container class="flex-grow flex flex-col justify-center items-center">
         <div class="py-25 flex justify-center items-center flex-col">
             <span 
@@ -29,7 +20,7 @@
     @if (!empty($link) || !empty($label))
 
         <div class="w-full flex flex-col justify-center items-center border-t border-white pt-12">
-            <x-button :color="'white'" :href="($live === true) ? url($linkModel->route->route) : null">
+            <x-button :color="'white'" :href="url($linkModel->route->route)">
                 {{ $label }}
                 <x-slot:icon>
                     @include('svg.arrow-right')

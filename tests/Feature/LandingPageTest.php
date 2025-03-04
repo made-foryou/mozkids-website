@@ -3,8 +3,6 @@
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Made\Cms\Models\Settings\WebsiteSetting;
-use Made\Cms\Page\Models\Page;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
