@@ -34,7 +34,7 @@
 
                     <div 
                         class="swiper-slide-overlay 
-                               absolute
+                               absolute hidden md:block
                                top-2.5 left-2.5
                                rounded-lg drop-shadow opacity-0
                                w-1/3 p-7.5
