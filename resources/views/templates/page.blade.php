@@ -52,12 +52,12 @@
         </footer>
     </div>
 
-    <div class="max-w-7xl grid-cols-1"></div>
-    <div class="max-w-6xl grid-cols-2"></div>
-    <div class="grid-cols-3"></div>
-    <div class="grid-cols-4"></div>
-    <div class="grid-cols-5"></div>
-    <div class="grid-cols-6"></div>
+    <div class="max-w-7xl grid-cols-1 md:grid-cols-1"></div>
+    <div class="max-w-6xl grid-cols-2 md:grid-cols-2"></div>
+    <div class="grid-cols-3 md:grid-cols-3"></div>
+    <div class="grid-cols-4 md:grid-cols-4"></div>
+    <div class="grid-cols-5 md:grid-cols-5"></div>
+    <div class="grid-cols-6 md:grid-cols-6"></div>
 
     
 @endsection
