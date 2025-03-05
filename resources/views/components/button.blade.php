@@ -15,7 +15,7 @@
                 title="{{ $title }}"
                 rel="{{ $rel }}"
                 class="group
-                    flex items-center 
+                    inline-flex items-center 
                     bg-secondary cursor-pointer rounded-full shadow-xs text-primary
                     space-x-4 py-2 pl-6 pr-7 lg:py-3
                     transition duration-245 ease-in-out
@@ -61,7 +61,7 @@
             title="{{ $title }}"
             rel="{{ $rel }}"
             class="group
-                flex items-center 
+                inline-flex items-center 
                 bg-white cursor-pointer rounded-full shadow-xs text-primary
                 space-x-4 py-2 pl-6 pr-7 lg:py-3
                 transition duration-245 ease-in-out
@@ -107,7 +107,7 @@
                 title="{{ $title }}"
                 rel="{{ $rel }}"
                 class="group
-                    flex items-center 
+                    inline-flex items-center 
                     bg-primary cursor-pointer rounded-full shadow-xs text-white
                     space-x-4 py-2 pl-6 pr-7 lg:py-3
                     transition duration-245 ease-in-out

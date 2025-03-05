@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\View\Composers\InformationSettingsComposer;
 use App\View\Composers\MainMenuItemsComposer;
 use App\View\Composers\StatementsMenuItemsComposer;
 use Illuminate\Support\Facades;
@@ -25,5 +26,7 @@ class AppServiceProvider extends ServiceProvider
         Facades\View::composer('partials.navigation', MainMenuItemsComposer::class);
 
         Facades\View::composer('partials.footer', StatementsMenuItemsComposer::class);
+
+        Facades\View::composer('partials.footer', InformationSettingsComposer::class);
     }
 }

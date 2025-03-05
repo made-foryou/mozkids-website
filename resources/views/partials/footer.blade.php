@@ -8,16 +8,16 @@
             Adres
         </span>
         <span class="inline-block w-full text-black text-xs/4 lg:text-sm/5.5 font-sans">
-            Zevenhovenstraat 2<br />
-            2971 AZ, Bleskensgraaf<br />
-            Nederland
+            {{ $address->address }}<br />
+            {{ $address->zipcode }}, {{ $address->city }}<br />
+            {{ $address->country }}
         </span>
         <div class="mt-7.5 space-y-2.5">
-            <x-button :color="'secondary'">
-                + 31(0) 6 27 82 35 95
+            <x-button :color="'secondary'" :href="'tel:' . $contact->phoneNumber">
+                {{ $contact->phone }}
             </x-button>
-            <x-button>
-                contact@mozkids.nl
+            <x-button :href="'mailto:'.$contact->email">
+                {{ $contact->email }}
             </x-button>
         </div>
     </div>
@@ -27,28 +27,12 @@
             Blijf op de hoogte
         </x-footer-title>
         <div class="flex flex-col justify-start space-y-3.5">
-            <a class="block flex items-center space-x-2" href="http://youtube.com" rel="nofollow" target="_blank">
-                <x-round-button>
-                    @include('svg.youtube')
-                </x-round-button>
-                <span class="inline-block text-xs lg:text-sm font-sans font-light">
-                    Youtube
-                </span>
-            </a>
-            <a class="block flex items-center space-x-2" href="http://facebook.com" rel="nofollow" target="_blank">
-                <x-round-button>
-                    @include('svg.facebook')
-                </x-round-button>
-                <span class="inline-block text-xs lg:text-sm font-sans font-light">
-                    Facebook
-                </span>
-            </a>
-            <a class="block flex items-center space-x-2" href="http://instagram.com" rel="nofollow" target="_blank">
+            <a class="block flex items-center space-x-2" href="{{ $instagram->url }}" rel="nofollow" target="_blank">
                 <x-round-button>
                     @include('svg.instagram')
                 </x-round-button>
                 <span class="inline-block text-xs lg:text-sm font-sans font-light">
-                    Instagram
+                    {{ $instagram->account }}
                 </span>
             </a>
         </div>
@@ -61,18 +45,18 @@
         <div class="space-y-4">
             <div>
                 <span class="inline-block w-full text-primary text-xs lg:text-sm font-sans font-bold">
-                    Bankrekening
+                    {{ $bankAccount->label }}
                 </span>
                 <span class="inline-block w-full text-black text-xs/4 lg:text-sm/5.5 font-sans">
-                    NL60 RABO 0112968570
+                    {{ $bankAccount->account }}
                 </span>
             </div>
             <div>
                 <span class="inline-block w-full text-primary text-xs lg:text-sm font-sans font-bold">
-                    SIN/Fiscaal nummer
+                    {{ $sinAccount->label }}
                 </span>
                 <span class="inline-block w-full text-black text-xs/4 lg:text-sm/5.5 font-sans">
-                    822582466
+                    {{ $sinAccount->account }}
                 </span>
             </div>  
             <div>
