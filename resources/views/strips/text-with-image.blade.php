@@ -1,7 +1,7 @@
 @php
     $live = $live ?? false;
 
-    $image = ($live) ? url($image) : url(array_pop($image));
+    $image = ($live) ? asset("storage/{$image}") : asset('storage/' . array_pop($image));
 @endphp
 
 <section

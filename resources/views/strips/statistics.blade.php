@@ -26,7 +26,7 @@
                 @continue;
             @endif
 
-            @php($image = ($live) ? url($stat['icon']) : url(array_pop($stat['icon'])))
+            @php($image = ($live) ? asset("storage/{$stat['icon']}") : asset('storage/' . array_pop($stat['icon'])))
 
             <div class="flex flex-col">
                 <figure 

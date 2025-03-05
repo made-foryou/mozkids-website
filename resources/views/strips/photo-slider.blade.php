@@ -19,7 +19,7 @@
                     @continue
                 @endif
 
-                @php($image = ($live) ? url($photo['image']) : url(array_pop($photo['image'])))
+                @php($image = ($live) ? asset("storage/{$photo['image']}") : asset('storage/' . array_pop($photo['image'])))
 
                 <div 
                     class="swiper-slide 
