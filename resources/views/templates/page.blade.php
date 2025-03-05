@@ -37,7 +37,7 @@
 
     <div class="flex flex-col justify-between items-center min-h-screen min-w-screen bg-secondary">
         <header class="fixed z-20 flex-none w-full bg-secondary/70 backdrop-blur-2xl py-6">
-            <x-container>
+            <x-container class="max-w-6xl">
                 @include('partials.navigation')
             </x-container>
         </header>
@@ -46,7 +46,7 @@
             @yield('content')
         </main>
         <footer class="flex-none bg-white w-full">
-            <x-container class="py-10">
+            <x-container class="max-w-6xl py-10">
                 @include('partials.footer')
             </x-container>
         </footer>
