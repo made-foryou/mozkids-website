@@ -61,4 +61,26 @@ class ButtonSchema
 
         return $options->toArray();
     }
+
+    public static function resolveViewAttributes(array $attributes): array
+    {
+        if (!empty($attributes['buttons'])) {
+            $attributes['buttons'] = array_map(function (array $button): array {
+                if ($button['website_link'] === null) {
+                    return $button;
+                }
+
+                [$model, $id] = explode(':', $button['website_link']);
+
+                $target = $model::query()
+                    ->findOrFail($id);
+
+                $button['website_link'] = $target;
+
+                return $button;
+            }, $attributes['buttons']);
+        }
+
+        return $attributes;
+    }
 }

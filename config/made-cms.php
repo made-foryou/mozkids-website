@@ -108,9 +108,9 @@ return [
              */
             'default' => [
                 Strips\HeroStrip::class,
-                Strips\TextWithImageStrip::class,
                 Strips\PhotoSlider::class, 
                 Strips\StatisticsStrip::class,
+                Strips\TwoColumnsStrip::class,
             ],
 
             /**

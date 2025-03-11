@@ -40,6 +40,7 @@ class StatisticsStrip implements ContentStrip
     public static function block(string $context = 'form'): Block
     {
         return Block::make(self::id())
+            ->label('Statistieken')
             ->icon('heroicon-s-chart-bar-square')
             ->schema([
                 Repeater::make('stats')
