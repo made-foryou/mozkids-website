@@ -39,7 +39,7 @@ export default class HighlightText {
             return;
         }
 
-        let content = this._element.innerText;
+        let content = this._element.innerHTML;
 
         for (const highlight of this._highlights) {
 
@@ -52,8 +52,8 @@ export default class HighlightText {
                 content = content.replace(
                     matches[0],
                     '<span class="' + highlight.classes + '">'
-                        + matches[0].replace(highlight.start, '').replace(highlight.end, '')
-                        + '</span>',
+                    + matches[0].replace(highlight.start, '').replace(highlight.end, '')
+                    + '</span>',
                 );
 
             }

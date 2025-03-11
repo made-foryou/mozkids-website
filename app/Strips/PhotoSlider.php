@@ -29,6 +29,7 @@ class PhotoSlider implements ContentStrip
     public static function block(string $context = 'form'): Block
     {
         return Block::make(self::id())
+            ->label('Foto slider')
             ->icon('heroicon-s-photo')
             ->schema([
                 Repeater::make('photos')
