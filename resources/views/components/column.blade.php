@@ -32,6 +32,10 @@
     <x-columns.news />
 @endif
 
+@if ($item['type'] === 'newsletter')
+    <x-columns.newsletter />
+@endif
+
 
 @endforeach
 </div>
