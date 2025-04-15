@@ -4,6 +4,9 @@ namespace App\Http\Requests\Api;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * @method mixed get(string $key, mixed $default = null)
+ */
 class SubscribeToNewsletterRequest extends FormRequest
 {
     /**
