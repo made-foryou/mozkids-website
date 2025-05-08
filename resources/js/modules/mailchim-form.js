@@ -18,6 +18,12 @@ export default class MailchimpForm {
         this._submit = this._form.querySelector('button[type="submit"]');
 
         /**
+         * @type {HTMLElement}
+         * @private
+         */
+        this._success = document.querySelector('.made-mailchimp-success');
+
+        /**
          * @type {boolean}
          * @private
          */
@@ -45,7 +51,7 @@ export default class MailchimpForm {
         });
 
         if (result.status === 200) {
-            // @todo Respond that the user was added to the list.
+            this.success();
         } else if (result.status === 302) {
             // @todo Respond that the user was already added to the list.
         } else if (result.status === 422) {
@@ -76,6 +82,22 @@ export default class MailchimpForm {
         this._submit.querySelector('div[role="status"]').remove();
 
         this._loading = false;
+    }
+
+    success() {
+        this._form.classList.add('ease-in-out', 'duration-450', 'transition-opacity');
+        this._form.classList.add('opacity-0');
+
+        window.setTimeout(() => {
+            this._form.classList.add('hidden', 'absolute');
+
+            this._form.reset();
+
+            this._success.classList.remove('absolute');
+            this._success.classList.add('relative');
+
+            this._success.classList.remove('opacity-0');
+        }, 450);
     }
 
     processValidationErrors(errors) {

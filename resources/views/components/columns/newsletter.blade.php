@@ -18,7 +18,7 @@
                 nieuws en ontwikkelingen bij Stichting Moz Kids.
             </span>
         </div>
-        <div class="">
+        <div>
             <form class="made-mailchimp-form" action="{{ route('api.subscribe-to-newsletter') }}" method="POST">
 
                 <input name="firstname" type="text" placeholder="Voornaam" required  class="rounded-xl bg-white w-full px-5 py-4 text-base mb-4" />
@@ -31,6 +31,20 @@
                     Aanmelden
                 </x-button>
             </form>
+            <div class="made-mailchimp-success opacity-0 absolute transition-opacity ease-in-out duration-450 py-4">
+                <h3 class="text-primary"><strong>Aanmelding verstuurd</strong></h3>
+                <p class="mt-2">
+                    Bedankt voor je aanmelding. Je ontvangt een bevestigingsmail waarin je je 
+                    aanmelding kunt bevestigen. Zodra je dat hebt gedaan, wordt je op de 
+                    hoogte gehouden van het laatste nieuws en ontwikkelingen rondom 
+                    Moz Kids.
+                </p>
+                <p class="mt-4">
+                    Een vriendelijke groet,
+                    <br />
+                    Het Moz Kids Team
+                </p>
+            </div>
         </div>
     </div>
 </div>
