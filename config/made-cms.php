@@ -112,6 +112,7 @@ return [
                 Strips\StatisticsStrip::class,
                 Strips\TwoColumnsStrip::class,
                 Strips\ThreeColumnStrip::class,
+                Strips\QuoteStrip::class,
             ],
 
             /**
