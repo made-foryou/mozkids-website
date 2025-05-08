@@ -7,6 +7,7 @@ use App\View\Composers\MainMenuItemsComposer;
 use App\View\Composers\StatementsMenuItemsComposer;
 use Illuminate\Support\Facades;
 use Illuminate\Support\ServiceProvider;
+use MailchimpMarketing\ApiClient;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -15,7 +16,16 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->bind(ApiClient::class, function ($app) {
+            $client = new ApiClient();
+
+            $client->setConfig([
+                'apiKey' => config('services.mailchimp.api_key'),
+                'server' => config('services.mailchimp.server_prefix'),
+            ]);
+
+            return $client;
+        });
     }
 
     /**
