@@ -36,12 +36,12 @@
     @include('partials.sidebar-menu')
 
     <div class="flex flex-col justify-between items-center min-h-screen min-w-screen bg-secondary">
-        <header class="fixed z-20 flex-none w-full bg-secondary/70 backdrop-blur-2xl py-6">
+        <header class="left-0 fixed z-20 flex-none w-full bg-secondary/70 backdrop-blur-2xl py-6">
             <x-container class="max-w-6xl">
                 @include('partials.navigation')
             </x-container>
         </header>
-        <main class="flex flex-col justify-start items-center flex-grow 
+        <main class="relative flex flex-col justify-start items-center flex-grow 
                      w-full pt-[96px]">
             @yield('content')
         </main>
@@ -51,6 +51,10 @@
             </x-container>
         </footer>
     </div>
+
+    @if ($donation_button)
+        @include('partials.donation-button')
+    @endif
 
     <div class="max-w-7xl grid-cols-1 md:grid-cols-1"></div>
     <div class="max-w-6xl grid-cols-2 md:grid-cols-2"></div>
