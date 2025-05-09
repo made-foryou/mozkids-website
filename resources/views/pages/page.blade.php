@@ -1,5 +1,6 @@
 @extends('templates.page', [
     'meta' => $model->meta,
+    'donation_button' => $donation_button,
 ])
 
 @php
