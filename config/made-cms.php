@@ -2,6 +2,8 @@
 
 // config for Made/Cms
 
+use App\Domains\Website\Settings\WebsiteSettings;
+use App\Models\WebsiteSetting;
 use App\Strips;
 
 return [
@@ -138,6 +140,15 @@ return [
             \Made\Cms\News\Models\Post::class => [
                 //
             ],
+        ],
+    ],
+
+    'settings' => [
+
+        'website_model' => WebsiteSetting::class,
+
+        'website' => [
+            WebsiteSettings::class,
         ],
     ],
 
