@@ -19,7 +19,7 @@
             </div>
             <div class="text-white mr-5">
                 <span class="block text-base font-sans tracking-wide font-bold leading-5">Doneer direct</span>
-                <span class="block text-xs font-light">Geef aan kinderen in Mozambique</span>
+                <span class="block text-xs font-light">{{ $subject }}</span>
             </div>
             <div 
                 class="text-white
