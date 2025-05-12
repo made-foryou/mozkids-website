@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 namespace App\Schemas;
 
+use App\Components\UsesInternalLinks;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
-use Made\Cms\News\Models\Post;
-use Made\Cms\Page\Models\Page;
 
 class ButtonSchema
 {
+    use UsesInternalLinks;
+
     public static function schema(): array
     {
         return [
@@ -31,35 +32,6 @@ class ButtonSchema
                 ->nullable()
                 ->options(self::options()),
         ];
-    }
-
-    protected static function options(): array
-    {
-        $options = collect();
-
-        $pages = Page::query()
-            ->select('id', 'name')
-            ->published()
-            ->get();
-
-        $options = $options->merge(
-            $pages->mapWithKeys(fn (Page $item) => [$item::class.':'.$item->id => 'Pagina: ' . $item->name])
-        );
-
-        $posts = Post::query()
-            ->select('id', 'name')
-            ->published()
-            ->get();
-
-        $options = $options->merge(
-            $posts->mapWithKeys(fn (Post $item) => [$item::class.':'.$item->id => 'Nieuwsbericht: ' . $item->name])
-        );
-
-        /**
-         * @todo Ervoor zorgen dat er nog meer types aan toegevoegd kunnen worden.
-         */
-
-        return $options->toArray();
     }
 
     public static function resolveViewAttributes(array $attributes): array
