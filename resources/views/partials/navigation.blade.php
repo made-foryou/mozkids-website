@@ -35,12 +35,14 @@
     </nav>
 
     <div class="hidden lg:block">
-        <x-button :href="'#'">
+        @if (!empty($donationPage))
+        <x-button href="{{ Cms::url($donationPage) }}">
             Doneer direct
             <x-slot:icon>
                 @include('svg.arrow-right')
             </x-slot:icon>
         </x-button>
+        @endif
     </div>
 
 

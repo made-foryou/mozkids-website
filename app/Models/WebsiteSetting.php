@@ -11,4 +11,6 @@ class WebsiteSetting extends SettingsWebsiteSetting
     public bool $donation_button = false;
 
     public string $donation_button_text = '';
+
+    public string|null $donation_page = null;
 }

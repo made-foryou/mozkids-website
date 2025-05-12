@@ -41,6 +41,7 @@ class AppServiceProvider extends ServiceProvider
 
         $settings = app()->make(WebsiteSetting::class);
 
+        Facades\View::share('donationPage', $this->resolveLink($settings->donation_page));
         Facades\View::share('donation_button', $settings->donation_button);
 
         Facades\View::composer('partials.navigation', MainMenuItemsComposer::class);
@@ -50,5 +51,16 @@ class AppServiceProvider extends ServiceProvider
         Facades\View::composer('partials.footer', InformationSettingsComposer::class);
 
         Facades\View::composer('partials.donation-button', DonationButtonComposer::class);
+    }
+
+    public function resolveLink(string|null $link = null)
+    {
+        if ($link === null) {
+            return null;
+        }
+
+        [$model, $id] = explode(':', $link);
+
+        return $model::query()->find($id);
     }
 }

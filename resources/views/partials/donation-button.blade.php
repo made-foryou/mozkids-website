@@ -1,6 +1,7 @@
 <div class="fixed z-20 w-full inset-x-0 bottom-0 mb-8">
     <x-container class="w-full max-w-6xl mx-auto flex items-center justify-center">
-        <div 
+        <a 
+            href="{{ Cms::url($donationPage) }}"
             class="inline-flex items-center
                    cursor-pointer rounded-full shadow-xs text-primary backdrop-blur-2xl
                    bg-black/40 
@@ -28,6 +29,6 @@
             >
                 @include('svg.arrow-right', ['size' => 5])
             </div>
-        </div>
+        </a>
     </x-container>
 </div>
