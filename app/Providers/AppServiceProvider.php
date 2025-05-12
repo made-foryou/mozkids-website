@@ -2,12 +2,12 @@
 
 namespace App\Providers;
 
+use App\Models\WebsiteSetting;
 use App\View\Composers\DonationButtonComposer;
 use App\View\Composers\InformationSettingsComposer;
 use App\View\Composers\MainMenuItemsComposer;
 use App\View\Composers\StatementsMenuItemsComposer;
 use Illuminate\Support\Facades;
-use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\ServiceProvider;
 use MailchimpMarketing\ApiClient;
 
@@ -35,6 +35,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        $settings = app()->make(WebsiteSetting::class);
+
+        Facades\View::share('donation_button', $settings->donation_button);
+
         Facades\View::composer('partials.navigation', MainMenuItemsComposer::class);
 
         Facades\View::composer('partials.footer', StatementsMenuItemsComposer::class);
