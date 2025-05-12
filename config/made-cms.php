@@ -115,6 +115,7 @@ return [
                 Strips\TwoColumnsStrip::class,
                 Strips\ThreeColumnStrip::class,
                 Strips\QuoteStrip::class,
+                Strips\CallToActionStrip::class,
             ],
 
             /**
