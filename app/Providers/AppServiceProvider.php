@@ -35,6 +35,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        if (true === app()->runningInConsole()) {
+            return;
+        }
+
         $settings = app()->make(WebsiteSetting::class);
 
         Facades\View::share('donation_button', $settings->donation_button);
