@@ -378,7 +378,7 @@
               <p class="text-sm text-red-600 hidden" id="privacy-error"></p>
             </div>
             <div class="text-sm/6">
-              <label for="privacy" class="font-medium text-gray-900">Privacy verklaring</label>
+              <label for="privacy" class="font-medium text-gray-900">Privacy verklaring <span class="text-primary-400">*</span></label>
               <p id="privacy-description" class="text-gray-500">Ik ga akkoord met de privacy verklaring en verwerking van mijn persoonsgegevens.</p>
             </div>
           </div>
