@@ -5,7 +5,7 @@
 <section
     class="relative
            py-12 w-full
-           bg-secondary
+           bg-secondary-500
            lg:py-18"
 >
     <x-container

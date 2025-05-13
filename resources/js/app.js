@@ -4,6 +4,8 @@ import Sidebar from './modules/sidebar';
 import HighlightText, { Highlight } from './modules/highlight-text';
 import PhotoSlider from './modules/photo-slider';
 import MailchimpForm from './modules/mailchim-form';
+import ButtonRadio from './modules/button-radio';
+import DonationForm from './modules/donation-form';
 
 import 'swiper/css';
 
@@ -15,16 +17,26 @@ window.addEventListener('load', () => {
 
     MailchimpForm.initialize();
 
+    ButtonRadio.initialize();
+
     const highlights = [];
 
     const regex = /\[([a-zA-Z0-9\s]*)\]/;
 
     highlights.push(
-        new Highlight('[', ']', 'text-primary', regex)
+        new Highlight('[', ']', 'text-primary-500', regex)
     );
 
     HighlightText.initialize(highlights);
 
+});
+
+window.addEventListener('DOMContentLoaded', () => {
+    const donationForm = document.querySelector('[data-made-donation-form]');
+
+    if (donationForm) {
+        new DonationForm(donationForm);
+    }
 });
 
 window.Sidebar = Sidebar;

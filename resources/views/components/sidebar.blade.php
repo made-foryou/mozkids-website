@@ -52,7 +52,7 @@
                 class="flex grow flex-col gap-y-6
                        overflow-y-auto
                        px-6 pb-4
-                       bg-secondary"
+                       bg-secondary-500"
             >
                 {{ $slot }}
             </div>

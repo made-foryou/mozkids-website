@@ -3,12 +3,12 @@
         class="block
             mb-9 pb-3
             border-b border-white
-            text-xs text-primary font-sans tracking-wide uppercase leading-8.5
+            text-xs text-primary-500 font-sans tracking-wide uppercase leading-8.5
             md:text-sm"
     >
         Nieuwsbrief
     </span>
-    <div class="divide-y divide-secondary border-b border-secondary">
+    <div class="divide-y divide-secondary-500 border-b border-secondary-500">
         <div class="pb-6">
             <span class="block text-base md:text-lg text-dark mb-3.5 font-sans tracking-wide">
                 Wilt u op de hoogte blijven van onze laatste nieuws?
@@ -32,7 +32,7 @@
                 </x-button>
             </form>
             <div class="made-mailchimp-success opacity-0 absolute transition-opacity ease-in-out duration-450 py-4">
-                <h3 class="text-primary"><strong>Aanmelding verstuurd</strong></h3>
+                <h3 class="text-primary-500"><strong>Aanmelding verstuurd</strong></h3>
                 <p class="mt-2">
                     Bedankt voor je aanmelding. Je ontvangt een bevestigingsmail waarin je je 
                     aanmelding kunt bevestigen. Zodra je dat hebt gedaan, wordt je op de 

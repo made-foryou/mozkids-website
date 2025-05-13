@@ -1,20 +1,21 @@
 <div class="fixed z-20 w-full inset-x-0 bottom-0 mb-8">
     <x-container class="w-full max-w-6xl mx-auto flex items-center justify-center">
-        <div 
+        <a 
+            href="{{ Cms::url($donationPage) }}"
             class="inline-flex items-center
-                   cursor-pointer rounded-full shadow-xs text-primary backdrop-blur-2xl
+                   cursor-pointer rounded-full shadow-xs text-primary-500 backdrop-blur-2xl
                    bg-black/40 
                    py-1 pl-1 pr-4
                    group
                    transition duration-245 ease-in-out
                    hover:bg-black/60 hover:shadow-xl
-                   focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                   focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500"
         >
             <div 
                 class="rounded-full size-12 flex items-center justify-center mr-4
-                       bg-white text-primary  
+                       bg-white text-primary-500  
                        transition duration-245 ease-in-out
-                       group-hover:text-white group-hover:bg-primary">
+                       group-hover:text-white group-hover:bg-primary-500">
                 @include('svg.hart', ['size' => 8])
             </div>
             <div class="text-white mr-5">
@@ -28,6 +29,6 @@
             >
                 @include('svg.arrow-right', ['size' => 5])
             </div>
-        </div>
+        </a>
     </x-container>
 </div>

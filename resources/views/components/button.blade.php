@@ -16,14 +16,14 @@
                 rel="{{ $rel }}"
                 class="group
                     inline-flex items-center 
-                    bg-secondary cursor-pointer rounded-full shadow-xs text-primary
+                    bg-secondary-500 cursor-pointer rounded-full shadow-xs text-primary-500
                     space-x-4 py-2 pl-6 pr-7 lg:py-3
                     transition duration-245 ease-in-out
-                    hover:bg-primary hover:text-white
-                    focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary"
+                    hover:bg-primary-500 hover:text-white
+                    focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary-500"
             >
                 <span class="inline-block 
-                            text-primary text-xs lg:text-sm font-sans tracking-wide font-semibold
+                            text-primary-500 text-xs lg:text-sm font-sans tracking-wide font-semibold
                             group-hover:text-white">
                     {{ $slot }}
                 </span>
@@ -36,14 +36,14 @@
                 type="{{ $type }}" 
                 class="group
                     flex items-center 
-                    bg-secondary cursor-pointer rounded-full shadow-xs text-primary
+                    bg-secondary-500 cursor-pointer rounded-full shadow-xs text-primary-500
                     space-x-4 py-2 pl-6 pr-7 lg:py-3
                     transition duration-245 ease-in-out
-                    hover:bg-primary hover:text-white
-                    focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary"
+                    hover:bg-primary-500 hover:text-white
+                    focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary-500"
             >
                 <span class="inline-block 
-                            text-primary text-xs lg:text-sm font-sans tracking-wide font-semibold
+                            text-primary-500 text-xs lg:text-sm font-sans tracking-wide font-semibold
                             group-hover:text-white">
                     {{ $slot }}
                 </span>
@@ -62,14 +62,14 @@
             rel="{{ $rel }}"
             class="group
                 inline-flex items-center 
-                bg-white cursor-pointer rounded-full shadow-xs text-primary
+                bg-white cursor-pointer rounded-full shadow-xs text-primary-500
                 space-x-4 py-2 pl-6 pr-7 lg:py-3
                 transition duration-245 ease-in-out
-                hover:bg-primary hover:text-white
-                focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary"
+                hover:bg-primary-500 hover:text-white
+                focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary-500"
         >
             <span class="inline-block 
-                        text-primary text-xs lg:text-sm font-sans tracking-wide font-semibold
+                        text-primary-500 text-xs lg:text-sm font-sans tracking-wide font-semibold
                         group-hover:text-white">
                 {{ $slot }}
             </span>
@@ -86,7 +86,7 @@
                 space-x-4 py-2 pl-6 pr-7 lg:py-3
                 transition duration-245 ease-in-out
                 hover:bg-primary hover:text-white
-                focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary"
+                focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary-500"
         >
             <span class="inline-block 
                         text-primary text-xs lg:text-sm font-sans tracking-wide font-semibold
@@ -108,11 +108,11 @@
                 rel="{{ $rel }}"
                 class="group
                     inline-flex items-center 
-                    bg-primary cursor-pointer rounded-full shadow-xs text-white
+                    bg-primary-500 cursor-pointer rounded-full shadow-xs text-white
                     space-x-4 py-2 pl-6 pr-7 lg:py-3
                     transition duration-245 ease-in-out
-                    hover:bg-primary-dark
-                    focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                    hover:bg-primary-700
+                    focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500"
             >
                 <span class="inline-block 
                             text-white text-xs lg:text-sm font-sans tracking-wide font-semibold">
@@ -127,11 +127,11 @@
                 type="{{ $type }}" 
                 class="group
                     flex items-center 
-                    bg-primary cursor-pointer rounded-full shadow-xs text-white
+                    bg-primary-500 cursor-pointer rounded-full shadow-xs text-white
                     space-x-4 py-2 pl-6 pr-7 lg:py-3
                     transition duration-245 ease-in-out
-                    hover:bg-primary-dark
-                    focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                    hover:bg-primary-700
+                    focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500"
             >
                 <span class="inline-block 
                             text-white text-xs lg:text-sm font-sans tracking-wide font-semibold">

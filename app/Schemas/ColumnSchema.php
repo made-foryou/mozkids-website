@@ -26,6 +26,7 @@ class ColumnSchema
                     'agenda' => 'Activiteiten agenda',
                     'news' => 'Laatste nieuws',
                     'newsletter' => 'Nieuwsbrief',
+                    'donation-form' => 'Donatie formulier',
                 ]),
 
             // text
@@ -38,6 +39,8 @@ class ColumnSchema
             Repeater::make('buttons')
                 ->schema(ButtonSchema::schema())
                 ->addActionLabel('Button toevoegen')
+                ->live()
+                ->hidden(fn (Get $get): bool => $get('type') === 'donation-form')
                 ->defaultItems(0),
         ];
     }
