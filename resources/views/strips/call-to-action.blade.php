@@ -10,18 +10,18 @@
             href="{{ Cms::url($link) }}"
             class="flex flex-col items-center justify-between gap-5 md:gap-15 md:flex-row
                    relative w-full py-8 px-4 md:py-13 md:px-14
-                   bg-primary rounded-lg md:rounded-full
+                   bg-primary-500 rounded-lg md:rounded-full
                    group
                    cursor-pointer
                    transition duration-245 ease-in-out
                    hover:shadow-xl
-                   focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                   focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500"
         >
 
             <span 
                 class="inline-flex justify-center items-center flex-shrink-0
                        size-7 md:size-14
-                       bg-white text-primary rounded-full"
+                       bg-white text-primary-500 rounded-full"
             >
                 <x-svg.hart class="size-5 md:size-9" />
             </span>
@@ -35,7 +35,7 @@
             <span 
                 class="inline-flex justify-center items-center flex-shrink-0
                        size-7 md:size-14
-                       border-2 border-white text-white bg-primary rounded-full">
+                       border-2 border-white text-white bg-primary-500 rounded-full">
                 <x-svg.arrow-right class="size-5" />
             </span>
 

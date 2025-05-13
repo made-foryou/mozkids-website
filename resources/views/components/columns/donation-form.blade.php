@@ -1,0 +1,268 @@
+<a 
+    href="#"
+    class="flex flex-col items-center justify-between gap-5 md:flex-row
+            relative w-full py-4 px-5 md:py-8 md:px-10
+            bg-primary-500 rounded-lg
+            group
+            cursor-pointer
+            transition duration-245 ease-in-out
+            hover:bg-primary-300
+            focus:scale-98
+            focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500"
+>
+    <span 
+        class="inline-block 
+                font-sans text-white text-lg tracking-wide
+                md:text-xl lg:text-2xl">
+        Doneer direct via internetbankieren
+    </span>
+    <div
+        class="inline-flex items-center flex-shrink-0
+               bg-white cursor-pointer rounded-full shadow-xs text-primary-500
+               space-x-4 py-2 pl-6 pr-7 lg:py-3
+               transition duration-245 ease-in-out
+               group-hover:bg-primary-500 group-hover:text-white
+               focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary-500"
+    >
+        <span 
+            class="block 
+                text-primary-500 text-xs lg:text-sm font-sans tracking-wide font-semibold
+                group-hover:text-white"
+        >
+            Doneer direct
+        </span>
+        <x-svg.arrow-right class="size-5 text-primary-500 group-hover:text-white" />
+    </div>
+</a>
+
+<div class="mt-5 w-full bg-white rounded-lg px-11 py-10">
+    <span class="text-black text-xl md:text-2xl font-sans tracking-wide font-semibold">
+        Ja, ik sponsor een kind <br />of sponsor algemeen
+    </span>
+    <form class="flex flex-col divide-secondary-500 divide-y-1" action="" method="POST">
+
+      @csrf 
+
+      <div class="flex flex-col gap-8 py-8">
+        <fieldset class="block">
+            <legend class="text-sm/6 font-semibold text-gray-900">Sponsoren <span class="text-primary-400">*</span></legend>
+            <p class="mt-1 text-sm/6 text-gray-600">Hoe zou je willen sponsoren?</p>
+            <div class="mt-6 space-y-6 sm:flex sm:items-center sm:space-y-0 sm:space-x-10">
+              <div class="flex items-center">
+                <input id="child" name="type" type="radio" checked class="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-primary-500 checked:bg-primary-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden">
+                <label for="child" class="ml-3 block text-sm/6 font-medium text-gray-900">Een kind</label>
+              </div>
+              <div class="flex items-center">
+                <input id="common" name="type" type="radio" class="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-primary-500 checked:bg-primary-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden">
+                <label for="common" class="ml-3 block text-sm/6 font-medium text-gray-900">Algemeen</label>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset 
+            class="block" 
+            aria-label="Welk bedrag zou je willen sponsoren?"
+            data-button-radio="amount"
+          >
+            <div class="text-sm/6 font-medium text-gray-900">Bedrag <span class="text-primary-400">*</span></div>
+            <p class="mt-1 text-sm/6 text-gray-600">Welk bedrag zou je willen sponsoren?</p>
+          
+            <div class="mt-2 flex justify-start items-center flex-wrap gap-3">
+
+              <label 
+                class="flex cursor-pointer items-center justify-center 
+                       rounded-full px-3 py-3 
+                       text-sm font-semibold uppercase 
+                       focus:outline-hidden 
+                       ring-0 bg-primary-500 text-white 
+                       transition duration-200 ease-in-out
+                       sm:flex-1 
+                       hover:bg-primary-500"
+                for="20"
+              >
+                <input type="radio" name="amount" id="20" value="20" class="sr-only">
+                <span>€ 20,-</span>
+              </label>
+
+              <label 
+                class="flex cursor-pointer items-center justify-center 
+                       rounded-full px-3 py-3 
+                       text-sm font-semibold uppercase 
+                       focus:outline-hidden 
+                       ring-1 ring-secondary-500 bg-secondary-200 text-gray-900 
+                       transition duration-200 ease-in-out
+                       hover:bg-gray-50
+                       sm:flex-1"
+                for="40"
+              >
+                <input type="radio" name="amount" id="40" value="40" class="sr-only">
+                <span>€ 40,-</span>
+              </label>
+
+              <label 
+                class="flex cursor-pointer items-center justify-center 
+                       rounded-full px-3 py-3 
+                       text-sm font-semibold uppercase 
+                       focus:outline-hidden 
+                       ring-1 ring-secondary-500 bg-secondary-200 text-gray-900 
+                       transition duration-200 ease-in-out
+                       hover:bg-gray-50
+                       sm:flex-1"
+                for="60"
+              >
+                <input type="radio" name="amount" id="60" value="60" class="sr-only">
+                <span>€ 60,-</span>
+              </label>
+
+              <label 
+                class="flex cursor-pointer items-center justify-center 
+                       rounded-full px-3 py-3 
+                       text-sm font-semibold uppercase 
+                       focus:outline-hidden 
+                       ring-1 ring-secondary-500 bg-secondary-200 text-gray-900 
+                       transition duration-200 ease-in-out
+                       hover:bg-gray-50
+                       sm:flex-1"
+                for="other"
+              >
+                <input type="radio" name="amount" id="other" value="other" class="sr-only">
+                <span>Anders</span>
+              </label>
+            </div>
+          </fieldset>
+
+          <div data-button-radio-other class="relative max-h-0 transition scale-y-0 duration-200 ease-in-out origin-top opacity-0" aria-hidden="true">
+            <label for="other-amount" class="block text-sm/6 font-medium text-gray-900">Anders</label>
+            <div class="mt-2">
+              <div class="flex items-center rounded-md bg-white px-3 outline-1 -outline-offset-1 outline-gray-300 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-indigo-600">
+                <div class="shrink-0 text-base text-gray-500 select-none sm:text-sm/6">€</div>
+                <input 
+                  type="text" 
+                  name="other-amount" 
+                  id="other-amount" 
+                  class="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6"
+                  aria-describedby="other-amount-description"
+                  disabled
+                >
+              </div>
+            </div>
+            <p class="mt-2 text-sm text-gray-500" id="other-amount-description">Vul hier het gewenste bedrag in (9,95).</p>
+          </div>
+      </div>
+
+      <div class="py-8 flex flex-col gap-8">
+        <div>
+          <span class="text-black text-xl md:text-2xl font-sans tracking-wide font-semibold">
+            Uw gegevens
+          </span>
+          <p class="mt-2 text-xs text-gray-500">
+            We gebruiken uw gegevens alleen voor identificatie en communicatie vanuit ons naar jou.
+          </p>
+        </div>
+
+        <div>
+          <label for="firstname" class="block text-sm/6 font-medium text-gray-900">
+            Voornaam <span class="text-primary-400">*</span>
+          </label>
+          <div class="mt-2">
+            <input 
+              type="text" 
+              name="firstname" 
+              id="firstname" 
+              class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" 
+            >
+          </div>
+        </div>
+
+        <div>
+          <label for="infix" class="block text-sm/6 font-medium text-gray-900">
+            Tussenvoegsel(s)
+          </label>
+          <div class="mt-2">
+            <input 
+              type="text" 
+              name="infix" 
+              id="infix" 
+              class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" 
+            >
+          </div>
+        </div>
+
+        <div>
+          <label for="surname" class="block text-sm/6 font-medium text-gray-900">
+            Achternaam <span class="text-primary-400">*</span>
+          </label>
+          <div class="mt-2">
+            <input 
+              type="text" 
+              name="surname" 
+              id="surname" 
+              class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" 
+            >
+          </div>
+        </div>
+
+        <div>
+          <label for="email" class="block text-sm/6 font-medium text-gray-900">
+            E-mailadres <span class="text-primary-400">*</span>
+          </label>
+          <div class="mt-2">
+            <input 
+              type="email" 
+              name="email" 
+              id="email" 
+              class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" 
+            >
+          </div>
+        </div>
+
+        <div>
+          <label for="phone" class="block text-sm/6 font-medium text-gray-900">
+            Telefoonnummer <span class="text-primary-400">*</span>
+          </label>
+          <div class="mt-2">
+            <input 
+              type="phone" 
+              name="phone" 
+              id="phone" 
+              class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" 
+            >
+          </div>
+        </div>
+
+        <div>
+          <div class="flex gap-3">
+            <div class="flex h-6 shrink-0 items-center">
+              <div class="group grid size-4 grid-cols-1">
+                <input 
+                  id="privacy" 
+                  aria-describedby="privacy-description" 
+                  name="privacy" 
+                  type="checkbox"  
+                  class="col-start-1 row-start-1 appearance-none rounded-sm border border-gray-300 bg-white checked:border-primary-500 checked:bg-primary-500 indeterminate:border-primary-500 indeterminate:bg-primary-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 disabled:border-gray-300 disabled:bg-gray-100 disabled:checked:bg-gray-100 forced-colors:appearance-auto"
+                >
+                <svg class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-white group-has-disabled:stroke-gray-950/25" viewBox="0 0 14 14" fill="none">
+                  <path class="opacity-0 group-has-checked:opacity-100" d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  <path class="opacity-0 group-has-indeterminate:opacity-100" d="M3 7H11" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </div>
+            </div>
+            <div class="text-sm/6">
+              <label for="privacy" class="font-medium text-gray-900">Privacy verklaring</label>
+              <p id="privacy-description" class="text-gray-500">Ik ga akkoord met de privacy verklaring en verwerking van mijn persoonsgegevens.</p>
+            </div>
+          </div>
+
+          <p class="mt-8 mb-4 text-xs text-black">
+            Giften aan Moz kids zijn fiscaal aftrekbaar.
+          </p>
+
+          <x-button type="submit" color="primary">
+            Doneren
+          </x-button>
+        </div>
+
+      </div>
+
+    </form>
+</div>

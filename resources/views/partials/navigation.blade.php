@@ -5,7 +5,7 @@
         class="block
                transition ease-in-out duration-145
                hover:opacity-75
-               focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+               focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500"
     >
         @include('svg.logo')
     </a>
@@ -22,8 +22,8 @@
                     class="py-2 px-4 rounded-full
                            text-sm/4 text-black
                            transition ease-in-out duration-145
-                           hover:text-primary
-                           focus-visible:outline-primary focus-visible:outline-2 focus-visible:outline-offset-2"
+                           hover:text-primary-500
+                           focus-visible:outline-primary-500 focus-visible:outline-2 focus-visible:outline-offset-2"
                 >
                     {{ $item->linkName }}
                 </a>

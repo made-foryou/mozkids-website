@@ -4,7 +4,7 @@
         <x-footer-title>
             Contactgegevens
         </x-footer-title>
-        <span class="inline-block w-full text-primary text-xs lg:text-sm font-sans font-bold">
+        <span class="inline-block w-full text-primary-500 text-xs lg:text-sm font-sans font-bold">
             Adres
         </span>
         <span class="inline-block w-full text-black text-xs/4 lg:text-sm/5.5 font-sans">
@@ -44,7 +44,7 @@
         </x-footer-title>
         <div class="space-y-4">
             <div>
-                <span class="inline-block w-full text-primary text-xs lg:text-sm font-sans font-bold">
+                <span class="inline-block w-full text--500 text-xs lg:text-sm font-sans font-bold">
                     {{ $bankAccount->label }}
                 </span>
                 <span class="inline-block w-full text-black text-xs/4 lg:text-sm/5.5 font-sans">
@@ -52,7 +52,7 @@
                 </span>
             </div>
             <div>
-                <span class="inline-block w-full text-primary text-xs lg:text-sm font-sans font-bold">
+                <span class="inline-block w-full text-primary-500 text-xs lg:text-sm font-sans font-bold">
                     {{ $sinAccount->label }}
                 </span>
                 <span class="inline-block w-full text-black text-xs/4 lg:text-sm/5.5 font-sans">
@@ -60,7 +60,7 @@
                 </span>
             </div>  
             <div>
-                <span class="inline-block w-full text-primary text-[0.6rem] lg:text-xs font-sans font-light">
+                <span class="inline-block w-full text-primary-500 text-[0.6rem] lg:text-xs font-sans font-light">
                     Giften aan Moz Kids zijn fiscaal aftrekbaar.
                 </span>
             </div>
@@ -72,7 +72,7 @@
 </div>
 <div class="flex flex-row justify-between items-center 
             text-black text-[0.6rem] font-sans font-light
-            sm:pt-6.5 sm:border-t sm:border-secondary sm:mt-10">
+            sm:pt-6.5 sm:border-t sm:border-secondary-500 sm:mt-10">
     <div class="space-x-4">
         @foreach ($items as $item)
 
