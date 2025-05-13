@@ -31,7 +31,7 @@
     <span
         class="block
             mb-4
-            text-xs text-primary font-sans tracking-wide uppercase
+            text-xs text-primary-500 font-sans tracking-wide uppercase
             md:text-sm"
     >
         {{ $subtitle }}

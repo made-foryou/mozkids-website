@@ -19,7 +19,7 @@
 
             <div class="relative z-10 mb-6">
                 <p 
-                    class="font text-white text-lg font-sans tracking-wide
+                    class="font text-white text-lg font-sans tracking-wide text-shadow-lg
                            md:text-3xl"
                 >
                     {!! nl2br($quote) !!}
@@ -27,7 +27,7 @@
             </div>
             <div class="relative z-10">
                 <p 
-                    class="font-light text-white text-sm font-sans tracking-wide 
+                    class="font-light text-white text-sm font-sans tracking-wide text-shadow-lg
                            md:text-lg"
                 >
                     {{ $author }}

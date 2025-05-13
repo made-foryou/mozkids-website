@@ -68,7 +68,7 @@
                            absolute left-full
                            flex items-center justify-center
                            size-8.5 rounded-full
-                           bg-primary hover:bg-primary-dark
+                           bg-primary-500 hover:bg-primary-700
                            text-white
                            transition-all ease-in-out duration-450ms"
                 >
@@ -79,7 +79,7 @@
                            absolute
                            flex items-center justify-center
                            size-8.5 rounded-full
-                           bg-primary hover:bg-primary-dark
+                           bg-primary-500 hover:bg-primary-700
                            text-white
                            transition-all ease-in-out duration-450ms"
                 >

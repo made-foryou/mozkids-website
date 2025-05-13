@@ -9,14 +9,9 @@ use App\Domains\Newsletter\Data\SubscribingData;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\SubscribeToNewsletterRequest;
 use Illuminate\Http\JsonResponse;
-use MailchimpMarketing\ApiClient;
 
 class SubscribeToNewsletterController extends Controller
 {
-    public function __construct(protected ApiClient $mailchimp)
-    {
-    }
-
     public function __invoke(SubscribeToNewsletterRequest $request): JsonResponse
     {
         SubscribeToNewsletterAction::run(

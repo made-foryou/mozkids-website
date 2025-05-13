@@ -36,6 +36,10 @@
     <x-columns.newsletter />
 @endif
 
+@if ($item['type'] === 'donation-form')
+    <x-columns.donation-form />
+@endif
+
 
 @endforeach
 </div>
