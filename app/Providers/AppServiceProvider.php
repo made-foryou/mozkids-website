@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\WebsiteSetting;
+use App\View\Composers\DonateDirectLinkComposer;
 use App\View\Composers\DonationButtonComposer;
 use App\View\Composers\InformationSettingsComposer;
 use App\View\Composers\MainMenuItemsComposer;
@@ -51,6 +52,8 @@ class AppServiceProvider extends ServiceProvider
         Facades\View::composer('partials.footer', InformationSettingsComposer::class);
 
         Facades\View::composer('partials.donation-button', DonationButtonComposer::class);
+
+        Facades\View::composer('components.columns.donation-form', DonateDirectLinkComposer::class);
     }
 
     public function resolveLink(string|null $link = null)

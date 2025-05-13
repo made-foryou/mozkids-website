@@ -1,5 +1,7 @@
+@if (!empty($bankLink))
 <a 
-    href="#"
+    href="{{ $bankLink }}"
+    target="_blank"
     class="flex flex-col items-center justify-between gap-5 lg:flex-row
             relative w-full py-4 px-5 md:py-8 md:px-10
             bg-primary-500 rounded-lg
@@ -34,6 +36,7 @@
         <x-svg.arrow-right class="size-5 text-primary-500 group-hover:text-white" />
     </div>
 </a>
+@endif
 
 <div class="mt-5 w-full bg-white rounded-lg px-11 py-10">
     <span class="text-black text-xl md:text-2xl font-sans tracking-wide font-semibold">

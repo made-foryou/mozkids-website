@@ -19,6 +19,8 @@ class WebsiteSetting extends SettingsWebsiteSetting
 
     public string|null $donation_success_page = null;
 
+    public string|null $rabobank_link = null;
+
     public function getDonationSuccessPage(): ?Page
     {
         return $this->getPage('donation_success_page');

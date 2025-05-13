@@ -49,6 +49,10 @@ class WebsiteSettings
                         ->helperText('Na het invullen en versturen van het donatie / sponsoring formulier wordt de bezoeker doorgestuurd naar deze pagina.')
                         ->options(Made::madeLinkOptions([Made::LINK_TYPE_PAGES])),
 
+                    TextInput::make('rabobank_link')
+                        ->label('Directe donatie rabobank link')
+                        ->helperText('Deze link komt achter de "Doneer direct via internetbankieren" button te staan. Hiermee kunnen bezoekers direct een bedrag overmaken naar de rekening van Moz Kids. Deze button wordt alleen zichtbaar als dit veld is ingevuld.'),
+
                 ])
                     ->columnSpan(4),
         ];
