@@ -329,6 +329,7 @@
                      sm:text-sm/6" 
             >
           </div>
+          <p class="mt-2 text-sm text-gray-500" id="phone-description">Het telefoonnummer wordt alleen gebruikt voor belangrijke communicatie rondom de sponsoring.</p>
           <p class="text-sm text-red-600 hidden" id="phone-error"></p>
         </div>
 
