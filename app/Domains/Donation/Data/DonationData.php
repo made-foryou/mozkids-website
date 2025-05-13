@@ -8,9 +8,14 @@ use App\Http\Requests\Api\DonationFormRequest;
 
 readonly class DonationData
 {
+    public string $type;
+
+    public string $frequency;
+
     public function __construct(
-        public string $type,
+        string $type,
         public float $amount,
+        string $frequency,
         public string $firstname,
         public ?string $infix,
         public string $surname,
@@ -19,9 +24,15 @@ readonly class DonationData
         public bool $newsletter,
         public bool $privacy,
     ) {
-        $this->type = match ($this->type) {
+        $this->type = match ($type) {
             'child' => 'Sponsoring voor een kind',
             'common' => 'Algemene sponsoring',
+        };
+
+        $this->frequency = match ($frequency) {
+            'single' => 'Eenmalig',
+            'monthly' => 'Maandelijks',
+            'yearly' => 'Jaarlijks',
         };
      }
 
@@ -41,6 +52,7 @@ readonly class DonationData
         return new self(
             type: $request->get('type'),
             amount: $amount,
+            frequency: $request->get('frequency'),
             firstname: $request->get('firstname'),
             infix: $request->get('infix'),
             surname: $request->get('surname'),

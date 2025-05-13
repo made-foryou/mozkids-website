@@ -145,6 +145,7 @@ export default class ButtonRadio {
         this._otherElement.classList.replace('max-h-0', 'max-h-96');
         this._otherElement.classList.replace('scale-y-0', 'scale-y-100');
         this._otherElement.classList.replace('opacity-0', 'opacity-100');
+        this._otherElement.classList.add('mt-8');
         this._otherElement.setAttribute('aria-hidden', 'false');
         this._otherVisible = true;
     }
@@ -163,6 +164,7 @@ export default class ButtonRadio {
         this._otherElement.classList.replace('max-h-96', 'max-h-0');
         this._otherElement.classList.replace('scale-y-100', 'scale-y-0');
         this._otherElement.classList.replace('opacity-100', 'opacity-0');
+        this._otherElement.classList.remove('mt-8');
         this._otherElement.setAttribute('aria-hidden', 'true');
         this._otherVisible = false;
 

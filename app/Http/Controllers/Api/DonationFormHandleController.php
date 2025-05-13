@@ -12,6 +12,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\DonationFormRequest;
 use App\Models\WebsiteSetting;
 use Illuminate\Support\Facades\Mail;
+use Made\Cms\Facades\Cms;
 
 class DonationFormHandleController extends Controller
 {
@@ -40,13 +41,19 @@ class DonationFormHandleController extends Controller
         // @todo conversie plaatsen - voor het bijhouden van de gebruiker zijn sessie.
         // https://app.todoist.com/app/task/acties-van-bezoekers-bijhouden-6Xxc9MvcRj4g5Fj4
 
-        // @todo de gebruiker doorsturen naar de bedankt pagina.
+        $successPage = $this->settings->getDonationSuccessPage();
+
+        if ($successPage) {
+            return response()->json([
+                'redirect' => Cms::url($successPage),
+            ]);
+        }
 
         return response()->json([], 200);
     }
 
     protected function getEmailAddress(): string
     {
-        return $this->settings->get('donation_email') ?? config('mozkids.donation_email');
+        return $this->settings->donation_email ?? config('mozkids.donation_email');
     }
 }

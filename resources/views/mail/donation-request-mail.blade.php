@@ -8,9 +8,10 @@ gegevens die de aanvrager heeft ingevuld.
 
 <x-mail::table>
 | Veld                 | Invulling                                         |
-| -------------------- | ------------------------------------------------: |
+| :------------------- | ------------------------------------------------: |
 | Type sponsoring      | {{ $data->type }}                                 |
-| Bedrag               | € {{ number_format($data->amount, 2, '.', ',') }} |
+| Bedrag               | € {{ number_format($data->amount, 2, ',', ',') }} |
+| Frequentie           | {{ $data->frequency }}                            |
 | Voornaam             | {{ $data->firstname }}                            | 
 | Tussenvoegsel(s)     | {{ $data->infix }}                                | 
 | Achternaam           | {{ $data->surname }}                              |

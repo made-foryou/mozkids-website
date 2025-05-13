@@ -56,7 +56,11 @@ export default class DonationForm {
         });
 
         if (result.status === 200) {
-            alert('Thank you for your donation!');
+            const response = await result.json();
+
+            if (response.redirect) {
+                window.location.href = response.redirect;
+            }
         } else {
             const response = await result.json();
 

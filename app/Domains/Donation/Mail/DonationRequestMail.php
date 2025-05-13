@@ -37,6 +37,9 @@ class DonationRequestMail extends Mailable
     {
         return new Content(
             markdown: 'mail.donation-request-mail',
+            with: [
+                'data' => $this->data,
+            ]
         );
     }
 

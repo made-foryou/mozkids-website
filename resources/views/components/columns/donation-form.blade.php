@@ -79,95 +79,138 @@
             </div>
           </fieldset>
 
-          <fieldset 
-            class="block" 
-            aria-label="Welk bedrag zou je willen sponsoren?"
-            data-button-radio="amount"
-          >
-            <div class="text-sm/6 font-medium text-gray-900">Bedrag <span class="text-primary-400">*</span></div>
-            <p class="mt-1 text-sm/6 text-gray-600">Welk bedrag zou je willen sponsoren?</p>
-          
-            <div class="mt-2 flex justify-start items-center flex-wrap gap-3">
+          <div>
+            <fieldset 
+              class="block" 
+              aria-label="Welk bedrag zou je willen sponsoren?"
+              data-button-radio="amount"
+            >
+              <div class="text-sm/6 font-medium text-gray-900">Bedrag <span class="text-primary-400">*</span></div>
+              <p class="mt-1 text-sm/6 text-gray-600">Welk bedrag zou je willen sponsoren?</p>
+            
+              <div class="mt-2 flex justify-start items-center flex-wrap gap-3">
 
-              <label 
-                class="flex cursor-pointer items-center justify-center 
-                       rounded-full px-3 py-3 
-                       text-sm font-semibold uppercase 
-                       focus:outline-hidden 
-                       ring-0 bg-primary-500 text-white 
-                       transition duration-200 ease-in-out
-                       sm:flex-1"
-                for="20"
-              >
-                <input type="radio" required checked name="amount" id="20" value="20" class="sr-only">
-                <span>€ 20,-</span>
-              </label>
-
-              <label 
-                class="flex cursor-pointer items-center justify-center 
-                       rounded-full px-3 py-3 
-                       text-sm font-semibold uppercase 
-                       focus:outline-hidden 
-                       ring-1 ring-secondary-500 bg-secondary-200 text-gray-900 
-                       transition duration-200 ease-in-out
-                       hover:bg-secondary-400
-                       sm:flex-1"
-                for="40"
-              >
-                <input type="radio" required name="amount" id="40" value="40" class="sr-only">
-                <span>€ 40,-</span>
-              </label>
-
-              <label 
-                class="flex cursor-pointer items-center justify-center 
-                       rounded-full px-3 py-3 
-                       text-sm font-semibold uppercase 
-                       focus:outline-hidden 
-                       ring-1 ring-secondary-500 bg-secondary-200 text-gray-900 
-                       transition duration-200 ease-in-out
-                       hover:bg-secondary-400
-                       sm:flex-1"
-                for="60"
-              >
-                <input type="radio" required name="amount" id="60" value="60" class="sr-only">
-                <span>€ 60,-</span>
-              </label>
-
-              <label 
-                class="flex cursor-pointer items-center justify-center 
-                       rounded-full px-3 py-3 
-                       text-sm font-semibold 
-                       focus:outline-hidden 
-                       ring-1 ring-secondary-500 bg-secondary-200 text-gray-900 
-                       transition duration-200 ease-in-out
-                       hover:bg-secondary-400
-                       sm:flex-1"
-                for="other"
-              >
-                <input type="radio" required name="amount" id="other" value="other" class="sr-only">
-                <span>Anders</span>
-              </label>
-            </div>
-          </fieldset>
-
-          <div data-button-radio-other class="relative max-h-0 h-24 transition scale-y-0 duration-200 ease-in-out origin-top opacity-0" aria-hidden="true">
-            <label for="other-amount" class="block text-sm/6 font-medium text-gray-900">Anders</label>
-            <div class="mt-2">
-              <div class="flex items-center rounded-md bg-white px-3 outline-1 -outline-offset-1 outline-gray-300 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-primary-500">
-                <div class="shrink-0 text-base text-gray-500 select-none sm:text-sm/6">€</div>
-                <input 
-                  type="text" 
-                  name="other-amount" 
-                  id="other-amount" 
-                  class="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6"
-                  aria-describedby="other-amount-description"
-                  disabled
+                <label 
+                  class="flex cursor-pointer items-center justify-center 
+                        rounded-full px-3 py-3 
+                        text-sm font-semibold uppercase 
+                        focus:outline-hidden 
+                        ring-0 bg-primary-500 text-white 
+                        transition duration-200 ease-in-out
+                        sm:flex-1"
+                  for="20"
                 >
+                  <input type="radio" required checked name="amount" id="20" value="20" class="sr-only">
+                  <span>€ 20,-</span>
+                </label>
+
+                <label 
+                  class="flex cursor-pointer items-center justify-center 
+                        rounded-full px-3 py-3 
+                        text-sm font-semibold uppercase 
+                        focus:outline-hidden 
+                        ring-1 ring-secondary-500 bg-secondary-200 text-gray-900 
+                        transition duration-200 ease-in-out
+                        hover:bg-secondary-400
+                        sm:flex-1"
+                  for="40"
+                >
+                  <input type="radio" required name="amount" id="40" value="40" class="sr-only">
+                  <span>€ 40,-</span>
+                </label>
+
+                <label 
+                  class="flex cursor-pointer items-center justify-center 
+                        rounded-full px-3 py-3 
+                        text-sm font-semibold uppercase 
+                        focus:outline-hidden 
+                        ring-1 ring-secondary-500 bg-secondary-200 text-gray-900 
+                        transition duration-200 ease-in-out
+                        hover:bg-secondary-400
+                        sm:flex-1"
+                  for="60"
+                >
+                  <input type="radio" required name="amount" id="60" value="60" class="sr-only">
+                  <span>€ 60,-</span>
+                </label>
+
+                <label 
+                  class="flex cursor-pointer items-center justify-center 
+                        rounded-full px-3 py-3 
+                        text-sm font-semibold 
+                        focus:outline-hidden 
+                        ring-1 ring-secondary-500 bg-secondary-200 text-gray-900 
+                        transition duration-200 ease-in-out
+                        hover:bg-secondary-400
+                        sm:flex-1"
+                  for="other"
+                >
+                  <input type="radio" required name="amount" id="other" value="other" class="sr-only">
+                  <span>Anders</span>
+                </label>
+              </div>
+            </fieldset>
+
+            <div data-button-radio-other class="relative max-h-0 h-24 transition scale-y-0 duration-200 ease-in-out origin-top opacity-0" aria-hidden="true">
+              <label for="other-amount" class="block text-sm/6 font-medium text-gray-900">Anders</label>
+              <div class="mt-2">
+                <div class="flex items-center rounded-md bg-white px-3 outline-1 -outline-offset-1 outline-gray-300 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-primary-500">
+                  <div class="shrink-0 text-base text-gray-500 select-none sm:text-sm/6">€</div>
+                  <input 
+                    type="text" 
+                    name="other-amount" 
+                    id="other-amount" 
+                    class="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6"
+                    aria-describedby="other-amount-description"
+                    disabled
+                  >
+                </div>
+              </div>
+              <p class="mt-2 text-sm text-gray-500" id="other-amount-description">Vul hier het gewenste bedrag in (9,95).</p>
+              <p class="text-sm text-red-600 hidden" id="other-amount-error"></p>
+            </div>
+          </div>
+
+          <fieldset class="block">
+            <legend class="text-sm/6 font-semibold text-gray-900">Frequentie <span class="text-primary-400">*</span></legend>
+            <p class="mt-1 text-sm/6 text-gray-600">Wat is de frequentie van jouw sponsoring?</p>
+            <div class="mt-6 space-y-6 sm:flex sm:items-center sm:space-y-0 sm:space-x-10">
+              <div class="flex items-center">
+                <input 
+                  id="monthly" 
+                  value="monthly"
+                  required 
+                  name="frequency" 
+                  type="radio"
+                  checked 
+                  class="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-primary-500 checked:bg-primary-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
+                >
+                <label for="monthly" class="ml-3 block text-sm/6 font-medium text-gray-900">Maandelijks</label>
+              </div>
+              <div class="flex items-center">
+                <input 
+                  id="yearly" 
+                  value="yearly"
+                  required 
+                  name="frequency" 
+                  type="radio" 
+                  class="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-primary-500 checked:bg-primary-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
+                >
+                <label for="yearly" class="ml-3 block text-sm/6 font-medium text-gray-900">Jaarlijks</label>
+              </div>
+              <div class="flex items-center">
+                <input 
+                  id="single" 
+                  required 
+                  name="frequency" 
+                  type="radio" 
+                  value="single"
+                  class="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-primary-500 checked:bg-primary-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
+                >
+                <label for="single" class="ml-3 block text-sm/6 font-medium text-gray-900">Eenmalig</label>
               </div>
             </div>
-            <p class="mt-2 text-sm text-gray-500" id="other-amount-description">Vul hier het gewenste bedrag in (9,95).</p>
-            <p class="text-sm text-red-600 hidden" id="other-amount-error"></p>
-          </div>
+          </fieldset>
       </div>
 
       <div class="py-8 flex flex-col gap-8">

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Made\Cms\Page\Models\Page;
 use Made\Cms\Website\Models\Settings\WebsiteSetting as SettingsWebsiteSetting;
 
 class WebsiteSetting extends SettingsWebsiteSetting
@@ -18,7 +19,7 @@ class WebsiteSetting extends SettingsWebsiteSetting
 
     public string|null $donation_success_page = null;
 
-    public function getDonationSuccessPage(): string|null
+    public function getDonationSuccessPage(): ?Page
     {
         return $this->getPage('donation_success_page');
     }
