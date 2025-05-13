@@ -1,6 +1,6 @@
 <a 
     href="#"
-    class="flex flex-col items-center justify-between gap-5 md:flex-row
+    class="flex flex-col items-center justify-between gap-5 lg:flex-row
             relative w-full py-4 px-5 md:py-8 md:px-10
             bg-primary-500 rounded-lg
             group
