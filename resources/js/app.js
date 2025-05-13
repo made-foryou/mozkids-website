@@ -5,6 +5,7 @@ import HighlightText, { Highlight } from './modules/highlight-text';
 import PhotoSlider from './modules/photo-slider';
 import MailchimpForm from './modules/mailchim-form';
 import ButtonRadio from './modules/button-radio';
+import DonationForm from './modules/donation-form';
 
 import 'swiper/css';
 
@@ -28,6 +29,14 @@ window.addEventListener('load', () => {
 
     HighlightText.initialize(highlights);
 
+});
+
+window.addEventListener('DOMContentLoaded', () => {
+    const donationForm = document.querySelector('[data-made-donation-form]');
+
+    if (donationForm) {
+        new DonationForm(donationForm);
+    }
 });
 
 window.Sidebar = Sidebar;

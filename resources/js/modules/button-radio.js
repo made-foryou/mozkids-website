@@ -88,10 +88,6 @@ export default class ButtonRadio {
                 }
             });
         });
-
-        if (this._otherElement) {
-            this._otherElement.style.height = this._otherElement.offsetHeight + 'px';
-        }
     }
 
     onRadioChange(event) {
@@ -124,15 +120,15 @@ export default class ButtonRadio {
     check(item) {
         const classList = item.closest('label').classList;
 
-        classList.remove('ring-1', 'ring-secondary-500', 'bg-secondary-200', 'text-gray-900', 'hover:bg-secondary-100');
-        classList.add('ring-0', 'bg-primary-500', 'text-white', 'hover:bg-primary-300');
+        classList.remove('ring-1', 'ring-secondary-500', 'bg-secondary-200', 'text-gray-900', 'hover:bg-secondary-400');
+        classList.add('ring-0', 'bg-primary-500', 'text-white');
     }
 
     uncheck(item) {
         const classList = item.closest('label').classList;
 
-        classList.remove('ring-0', 'bg-primary-500', 'text-white', 'hover:bg-primary-300');
-        classList.add('ring-1', 'ring-secondary-500', 'bg-secondary-200', 'text-gray-900', 'hover:bg-secondary-100');
+        classList.remove('ring-0', 'bg-primary-500', 'text-white');
+        classList.add('ring-1', 'ring-secondary-500', 'bg-secondary-200', 'text-gray-900', 'hover:bg-secondary-400');
     }
 
     showOther() {

@@ -13,4 +13,13 @@ class WebsiteSetting extends SettingsWebsiteSetting
     public string $donation_button_text = '';
 
     public string|null $donation_page = null;
+
+    public string|null $donation_email = null;
+
+    public string|null $donation_success_page = null;
+
+    public function getDonationSuccessPage(): string|null
+    {
+        return $this->getPage('donation_success_page');
+    }
 }
