@@ -3727,16 +3727,16 @@
         },
         {
             "name": "made-foryou/cms",
-            "version": "0.15.0",
+            "version": "0.15.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/made-foryou/cms.git",
-                "reference": "40a3ac917c8998b65df23f950a4ab15c63ea940c"
+                "reference": "462c725602eb45b561f47aa06caf2dc020dc471e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/made-foryou/cms/zipball/40a3ac917c8998b65df23f950a4ab15c63ea940c",
-                "reference": "40a3ac917c8998b65df23f950a4ab15c63ea940c",
+                "url": "https://api.github.com/repos/made-foryou/cms/zipball/462c725602eb45b561f47aa06caf2dc020dc471e",
+                "reference": "462c725602eb45b561f47aa06caf2dc020dc471e",
                 "shasum": ""
             },
             "require": {
@@ -3770,7 +3770,8 @@
                     ],
                     "aliases": {
                         "Cms": "Made\\Cms\\Facades\\Cms",
-                        "Made": "Made\\Cms\\Facades\\Made"
+                        "Made": "Made\\Cms\\Facades\\Made",
+                        "MadeNews": "Made\\Cms\\News\\Facades\\MadeNews"
                     }
                 }
             },
@@ -3830,7 +3831,7 @@
                     "url": "https://github.com/made-foryou"
                 }
             ],
-            "time": "2025-05-13T19:28:25+00:00"
+            "time": "2025-05-15T20:07:42+00:00"
         },
         {
             "name": "maennchen/zipstream-php",
