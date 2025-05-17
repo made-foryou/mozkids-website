@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace App\Schemas;
 
+use Filament\Forms\Components\CheckboxList;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Get;
+use Made\Cms\Information\Models\ContactInformationSettings;
 
 class ColumnSchema 
 {
@@ -27,6 +29,7 @@ class ColumnSchema
                     'news' => 'Laatste nieuws',
                     'newsletter' => 'Nieuwsbrief',
                     'donation-form' => 'Donatie formulier',
+                    'contact' => 'Contactgegevens',
                 ]),
 
             // text
@@ -34,6 +37,9 @@ class ColumnSchema
 
             // image
             ...self::image(),
+
+            // Contactgegevens
+            ...self::contact(),
             
             // All
             Repeater::make('buttons')
@@ -74,6 +80,42 @@ class ColumnSchema
             TextInput::make('alt')
                 ->label('Afbeelding alt tekst')
                 ->hidden(fn (Get $get): bool => $get('type') !== 'image'),
+        ];
+    }
+
+    public static function contact(): array
+    {
+        $settings = app()->make(ContactInformationSettings::class);
+
+        $addresses = collect($settings->addresses)->mapWithKeys(
+            fn ($value) => [$value['key'] => $value['key']],
+        );
+
+        $contacts = collect($settings->contacts)->mapWithKeys(
+            fn ($value) => [$value['key'] => $value['key']],
+        );
+
+        $socials = collect($settings->accounts)->filter(
+            fn ($value) => !empty($value['url']),
+        )
+            ->mapWithKeys(fn ($value) => [$value['key'] => $value['label']]);
+
+        return [
+            Select::make('address')
+                ->label('Adresgegevens')
+                ->options($addresses->toArray())
+                ->hidden(fn (Get $get): bool => $get('type') !== 'contact'),
+
+            Select::make('contact')
+                ->label('Contactgegevens')
+                ->options($contacts->toArray())
+                ->hidden(fn (Get $get): bool => $get('type') !== 'contact'),
+
+            CheckboxList::make('social')
+                ->label('Social media accounts')
+                ->helperText('Deze accounts worden getoond onder het "Volg ons" gedeelte')
+                ->options($socials->toArray())
+                ->hidden(fn (Get $get): bool => $get('type') !== 'contact'),
         ];
     }
 }
