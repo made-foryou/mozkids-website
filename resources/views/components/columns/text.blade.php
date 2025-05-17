@@ -37,9 +37,9 @@
         {{ $subtitle }}
     </span>
 
-    <span data-highlightable >
+    <div data-highlightable>
         {!! $content !!}
-    </span>
+    </div>
 
     @if (!empty($buttons))
 
