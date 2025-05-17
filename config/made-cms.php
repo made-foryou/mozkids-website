@@ -93,6 +93,7 @@ return [
          */
         'controllers' => [
             \Made\Cms\Page\Models\Page::class => \App\Http\Controllers\PageController::class,
+            \Made\Cms\News\Models\Post::class => \App\Http\Controllers\PostController::class,
         ],
     ],
 

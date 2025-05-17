@@ -13,12 +13,12 @@
             {{ $post->date->translatedFormat('d F Y') }}
         </span>
         <span class="block mt-2 text-black font-sans tracking-wide text-lg lg:text-xl">
-            {{  $post->name }}
+            {{ $post->name }}
         </span>
         <p
             class="block mt-6"
         >
-
+            {{ $post->introduction ?? '' }}
         </p>
         <span 
             class="block text-primary-500 font-sans group-hover:underline"
@@ -26,4 +26,4 @@
             Lees verder...
         </span>
     </div>
-</div>
+</a>
