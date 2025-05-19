@@ -1,4 +1,4 @@
-<div class="divide-y divide-white">
+<div {{ $attributes->merge(['class' => 'divide-y divide-white']) }}>
 @foreach ($items as $item) 
 
 @if ($item['type'] === 'text') 
@@ -38,6 +38,10 @@
 
 @if ($item['type'] === 'donation-form')
     <x-columns.donation-form />
+@endif
+
+@if ($item['type'] === 'contact')
+    <x-columns.contact :item="$item" />
 @endif
 
 

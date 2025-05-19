@@ -5,7 +5,7 @@
             Contactgegevens
         </x-footer-title>
         <span class="inline-block w-full text-primary-500 text-xs lg:text-sm font-sans font-bold">
-            Adres
+            Addres
         </span>
         <span class="inline-block w-full text-black text-xs/4 lg:text-sm/5.5 font-sans">
             {{ $address->address }}<br />

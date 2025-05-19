@@ -11,24 +11,24 @@ use Filament\Forms\Components\Repeater;
 use Illuminate\Contracts\View\View;
 use Made\Cms\Filament\Builder\ContentStrip;
 
-class TwoColumnsStrip implements ContentStrip
+class LargeSmallColumnStrip implements ContentStrip
 {
     use HasColumns;
 
     public static function id(): string
     {
-        return 'two-columns-strip';
+        return 'large-small-column-strip';
     }
 
     public static function render(array $attributes = []): View
     {
-        return view('strips.'. self::id(), self::resolveAttributes($attributes));
+        return view('strips.' . self::id(), self::resolveAttributes($attributes));
     }
 
     public static function block(string $context = 'form'): Block
     {
         return Block::make(self::id())
-            ->label('Twee kolommen')
+            ->label('Twee kolommen, links groot en rechts klein')
             ->icon('heroicon-s-view-columns')
             ->schema([
                 Repeater::make('left_columns')

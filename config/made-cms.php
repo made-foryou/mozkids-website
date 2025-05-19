@@ -101,6 +101,13 @@ return [
      * ### Content
      */
     'content' => [
+        /**
+         * The width for the content builder selector.
+         */
+        'builder_selector_width' => '3xl',
+
+        'builder_selector_columns' => 2,
+
         'blocks' => [
             /**
              * List of default content stip blocks.
@@ -117,6 +124,7 @@ return [
                 Strips\ThreeColumnStrip::class,
                 Strips\QuoteStrip::class,
                 Strips\CallToActionStrip::class,
+                Strips\LargeSmallColumnStrip::class,
             ],
 
             /**

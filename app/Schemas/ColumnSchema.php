@@ -11,10 +11,15 @@ use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Get;
+use Made\Cms\Information\Data\Account;
+use Made\Cms\Information\Data\Address;
+use Made\Cms\Information\Data\Contact;
 use Made\Cms\Information\Models\ContactInformationSettings;
 
 class ColumnSchema 
 {
+    protected static ContactInformationSettings $contactSettings;
+
     public static function schema(): array
     {
         return [
@@ -117,5 +122,52 @@ class ColumnSchema
                 ->options($socials->toArray())
                 ->hidden(fn (Get $get): bool => $get('type') !== 'contact'),
         ];
+    }
+
+    public static function resolveViewAttributes(array $attributes): array
+    {
+        if (isset($attributes['address']) && !empty($attributes['address'])) {
+            $attributes['address'] = self::resolveAddress($attributes['address']);
+        }
+
+        if (isset($attributes['contact']) && !empty($attributes['contact'])) {
+            $attributes['contact'] = self::resolveContact($attributes['contact']);
+        }
+
+        if (isset($attributes['social']) && !empty($attributes['social'])) {
+            $attributes['social'] = self::resolveSocial($attributes['social']);
+        }
+
+        return $attributes;
+    }
+
+    public static function resolveAddress(string $value): Address
+    {
+        return self::getContactSettings()->getAddress($value);
+    }
+
+    public static function resolveContact(string $value): Contact
+    {
+        return self::getContactSettings()->getContact($value);
+    }
+
+    /**
+     * @return array<Account>
+     */
+    public static function resolveSocial(array $values): array
+    {
+        return array_map(
+            fn (string $value): Account => self::getContactSettings()->getAccount($value),
+            $values,
+        );
+    }
+
+    protected static function getContactSettings(): ContactInformationSettings
+    {
+        if (!isset(self::$contactSettings)) {
+            self::$contactSettings = app()->make(ContactInformationSettings::class);
+        }
+
+        return self::$contactSettings;
     }
 }
