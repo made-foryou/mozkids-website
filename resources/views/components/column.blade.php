@@ -1,4 +1,4 @@
-<div class="divide-y divide-white">
+<div {{ $attributes->merge(['class' => 'flex flex-col gap-8 divide-y divide-white']) }}>
 @foreach ($items as $item) 
 
 @if ($item['type'] === 'text') 
@@ -40,6 +40,17 @@
     <x-columns.donation-form />
 @endif
 
+@if ($item['type'] === 'contact')
+    <x-columns.contact :item="$item" />
+@endif
+
+@if ($item['type'] === 'bank')
+    <x-columns.bank :item="$item" />
+@endif
+
+@if ($item['type'] === 'contact-form')
+    <x-columns.contact-form :item="$item" />
+@endif
 
 @endforeach
 </div>

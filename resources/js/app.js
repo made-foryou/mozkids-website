@@ -6,8 +6,10 @@ import PhotoSlider from './modules/photo-slider';
 import MailchimpForm from './modules/mailchim-form';
 import ButtonRadio from './modules/button-radio';
 import DonationForm from './modules/donation-form';
+import MadeForm from './modules/form';
 
 import 'swiper/css';
+
 
 window.addEventListener('load', () => {
 
@@ -38,5 +40,15 @@ window.addEventListener('DOMContentLoaded', () => {
         new DonationForm(donationForm);
     }
 });
+
+window.addEventListener('DOMContentLoaded', () => {
+    const contactForm = document.querySelectorAll('[data-made-form]');
+
+    if (contactForm.length > 0) {
+        contactForm.forEach(form => {
+            new MadeForm(form);
+        });
+    }
+})
 
 window.Sidebar = Sidebar;
