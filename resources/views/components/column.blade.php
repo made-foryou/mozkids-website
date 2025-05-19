@@ -48,5 +48,9 @@
     <x-columns.bank :item="$item" />
 @endif
 
+@if ($item['type'] === 'contact-form')
+    <x-columns.contact-form :item="$item" />
+@endif
+
 @endforeach
 </div>

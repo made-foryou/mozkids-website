@@ -35,7 +35,8 @@ class ColumnSchema
                     'newsletter' => 'Nieuwsbrief',
                     'donation-form' => 'Donatie formulier',
                     'contact' => 'Contactgegevens',
-                    'bank' => 'Financiële gegevens'
+                    'bank' => 'Financiële gegevens',
+                    'contact-form' => 'Contactformulier',
                 ]),
 
             // text
