@@ -59,7 +59,7 @@
     @apply text-xs md:text-sm mb-4 block;
   }
 
-  a {
+  p a {
     @apply transition duration-145 ease-in-out text-primary-500;
   }
 
