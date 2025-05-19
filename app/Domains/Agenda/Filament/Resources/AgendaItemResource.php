@@ -25,6 +25,8 @@ use Filament\Tables\Actions\ForceDeleteBulkAction;
 use Filament\Tables\Actions\RestoreBulkAction;
 use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
+use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -167,7 +169,18 @@ class AgendaItemResource extends Resource
                     ->label('Gewijzigd op')
                     ->since(),                
             ])
-            ->heading('Agenda items')
+            ->heading('Agendapunten')
+            ->filters([
+                SelectFilter::make('language_id')
+                    ->relationship('language', 'name')
+                    ->label('Taal'),
+
+                SelectFilter::make('translated_from_id')
+                    ->options(AgendaItem::query()->get()->mapWithKeys(fn ($item) => [$item->id => $item->name]))
+                    ->label('Vertaling van'),
+
+                TrashedFilter::make(),
+            ])
             ->actions([
                 ActionGroup::make([
                     ActionGroup::make([
