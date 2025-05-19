@@ -35,6 +35,7 @@ class ColumnSchema
                     'newsletter' => 'Nieuwsbrief',
                     'donation-form' => 'Donatie formulier',
                     'contact' => 'Contactgegevens',
+                    'bank' => 'Financiële gegevens'
                 ]),
 
             // text
@@ -45,6 +46,9 @@ class ColumnSchema
 
             // Contactgegevens
             ...self::contact(),
+
+            // Financiële gegevens
+            ...self::bank(),
             
             // All
             Repeater::make('buttons')
@@ -124,6 +128,24 @@ class ColumnSchema
         ];
     }
 
+    public static function bank(): array
+    {
+        $settings = app()->make(ContactInformationSettings::class);
+
+        $accounts = collect($settings->accounts)->filter(
+            fn ($value) => empty($value['url']),
+        )
+            ->mapWithKeys(fn ($value) => [$value['key'] => $value['label']]);
+
+        return [
+            CheckboxList::make('accounts')
+                ->label('Bank gegevens')
+                ->helperText('Deze accounts worden getoond in het financiële gegevens blok')
+                ->options($accounts->toArray())
+                ->hidden(fn (Get $get): bool => $get('type') !== 'bank'),
+        ];
+    }
+
     public static function resolveViewAttributes(array $attributes): array
     {
         if (isset($attributes['address']) && !empty($attributes['address'])) {
@@ -135,7 +157,11 @@ class ColumnSchema
         }
 
         if (isset($attributes['social']) && !empty($attributes['social'])) {
-            $attributes['social'] = self::resolveSocial($attributes['social']);
+            $attributes['social'] = self::resolveAccounts($attributes['social']);
+        }
+
+        if (isset($attributes['accounts']) && !empty($attributes['accounts'])) {
+            $attributes['accounts'] = self::resolveAccounts($attributes['accounts']);
         }
 
         return $attributes;
@@ -154,7 +180,7 @@ class ColumnSchema
     /**
      * @return array<Account>
      */
-    public static function resolveSocial(array $values): array
+    public static function resolveAccounts(array $values): array
     {
         return array_map(
             fn (string $value): Account => self::getContactSettings()->getAccount($value),
