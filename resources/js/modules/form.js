@@ -123,6 +123,7 @@ export default class MadeForm {
         }
 
         errorElement.classList.remove('hidden');
+        errorElement.classList.add('mt-2');
 
         if (input.name === 'other-amount') {
             input.parentNode.classList.add('mt-2', 'outline-primary-500', 'outline-2', 'outline-offset-2');
@@ -150,6 +151,9 @@ export default class MadeForm {
             case 'validation.min.string':
                 errorElement.innerText = 'Deze tekst is te kort. Het moet minimaal uit 10 karakters bestaan.';
                 break;
+            case 'The iban is not a valid IBAN.':
+                errorElement.innerText = 'Dit is geen geldig IBAN nummer.';
+                break;
         }
     }
 
@@ -158,6 +162,7 @@ export default class MadeForm {
         const errorElement = this._form.querySelector('#' + input.name + '-error');
 
         errorElement.classList.add('hidden');
+        errorElement.classList.remove('mt-2');
 
         if (input.name === 'other-amount') {
             input.parentNode.classList.remove('mt-2', 'outline-primary-500', 'outline-2', 'outline-offset-2');

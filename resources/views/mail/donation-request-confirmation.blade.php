@@ -1,14 +1,17 @@
 <x-mail::message>
-# Nieuwe donatie aanvraag
+# Bedankt voor je donatie
 
-Er is een nieuwe donatie aanvraag ingevuld via de website van Moz Kids. Hieronder vind je de 
-gegevens die de aanvrager heeft ingevuld.
+Jouw donatie aanvraag is met succes naar ons verstuurd. Hieronder vind je een overzicht van jouw 
+ingevulde gegevens. Mocht je nog vragen en/of opmerkingen hebben dan kun je altijd even mailen 
+naar <a href="mailto:info@mozkids.nl">info@mozkids.nl</a>. 
 
-### Opmerking(en)
+Voor de verwerking van jouw donatie zullen wij nog contact met je opnemen.
+
+### Jouw opmerkingen:
 
 {{ $data->comments ?? 'Geen opmerkingen ingevuld.' }}
 
-### Gegevens
+### Jouw gegevens:
 
 <x-mail::table>
 | Veld                 | Invulling                                         |

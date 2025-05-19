@@ -43,7 +43,7 @@
         Ja, ik wil sponsoren
     </span>
     <form 
-      data-made-donation-form="" 
+      data-made-form="" 
       class="flex flex-col divide-secondary-500 divide-y-1" 
       action="{{ route('api.donate') }}" 
       method="POST"
@@ -337,6 +337,87 @@
         </div>
 
         <div>
+          <label for="comments" class="block text-sm/6 font-medium text-gray-900">
+            Opmerking(en)
+          </label>
+          <div class="mt-2">
+            <textarea 
+                name="comments" 
+                id="comments"
+                rows="7"
+                class="block w-full rounded-md px-3 py-1.5
+                       bg-white 
+                       text-base text-gray-900 
+                       outline-1 -outline-offset-1 outline-gray-300 
+                       placeholder:text-gray-400 
+                       focus:outline-2 focus:-outline-offset-2 focus:outline-primary-500 
+                       sm:text-sm/6" 
+            ></textarea>
+          </div>
+          <p class="text-sm text-gray-500" id="comments-description"></p>
+          <p class="text-sm text-red-600 hidden" id="comments-error"></p>
+        </div>
+      </div>
+      <div class="py-8 flex flex-col gap-8">
+        <div>
+          <span class="text-black text-xl md:text-2xl font-sans tracking-wide font-semibold">
+            Financiële gegevens
+          </span>
+          <p class="mt-2 text-xs text-gray-500">
+            Deze gegevens zijn nodig om een automatische incasso en/of donatie aanvraag op 
+            te zetten en worden alleen op de mail gezet naar info@mozkids.nl zodat wij 
+            de donatie kunnen opzetten.
+          </p>
+        </div>
+        <div>
+          <label for="account-holder" class="block text-sm/6 font-medium text-gray-900">
+            Naam rekeninghouder <span class="text-primary-400">*</span>
+          </label>
+          <div class="mt-2">
+            <input 
+              type="text" 
+              name="account-holder" 
+              id="account-holder" 
+              required
+              class="block w-full rounded-md px-3 py-1.5
+                     bg-white 
+                     text-base text-gray-900 
+                     outline-1 -outline-offset-1 outline-gray-300 
+                     placeholder:text-gray-400 
+                     focus:outline-2 focus:-outline-offset-2 focus:outline-primary-500 
+                     sm:text-sm/6" 
+            >
+          </div>
+          <p class="mt-2 text-sm text-gray-500" id="account-holder-description">De naam van de rekeninghouder van de hieronder ingevulde bankrekening.</p>
+          <p class="text-sm text-red-600 hidden" id="account-holder-error"></p>
+        </div>
+        <div>
+          <label for="iban" class="block text-sm/6 font-medium text-gray-900">
+            IBAN <span class="text-primary-400">*</span>
+          </label>
+          <div class="mt-2">
+            <input 
+              type="text" 
+              name="iban" 
+              id="iban" 
+              required
+              class="block w-full rounded-md px-3 py-1.5
+                     bg-white 
+                     text-base text-gray-900 
+                     outline-1 -outline-offset-1 outline-gray-300 
+                     placeholder:text-gray-400 
+                     focus:outline-2 focus:-outline-offset-2 focus:outline-primary-500 
+                     sm:text-sm/6" 
+            >
+          </div>
+          <p class="mt-2 text-sm text-gray-500" id="iban-description">
+            Het <a href="https://nl.wikipedia.org/wiki/International_Bank_Account_Number" target="_blank">IBAN</a> van waar de donatie van afgehaald kan worden.
+          </p>
+          <p class="text-sm text-red-600 hidden" id="iban-error"></p>
+        </div>
+      </div>
+      <div class="py-8 flex flex-col gap-8">
+        <div>
           <div class="flex gap-3">
             <div class="flex h-6 shrink-0 items-center">
               <div class="group grid size-4 grid-cols-1">
@@ -391,8 +472,6 @@
             Doneren
           </x-button>
         </div>
-
-      </div>
 
     </form>
 </div>

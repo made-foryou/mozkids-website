@@ -3,6 +3,10 @@
 
 Het contactformulier is ingevuld en verzonden van de Moz Kids website. 
 
+## Bericht:
+
+{{ $data->message }}
+
 ## Ingevuld door:
 
 <x-mail::table>
@@ -14,10 +18,6 @@ Het contactformulier is ingevuld en verzonden van de Moz Kids website.
 | Onderwerp            | {{ $data->subject }}                              | 
 | Privacyverklaring?   | {{ $data->privacy ? 'Ja' : 'Nee' }}               |
 </x-mail::table>
-
-## Bericht:
-
-{{ $data->message }}
 
 <br /><br />
 Een vriendelijke groet,<br>
