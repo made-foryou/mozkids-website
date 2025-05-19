@@ -55,6 +55,17 @@ class WebsiteSettings
 
                 ])
                     ->columnSpan(4),
+
+            Section::make('Contactformulier')
+                ->description('Instellingen en werking van het contactformulier in de website.')
+                ->aside()
+                ->schema([
+                    Select::make('contact_success_page')
+                        ->label('Bedankt pagina')
+                        ->helperText('Na het invullen en versturen van het contactformulier wordt de bezoeker doorgestuurd naar deze pagina.')
+                        ->options(Made::madeLinkOptions([Made::LINK_TYPE_PAGES])),
+                ])
+                ->columnSpan(4),
         ];
     }
 }
