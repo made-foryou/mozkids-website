@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Api;
 
 use App\Domains\Donation\Data\DonationData;
+use App\Domains\Donation\Mail\DonationRequestConfirmationMail;
 use App\Domains\Donation\Mail\DonationRequestMail;
 use App\Domains\Newsletter\Actions\SubscribeToNewsletterAction;
 use App\Domains\Newsletter\Data\SubscribingData;
@@ -24,8 +25,14 @@ class DonationFormHandleController extends Controller
     {
         $data = DonationData::fromRequest($request);
 
+        // Send information to Moz Kids.
         Mail::to($this->getEmailAddress())->send(
             new DonationRequestMail($data)
+        );
+
+        // // Send confirmation to user.
+        Mail::to($data->email)->send(
+            new DonationRequestConfirmationMail($data)
         );
 
         if ($data->newsletter) {

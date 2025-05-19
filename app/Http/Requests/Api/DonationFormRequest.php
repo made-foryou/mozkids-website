@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Requests\Api;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Nembie\IbanRule\ValidIban;
 
 class DonationFormRequest extends FormRequest
 {
@@ -25,6 +26,9 @@ class DonationFormRequest extends FormRequest
             'surname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255'],
             'phone' => ['required', 'string', 'max:255'],
+            'comments' => ['nullable', 'string'],
+            'account-holder' => ['required', 'string'],
+            'iban' => ['required', 'string', new ValidIban],
             'newsletter' => ['nullable'],
             'privacy' => ['required', 'accepted'],
         ];

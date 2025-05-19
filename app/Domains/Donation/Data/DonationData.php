@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Domains\Donation\Data;
 
 use App\Http\Requests\Api\DonationFormRequest;
+use Illuminate\Http\Request;
 
 readonly class DonationData
 {
@@ -21,6 +22,9 @@ readonly class DonationData
         public string $surname,
         public string $email,
         public string $phone,
+        public ?string $comments,
+        public string $accountHolder,
+        public string $iban,
         public bool $newsletter,
         public bool $privacy,
     ) {
@@ -36,11 +40,11 @@ readonly class DonationData
         };
      }
 
-    public static function fromRequest(DonationFormRequest $request): self
+    public static function fromRequest(DonationFormRequest|Request $request): self
     {
-        $amount = $request->get('amount');
+        $amount = $request->validated('amount');
         if ($amount === 'other') {
-            $amount = (float) $request->get('other-amount');
+            $amount = (float) $request->validated('other-amount');
         } else {
             $amount = match ($amount) {
                 '20' => 20.0,
@@ -50,14 +54,17 @@ readonly class DonationData
         }
 
         return new self(
-            type: $request->get('type'),
+            type: $request->validated('type'),
             amount: $amount,
-            frequency: $request->get('frequency'),
-            firstname: $request->get('firstname'),
-            infix: $request->get('infix'),
-            surname: $request->get('surname'),
-            email: $request->get('email'),
-            phone: $request->get('phone'),
+            frequency: $request->validated('frequency'),
+            firstname: $request->validated('firstname'),
+            infix: $request->validated('infix'),
+            surname: $request->validated('surname'),
+            email: $request->validated('email'),
+            phone: $request->validated('phone'),
+            comments: $request->validated('comments'),
+            accountHolder: $request->validated('account-holder'),
+            iban: $request->validated('iban'),
             newsletter: $request->has('newsletter'),
             privacy: $request->has('privacy'),
         );
