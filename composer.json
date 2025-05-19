@@ -19,6 +19,7 @@
         "laravel/tinker": "^2.9",
         "made-foryou/cms": "^0.15",
         "mailchimp/marketing": "^3.0",
+        "nembie/iban-rule": "^1.0",
         "symfony/http-client": "^7.2",
         "symfony/postmark-mailer": "^7.2"
     },

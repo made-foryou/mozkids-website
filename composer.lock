@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "097fffe365373ecaf09674424e2cb343",
+    "content-hash": "888293b7091bc92903cbb0adbad0fd9b",
     "packages": [
         {
             "name": "anourvalar/eloquent-serialize",
@@ -4242,6 +4242,63 @@
                 }
             ],
             "time": "2024-12-05T17:15:07+00:00"
+        },
+        {
+            "name": "nembie/iban-rule",
+            "version": "1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Nembie/iban-rule.git",
+                "reference": "2ebb82bab077be8c2fb2be5b099bb3ee05c27563"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Nembie/iban-rule/zipball/2ebb82bab077be8c2fb2be5b099bb3ee05c27563",
+                "reference": "2ebb82bab077be8c2fb2be5b099bb3ee05c27563",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/validation": ">=10.0 || ^11.0",
+                "php": "^8.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Nembie\\IbanRule\\": "src/"
+                },
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Luca P",
+                    "email": "lucapacitto.dev@gmail.com",
+                    "homepage": "https://nembie.it",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A Laravel validation rule to validate IBAN numbers",
+            "homepage": "https://github.com/Nembie/iban-rule",
+            "keywords": [
+                "Nembie",
+                "iban-rule",
+                "laravel",
+                "rule",
+                "validation"
+            ],
+            "support": {
+                "issues": "https://github.com/Nembie/iban-rule/issues",
+                "source": "https://github.com/Nembie/iban-rule/tree/1.0.3"
+            },
+            "time": "2024-04-01T09:42:33+00:00"
         },
         {
             "name": "nesbot/carbon",

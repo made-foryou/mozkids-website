@@ -4,7 +4,11 @@
 Er is een nieuwe donatie aanvraag ingevuld via de website van Moz Kids. Hieronder vind je de 
 gegevens die de aanvrager heeft ingevuld.
 
-## Gegevens
+### Opmerking(en)
+
+{{ $data->comments ?? 'Geen opmerkingen ingevuld.' }}
+
+### Gegevens
 
 <x-mail::table>
 | Veld                 | Invulling                                         |
@@ -17,10 +21,13 @@ gegevens die de aanvrager heeft ingevuld.
 | Achternaam           | {{ $data->surname }}                              |
 | E-mailadres          | {{ $data->email }}                                |
 | Telefoonnnummer      | {{ $data->phone }}                                |
+| Naam rekeninghouder  | {{ $data->accountHolder }}                        |
+| IBAN                 | {{ $data->iban }}                                 |
 | Nieuwsbrief?         | {{ $data->newsletter ? 'Ja' : 'Nee' }}            |
 | Privacyverklaring?   | {{ $data->privacy ? 'Ja' : 'Nee' }}               |
 </x-mail::table>
 
+<br /><br />
 Een vriendelijke groet,<br>
 Het team van {{ config('app.name') }}
 </x-mail::message>
