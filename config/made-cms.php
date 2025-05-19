@@ -2,9 +2,11 @@
 
 // config for Made/Cms
 
+use App\Domains\Agenda\Filament\Resources\AgendaItemResource;
 use App\Domains\Website\Settings\WebsiteSettings;
 use App\Models\WebsiteSetting;
 use App\Strips;
+use Filament\Navigation\NavigationGroup;
 
 return [
 
@@ -55,9 +57,19 @@ return [
          */
         'default' => true,
 
-        'resources' => [],
+        'resources' => [
+            AgendaItemResource::class,
+        ],
 
         'pages' => [],
+
+        'plugins' => [],
+
+        'navigation_groups' => [
+            NavigationGroup::make()
+                ->label('Agenda')
+                ->icon('heroicon-o-calendar'),
+        ]
 
     ],
 
@@ -137,6 +149,7 @@ return [
              */
             \Made\Cms\Page\Models\Page::class => [
                 Strips\PageFillableContentStrip::class,
+                Strips\AgendaStrip::class,
             ],
 
             /**
