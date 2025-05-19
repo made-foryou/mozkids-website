@@ -149,6 +149,7 @@ return [
              */
             \Made\Cms\Page\Models\Page::class => [
                 Strips\PageFillableContentStrip::class,
+                Strips\AgendaStrip::class,
             ],
 
             /**

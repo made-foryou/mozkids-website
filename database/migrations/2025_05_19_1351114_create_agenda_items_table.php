@@ -28,7 +28,8 @@ return new class extends Migration
                         PublishingStatus::Draft->value
                     );
 
-            $table->text('description');
+            $table->text('description')
+                ->nullable();
 
             $table->date('start_date')
                 ->default(now());
