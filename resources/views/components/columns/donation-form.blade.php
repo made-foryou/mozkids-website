@@ -1,5 +1,5 @@
 @if (!empty($bankLink))
-<a 
+<a
     href="{{ $bankLink }}"
     target="_blank"
     class="flex flex-col items-center justify-between gap-5 lg:flex-row
@@ -12,8 +12,8 @@
             focus:scale-98
             focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500"
 >
-    <span 
-        class="inline-block 
+    <span
+        class="inline-block
                 font-sans text-white text-lg tracking-wide
                 md:text-xl lg:text-2xl">
         Doneer direct via internetbankieren
@@ -26,8 +26,8 @@
                group-hover:bg-primary-500 group-hover:text-white
                focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary-500"
     >
-        <span 
-            class="block 
+        <span
+            class="block
                 text-primary-500 text-xs lg:text-sm font-sans tracking-wide font-semibold
                 group-hover:text-white"
         >
@@ -42,14 +42,14 @@
     <span class="text-black text-xl md:text-2xl font-sans tracking-wide font-semibold">
         Ja, ik wil sponsoren
     </span>
-    <form 
-      data-made-form="" 
-      class="flex flex-col divide-secondary-500 divide-y-1" 
-      action="{{ route('api.donate') }}" 
+    <form
+      data-made-form=""
+      class="flex flex-col divide-secondary-500 divide-y-1"
+      action="{{ route('api.donate') }}"
       method="POST"
     >
 
-      @csrf 
+      @csrf
 
       <div class="flex flex-col gap-8 py-8">
         <fieldset class="block">
@@ -57,24 +57,24 @@
             <p class="mt-1 text-sm/6 text-gray-600">Hoe zou je willen sponsoren?</p>
             <div class="mt-6 space-y-6 sm:flex sm:items-center sm:space-y-0 sm:space-x-10">
               <div class="flex items-center">
-                <input 
-                  id="child" 
-                  required 
-                  name="type" 
-                  type="radio" 
-                  checked 
+                <input
+                  id="child"
+                  required
+                  name="type"
+                  type="radio"
+                  checked
                   value="child"
                   class="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-primary-500 checked:bg-primary-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
                 >
                 <label for="child" class="ml-3 block text-sm/6 font-medium text-gray-900">Een kind</label>
               </div>
               <div class="flex items-center">
-                <input 
-                  id="common" 
+                <input
+                  id="common"
                   value="common"
-                  required 
-                  name="type" 
-                  type="radio" 
+                  required
+                  name="type"
+                  type="radio"
                   class="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-primary-500 checked:bg-primary-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
                 >
                 <label for="common" class="ml-3 block text-sm/6 font-medium text-gray-900">Algemeen</label>
@@ -83,22 +83,22 @@
           </fieldset>
 
           <div>
-            <fieldset 
-              class="block" 
+            <fieldset
+              class="block"
               aria-label="Welk bedrag zou je willen sponsoren?"
               data-button-radio="amount"
             >
               <div class="text-sm/6 font-medium text-gray-900">Bedrag <span class="text-primary-400">*</span></div>
               <p class="mt-1 text-sm/6 text-gray-600">Welk bedrag zou je willen sponsoren?</p>
-            
+
               <div class="mt-2 flex justify-start items-center flex-wrap gap-3">
 
-                <label 
-                  class="flex cursor-pointer items-center justify-center 
-                        rounded-full px-3 py-3 
-                        text-sm font-semibold uppercase 
-                        focus:outline-hidden 
-                        ring-0 bg-primary-500 text-white 
+                <label
+                  class="flex cursor-pointer items-center justify-center
+                        rounded-full px-3 py-3
+                        text-sm font-semibold uppercase
+                        focus:outline-hidden
+                        ring-0 bg-primary-500 text-white
                         transition duration-200 ease-in-out
                         sm:flex-1"
                   for="20"
@@ -107,12 +107,12 @@
                   <span>€ 20,-</span>
                 </label>
 
-                <label 
-                  class="flex cursor-pointer items-center justify-center 
-                        rounded-full px-3 py-3 
-                        text-sm font-semibold uppercase 
-                        focus:outline-hidden 
-                        ring-1 ring-secondary-500 bg-secondary-200 text-gray-900 
+                <label
+                  class="flex cursor-pointer items-center justify-center
+                        rounded-full px-3 py-3
+                        text-sm font-semibold uppercase
+                        focus:outline-hidden
+                        ring-1 ring-secondary-500 bg-secondary-200 text-gray-900
                         transition duration-200 ease-in-out
                         hover:bg-secondary-400
                         sm:flex-1"
@@ -122,12 +122,12 @@
                   <span>€ 40,-</span>
                 </label>
 
-                <label 
-                  class="flex cursor-pointer items-center justify-center 
-                        rounded-full px-3 py-3 
-                        text-sm font-semibold uppercase 
-                        focus:outline-hidden 
-                        ring-1 ring-secondary-500 bg-secondary-200 text-gray-900 
+                <label
+                  class="flex cursor-pointer items-center justify-center
+                        rounded-full px-3 py-3
+                        text-sm font-semibold uppercase
+                        focus:outline-hidden
+                        ring-1 ring-secondary-500 bg-secondary-200 text-gray-900
                         transition duration-200 ease-in-out
                         hover:bg-secondary-400
                         sm:flex-1"
@@ -137,12 +137,12 @@
                   <span>€ 60,-</span>
                 </label>
 
-                <label 
-                  class="flex cursor-pointer items-center justify-center 
-                        rounded-full px-3 py-3 
-                        text-sm font-semibold 
-                        focus:outline-hidden 
-                        ring-1 ring-secondary-500 bg-secondary-200 text-gray-900 
+                <label
+                  class="flex cursor-pointer items-center justify-center
+                        rounded-full px-3 py-3
+                        text-sm font-semibold
+                        focus:outline-hidden
+                        ring-1 ring-secondary-500 bg-secondary-200 text-gray-900
                         transition duration-200 ease-in-out
                         hover:bg-secondary-400
                         sm:flex-1"
@@ -159,10 +159,10 @@
               <div class="mt-2">
                 <div class="flex items-center rounded-md bg-white px-3 outline-1 -outline-offset-1 outline-gray-300 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-primary-500">
                   <div class="shrink-0 text-base text-gray-500 select-none sm:text-sm/6">€</div>
-                  <input 
-                    type="text" 
-                    name="other-amount" 
-                    id="other-amount" 
+                  <input
+                    type="text"
+                    name="other-amount"
+                    id="other-amount"
                     class="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6"
                     aria-describedby="other-amount-description"
                     disabled
@@ -178,39 +178,39 @@
             <legend class="text-sm/6 font-semibold text-gray-900">Frequentie <span class="text-primary-400">*</span></legend>
             <p class="mt-1 text-sm/6 text-gray-600">Wat is de frequentie van jouw sponsoring?</p>
             <div class="mt-6 space-y-6 sm:flex sm:items-center sm:space-y-0 sm:space-x-10">
+                <div class="flex items-center">
+                  <input
+                    id="single"
+                    required
+                    name="frequency"
+                    type="radio"
+                    value="single"
+                    checked
+                    class="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-primary-500 checked:bg-primary-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
+                  >
+                  <label for="single" class="ml-3 block text-sm/6 font-medium text-gray-900">Eenmalig</label>
+                </div>
               <div class="flex items-center">
-                <input 
-                  id="monthly" 
+                <input
+                  id="monthly"
                   value="monthly"
-                  required 
-                  name="frequency" 
+                  required
+                  name="frequency"
                   type="radio"
-                  checked 
                   class="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-primary-500 checked:bg-primary-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
                 >
                 <label for="monthly" class="ml-3 block text-sm/6 font-medium text-gray-900">Maandelijks</label>
               </div>
               <div class="flex items-center">
-                <input 
-                  id="yearly" 
+                <input
+                  id="yearly"
                   value="yearly"
-                  required 
-                  name="frequency" 
-                  type="radio" 
+                  required
+                  name="frequency"
+                  type="radio"
                   class="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-primary-500 checked:bg-primary-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
                 >
                 <label for="yearly" class="ml-3 block text-sm/6 font-medium text-gray-900">Jaarlijks</label>
-              </div>
-              <div class="flex items-center">
-                <input 
-                  id="single" 
-                  required 
-                  name="frequency" 
-                  type="radio" 
-                  value="single"
-                  class="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-primary-500 checked:bg-primary-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
-                >
-                <label for="single" class="ml-3 block text-sm/6 font-medium text-gray-900">Eenmalig</label>
               </div>
             </div>
           </fieldset>
@@ -231,18 +231,18 @@
             Voornaam <span class="text-primary-400">*</span>
           </label>
           <div class="mt-2">
-            <input 
-              type="text" 
-              name="firstname" 
-              id="firstname" 
+            <input
+              type="text"
+              name="firstname"
+              id="firstname"
               required
               class="block w-full rounded-md px-3 py-1.5
-                     bg-white 
-                     text-base text-gray-900 
-                     outline-1 -outline-offset-1 outline-gray-300 
-                     placeholder:text-gray-400 
-                     focus:outline-2 focus:-outline-offset-2 focus:outline-primary-500 
-                     sm:text-sm/6" 
+                     bg-white
+                     text-base text-gray-900
+                     outline-1 -outline-offset-1 outline-gray-300
+                     placeholder:text-gray-400
+                     focus:outline-2 focus:-outline-offset-2 focus:outline-primary-500
+                     sm:text-sm/6"
             >
           </div>
           <p class="text-sm text-gray-500" id="firstname-error"></p>
@@ -254,17 +254,17 @@
             Tussenvoegsel(s)
           </label>
           <div class="mt-2">
-            <input 
-              type="text" 
-              name="infix" 
-              id="infix" 
+            <input
+              type="text"
+              name="infix"
+              id="infix"
               class="block w-full rounded-md px-3 py-1.5
-                     bg-white 
-                     text-base text-gray-900 
-                     outline-1 -outline-offset-1 outline-gray-300 
-                     placeholder:text-gray-400 
-                     focus:outline-2 focus:-outline-offset-2 focus:outline-primary-500 
-                     sm:text-sm/6" 
+                     bg-white
+                     text-base text-gray-900
+                     outline-1 -outline-offset-1 outline-gray-300
+                     placeholder:text-gray-400
+                     focus:outline-2 focus:-outline-offset-2 focus:outline-primary-500
+                     sm:text-sm/6"
             >
           </div>
         </div>
@@ -274,18 +274,18 @@
             Achternaam <span class="text-primary-400">*</span>
           </label>
           <div class="mt-2">
-            <input 
-              type="text" 
-              name="surname" 
-              id="surname" 
+            <input
+              type="text"
+              name="surname"
+              id="surname"
               required
               class="block w-full rounded-md px-3 py-1.5
-                     bg-white 
-                     text-base text-gray-900 
-                     outline-1 -outline-offset-1 outline-gray-300 
-                     placeholder:text-gray-400 
-                     focus:outline-2 focus:-outline-offset-2 focus:outline-primary-500 
-                     sm:text-sm/6" 
+                     bg-white
+                     text-base text-gray-900
+                     outline-1 -outline-offset-1 outline-gray-300
+                     placeholder:text-gray-400
+                     focus:outline-2 focus:-outline-offset-2 focus:outline-primary-500
+                     sm:text-sm/6"
             >
           </div>
           <p class="text-sm text-red-600 hidden" id="surname-error"></p>
@@ -296,18 +296,18 @@
             E-mailadres <span class="text-primary-400">*</span>
           </label>
           <div class="mt-2">
-            <input 
-              type="email" 
-              name="email" 
-              id="email" 
+            <input
+              type="email"
+              name="email"
+              id="email"
               required
               class="block w-full rounded-md px-3 py-1.5
-                     bg-white 
-                     text-base text-gray-900 
-                     outline-1 -outline-offset-1 outline-gray-300 
-                     placeholder:text-gray-400 
-                     focus:outline-2 focus:-outline-offset-2 focus:outline-primary-500 
-                     sm:text-sm/6" 
+                     bg-white
+                     text-base text-gray-900
+                     outline-1 -outline-offset-1 outline-gray-300
+                     placeholder:text-gray-400
+                     focus:outline-2 focus:-outline-offset-2 focus:outline-primary-500
+                     sm:text-sm/6"
             >
           </div>
           <p class="text-sm text-red-600 hidden" id="email-error"></p>
@@ -318,18 +318,18 @@
             Telefoonnummer <span class="text-primary-400">*</span>
           </label>
           <div class="mt-2">
-            <input 
-              type="phone" 
-              name="phone" 
-              id="phone" 
+            <input
+              type="phone"
+              name="phone"
+              id="phone"
               required
               class="block w-full rounded-md px-3 py-1.5
-                     bg-white 
-                     text-base text-gray-900 
-                     outline-1 -outline-offset-1 outline-gray-300 
-                     placeholder:text-gray-400 
-                     focus:outline-2 focus:-outline-offset-2 focus:outline-primary-500 
-                     sm:text-sm/6" 
+                     bg-white
+                     text-base text-gray-900
+                     outline-1 -outline-offset-1 outline-gray-300
+                     placeholder:text-gray-400
+                     focus:outline-2 focus:-outline-offset-2 focus:outline-primary-500
+                     sm:text-sm/6"
             >
           </div>
           <p class="mt-2 text-sm text-gray-500" id="phone-description">Het telefoonnummer wordt alleen gebruikt voor belangrijke communicatie rondom de sponsoring.</p>
@@ -341,31 +341,31 @@
             Opmerking(en)
           </label>
           <div class="mt-2">
-            <textarea 
-                name="comments" 
+            <textarea
+                name="comments"
                 id="comments"
                 rows="7"
                 class="block w-full rounded-md px-3 py-1.5
-                       bg-white 
-                       text-base text-gray-900 
-                       outline-1 -outline-offset-1 outline-gray-300 
-                       placeholder:text-gray-400 
-                       focus:outline-2 focus:-outline-offset-2 focus:outline-primary-500 
-                       sm:text-sm/6" 
+                       bg-white
+                       text-base text-gray-900
+                       outline-1 -outline-offset-1 outline-gray-300
+                       placeholder:text-gray-400
+                       focus:outline-2 focus:-outline-offset-2 focus:outline-primary-500
+                       sm:text-sm/6"
             ></textarea>
           </div>
           <p class="text-sm text-gray-500" id="comments-description"></p>
           <p class="text-sm text-red-600 hidden" id="comments-error"></p>
         </div>
       </div>
-      <div class="py-8 flex flex-col gap-8">
+      <div class="py-8 flex flex-col gap-8" data-made-dependent="frequency" data-made-dependent-values="monthly,yearly">
         <div>
           <span class="text-black text-xl md:text-2xl font-sans tracking-wide font-semibold">
             Financiële gegevens
           </span>
           <p class="mt-2 text-xs text-gray-500">
-            Deze gegevens zijn nodig om een automatische incasso en/of donatie aanvraag op 
-            te zetten en worden alleen op de mail gezet naar info@mozkids.nl zodat wij 
+            Deze gegevens zijn nodig om een automatische incasso en/of donatie aanvraag op
+            te zetten en worden alleen op de mail gezet naar info@mozkids.nl zodat wij
             de donatie kunnen opzetten.
           </p>
         </div>
@@ -374,18 +374,18 @@
             Naam rekeninghouder <span class="text-primary-400">*</span>
           </label>
           <div class="mt-2">
-            <input 
-              type="text" 
-              name="account-holder" 
-              id="account-holder" 
+            <input
+              type="text"
+              name="account-holder"
+              id="account-holder"
               required
               class="block w-full rounded-md px-3 py-1.5
-                     bg-white 
-                     text-base text-gray-900 
-                     outline-1 -outline-offset-1 outline-gray-300 
-                     placeholder:text-gray-400 
-                     focus:outline-2 focus:-outline-offset-2 focus:outline-primary-500 
-                     sm:text-sm/6" 
+                     bg-white
+                     text-base text-gray-900
+                     outline-1 -outline-offset-1 outline-gray-300
+                     placeholder:text-gray-400
+                     focus:outline-2 focus:-outline-offset-2 focus:outline-primary-500
+                     sm:text-sm/6"
             >
           </div>
           <p class="mt-2 text-sm text-gray-500" id="account-holder-description">De naam van de rekeninghouder van de hieronder ingevulde bankrekening.</p>
@@ -396,18 +396,18 @@
             IBAN <span class="text-primary-400">*</span>
           </label>
           <div class="mt-2">
-            <input 
-              type="text" 
-              name="iban" 
-              id="iban" 
+            <input
+              type="text"
+              name="iban"
+              id="iban"
               required
               class="block w-full rounded-md px-3 py-1.5
-                     bg-white 
-                     text-base text-gray-900 
-                     outline-1 -outline-offset-1 outline-gray-300 
-                     placeholder:text-gray-400 
-                     focus:outline-2 focus:-outline-offset-2 focus:outline-primary-500 
-                     sm:text-sm/6" 
+                     bg-white
+                     text-base text-gray-900
+                     outline-1 -outline-offset-1 outline-gray-300
+                     placeholder:text-gray-400
+                     focus:outline-2 focus:-outline-offset-2 focus:outline-primary-500
+                     sm:text-sm/6"
             >
           </div>
           <p class="mt-2 text-sm text-gray-500" id="iban-description">
@@ -421,11 +421,11 @@
           <div class="flex gap-3">
             <div class="flex h-6 shrink-0 items-center">
               <div class="group grid size-4 grid-cols-1">
-                <input 
-                  id="newsletter" 
-                  aria-describedby="newsletter-description" 
-                  name="newsletter" 
-                  type="checkbox"  
+                <input
+                  id="newsletter"
+                  aria-describedby="newsletter-description"
+                  name="newsletter"
+                  type="checkbox"
                   class="col-start-1 row-start-1 appearance-none rounded-sm border border-gray-300 bg-white checked:border-primary-500 checked:bg-primary-500 indeterminate:border-primary-500 indeterminate:bg-primary-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 disabled:border-gray-300 disabled:bg-gray-100 disabled:checked:bg-gray-100 forced-colors:appearance-auto"
                 >
                 <svg class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-white group-has-disabled:stroke-gray-950/25" viewBox="0 0 14 14" fill="none">
@@ -443,11 +443,11 @@
           <div class="mt-8 flex gap-3">
             <div class="flex h-6 shrink-0 items-center">
               <div class="group grid size-4 grid-cols-1">
-                <input 
-                  id="privacy" 
-                  aria-describedby="privacy-description" 
-                  name="privacy" 
-                  type="checkbox"  
+                <input
+                  id="privacy"
+                  aria-describedby="privacy-description"
+                  name="privacy"
+                  type="checkbox"
                   required
                   class="col-start-1 row-start-1 appearance-none rounded-sm border border-gray-300 bg-white checked:border-primary-500 checked:bg-primary-500 indeterminate:border-primary-500 indeterminate:bg-primary-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 disabled:border-gray-300 disabled:bg-gray-100 disabled:checked:bg-gray-100 forced-colors:appearance-auto"
                 >
