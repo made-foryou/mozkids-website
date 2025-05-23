@@ -12,7 +12,7 @@
     @if ($model && $model->content)
 
         {!! Cms::renderContentStrips($model->content) !!}
-        
+
     @endif
 
 @endsection

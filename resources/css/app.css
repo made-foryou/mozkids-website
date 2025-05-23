@@ -1,32 +1,36 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
 
-@import 'tailwindcss';
+@import "tailwindcss";
+@plugin '@tailwindcss/typography';
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source './resources/views';
 
 @theme {
-  --font-sans: "Open Sans", Figtree, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-sans:
+        "Open Sans", Figtree, ui-sans-serif, system-ui, sans-serif,
+        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+        "Noto Color Emoji";
 
-  --color-primary-100: #fad3d0;
-  --color-primary-200: #f4a7a1;
-  --color-primary-300: #ef7b71;
-  --color-primary-400: #e94f42;
-  --color-primary-500: #e42313;
-  --color-primary-600: #b61c0f;
-  --color-primary-700: #89150b;
-  --color-primary-800: #5b0e08;
-  --color-primary-900: #2e0704;
+    --color-primary-100: #fad3d0;
+    --color-primary-200: #f4a7a1;
+    --color-primary-300: #ef7b71;
+    --color-primary-400: #e94f42;
+    --color-primary-500: #e42313;
+    --color-primary-600: #b61c0f;
+    --color-primary-700: #89150b;
+    --color-primary-800: #5b0e08;
+    --color-primary-900: #2e0704;
 
-  --color-secondary-100: #FDFCFB;
-  --color-secondary-200: #fbf9f7;
-  --color-secondary-300: #f8f7f2;
-  --color-secondary-400: #f6f4ee;
-  --color-secondary-500: #f4f1ea;
-  --color-secondary-600: #c3c1bb;
-  --color-secondary-700: #92918c;
-  --color-secondary-800: #62605e;
-  --color-secondary-900: #31302f;
+    --color-secondary-100: #fdfcfb;
+    --color-secondary-200: #fbf9f7;
+    --color-secondary-300: #f8f7f2;
+    --color-secondary-400: #f6f4ee;
+    --color-secondary-500: #f4f1ea;
+    --color-secondary-600: #c3c1bb;
+    --color-secondary-700: #92918c;
+    --color-secondary-800: #62605e;
+    --color-secondary-900: #31302f;
 }
 
 /*
@@ -38,38 +42,37 @@
   color utility to any element that depends on these defaults.
 */
 @layer base {
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+        border-color: var(--color-gray-200, currentColor);
+    }
 
-  *,
-  ::after,
-  ::before,
-  ::backdrop,
-  ::file-selector-button {
-    border-color: var(--color-gray-200, currentColor);
-  }
+    h2 {
+        @apply font-sans tracking-wide text-lg md:text-2xl mb-9 block;
+    }
 
-  h2 {
-    @apply font-sans tracking-wide text-lg md:text-2xl mb-9 block;
-  }
+    h3 {
+        @apply font-sans tracking-wide text-lg md:text-xl mb-9 block;
+    }
 
-  h3 {
-    @apply font-sans tracking-wide text-lg md:text-xl mb-9 block;
-  }
+    p {
+        @apply text-xs md:text-sm mb-4 block;
+    }
 
-  p {
-    @apply text-xs md:text-sm mb-4 block;
-  }
+    p a {
+        @apply transition duration-145 ease-in-out text-primary-500;
+    }
 
-  p a {
-    @apply transition duration-145 ease-in-out text-primary-500;
-  }
-
-  a:hover {
-    @apply underline text-black;
-  }
+    a:hover {
+        @apply underline text-black;
+    }
 }
 
 .swiper-slide-active {
-  .swiper-slide-overlay {
-    opacity: 1;
-  }
+    .swiper-slide-overlay {
+        opacity: 1;
+    }
 }
