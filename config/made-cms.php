@@ -9,19 +9,18 @@ use App\Strips;
 use Filament\Navigation\NavigationGroup;
 
 return [
-
-    'setup' => [
-        'super_role' => [
-            'name' => 'Administrator',
-            'description' => 'Main role of the Made CMS. This is the default role which gets access to all permissions.',
+    "setup" => [
+        "super_role" => [
+            "name" => "Administrator",
+            "description" =>
+                "Main role of the Made CMS. This is the default role which gets access to all permissions.",
         ],
     ],
 
     /**
      * ### Panel
      */
-    'panel' => [
-
+    "panel" => [
         /**
          * ### Panel path
          * ____
@@ -29,7 +28,7 @@ return [
          *
          * @var string
          */
-        'path' => env('MADE_CMS_PANEL_PATH', 'made'),
+        "path" => env("MADE_CMS_PANEL_PATH", "made"),
 
         /**
          * #### Panel domain
@@ -43,7 +42,7 @@ return [
          *
          * @var null|string|string[]
          */
-        'domain' => env('MADE_CMS_PANEL_DOMAIN'),
+        "domain" => env("MADE_CMS_PANEL_DOMAIN"),
 
         /**
          * ### Panel default
@@ -55,29 +54,25 @@ return [
          *
          * @var bool
          */
-        'default' => true,
+        "default" => true,
 
-        'resources' => [
-            AgendaItemResource::class,
-        ],
+        "resources" => [AgendaItemResource::class],
 
-        'pages' => [],
+        "pages" => [],
 
-        'plugins' => [],
+        "plugins" => [],
 
-        'navigation_groups' => [
+        "navigation_groups" => [
             NavigationGroup::make()
-                ->label('Agenda')
-                ->icon('heroicon-o-calendar'),
-        ]
-
+                ->label("Agenda")
+                ->icon("heroicon-o-calendar"),
+        ],
     ],
 
     /**
      * ### Database
      */
-    'database' => [
-
+    "database" => [
         /**
          * ### Table prefix
          *
@@ -86,12 +81,10 @@ return [
          *
          * @var string
          */
-        'table_prefix' => env('MADE_CMS_DATABASE_TABLE_PREFIX', 'made_cms_'),
-
+        "table_prefix" => env("MADE_CMS_DATABASE_TABLE_PREFIX", "made_cms_"),
     ],
 
-    'routing' => [
-
+    "routing" => [
         /**
          * Route Controllers
          *
@@ -103,24 +96,26 @@ return [
          *
          * @var array<class-string<\Illuminate\Database\Eloquent\Model>, class-string<\Made\Cms\App\Http\Controllers\CmsRoutingContract>>,
          */
-        'controllers' => [
-            \Made\Cms\Page\Models\Page::class => \App\Http\Controllers\PageController::class,
-            \Made\Cms\News\Models\Post::class => \App\Http\Controllers\PostController::class,
+        "controllers" => [
+            \Made\Cms\Page\Models\Page::class =>
+                \App\Http\Controllers\PageController::class,
+            \Made\Cms\News\Models\Post::class =>
+                \App\Http\Controllers\PostController::class,
         ],
     ],
 
     /**
      * ### Content
      */
-    'content' => [
+    "content" => [
         /**
          * The width for the content builder selector.
          */
-        'builder_selector_width' => '3xl',
+        "builder_selector_width" => "3xl",
 
-        'builder_selector_columns' => 2,
+        "builder_selector_columns" => 2,
 
-        'blocks' => [
+        "blocks" => [
             /**
              * List of default content stip blocks.
              *
@@ -128,15 +123,16 @@ return [
              *
              * @var class-string<\Made\Cms\Filament\Builder\ContentStrip>[]
              */
-            'default' => [
+            "default" => [
                 Strips\HeroStrip::class,
-                Strips\PhotoSlider::class, 
+                Strips\PhotoSlider::class,
                 Strips\StatisticsStrip::class,
                 Strips\TwoColumnsStrip::class,
                 Strips\ThreeColumnStrip::class,
                 Strips\QuoteStrip::class,
                 Strips\CallToActionStrip::class,
                 Strips\LargeSmallColumnStrip::class,
+                Strips\TextStrip::class,
             ],
 
             /**
@@ -166,8 +162,7 @@ return [
         ],
     ],
 
-    'settings' => [
-
+    "settings" => [
         /**
          * ### Website Model
          * ____
@@ -179,7 +174,7 @@ return [
          *
          * @var class-string<\Illuminate\Database\Eloquent\Model>
          */
-        'website_model' => WebsiteSetting::class,
+        "website_model" => WebsiteSetting::class,
 
         /**
          * ### Website Settings
@@ -190,9 +185,7 @@ return [
          *
          * @var array<int, class-string|array<int, Field>>
          */
-        'web' => [
-            WebsiteSettings::class,
-        ],
+        "web" => [WebsiteSettings::class],
 
         /**
          * ### News Model
@@ -205,7 +198,7 @@ return [
          *
          * @var class-string<\Illuminate\Database\Eloquent\Model>
          */
-        'news_model' => \Made\Cms\News\Models\Settings\NewsSettings::class,
+        "news_model" => \Made\Cms\News\Models\Settings\NewsSettings::class,
 
         /**
          * ### News Settings
@@ -216,8 +209,6 @@ return [
          *
          * @var array<int, class-string|array<int, Field>>
          */
-        'news' => [],
-        
+        "news" => [],
     ],
-
 ];
