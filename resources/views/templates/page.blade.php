@@ -29,6 +29,11 @@
     @endif
 
     @yield('styles')
+
+
+    <script src="https://web.cmp.usercentrics.eu/modules/autoblocker.js"></script>
+    <script id="usercentrics-cmp" src="https://web.cmp.usercentrics.eu/ui/loader.js" data-settings-id="Bs2PSjF_ax9E8S" async></script>
+
     @yield('scripts')
 @endsection
 
@@ -41,7 +46,7 @@
                 @include('partials.navigation')
             </x-container>
         </header>
-        <main class="relative flex flex-col justify-start items-center flex-grow 
+        <main class="relative flex flex-col justify-start items-center flex-grow
                      w-full pt-[96px]">
             @yield('content')
         </main>
@@ -63,5 +68,5 @@
     <div class="grid-cols-5 md:grid-cols-5"></div>
     <div class="grid-cols-6 md:grid-cols-6"></div>
 
-    
+
 @endsection

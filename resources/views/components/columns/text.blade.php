@@ -37,7 +37,7 @@
         {{ $subtitle }}
     </span>
 
-    <div data-highlightable>
+    <div class="prose" data-highlightable>
         {!! $content !!}
     </div>
 
@@ -47,14 +47,14 @@
         class="mt-8 flex flex-row gap-4"
     >
         @foreach ($buttons as $button)
-            
+
             <x-button :color="$button['color']" :href="Cms::url($button['website_link'])">
                 {{ $button['label'] }}
                 <x-slot:icon>
                     @include('svg.arrow-right')
                 </x-slot:icon>
             </x-button>
-            
+
         @endforeach
     </div>
 
