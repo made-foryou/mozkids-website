@@ -25,6 +25,13 @@ export default class Dependent {
             .split(",");
 
         /**
+         * @type {NodeList<HTMLInputElement>}
+         */
+        this._elementInputs = this._element.querySelectorAll(
+            "input[name], textarea[name]",
+        );
+
+        /**
          * @type {NodeList<HTMLElement>}
          */
         this._inputs = this._element
@@ -47,6 +54,15 @@ export default class Dependent {
                 }
             });
         });
+
+        const data = new FormData(this._element.closest("form"));
+        const value = data.get(this._inputName);
+
+        if (this._values.indexOf(value) >= 0) {
+            this.show();
+        } else {
+            this.hide();
+        }
     }
 
     show() {
@@ -56,6 +72,12 @@ export default class Dependent {
             display: "flex",
             duration: 245,
         });
+
+        if (this._elementInputs.length > 0) {
+            this._elementInputs.forEach((element) => {
+                element.disabled = false;
+            });
+        }
     }
 
     hide() {
@@ -65,5 +87,11 @@ export default class Dependent {
             duration: 245,
             onComplete: (self) => (self.targets[0].style.display = "none"),
         });
+
+        if (this._elementInputs.length > 0) {
+            this._elementInputs.forEach((element) => {
+                element.disabled = true;
+            });
+        }
     }
 }

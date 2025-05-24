@@ -155,22 +155,22 @@
             </fieldset>
 
             <div data-button-radio-other class="relative max-h-0 h-24 transition scale-y-0 duration-200 ease-in-out origin-top opacity-0" aria-hidden="true">
-              <label for="other-amount" class="block text-sm/6 font-medium text-gray-900">Anders</label>
+              <label for="otherAmount" class="block text-sm/6 font-medium text-gray-900">Anders</label>
               <div class="mt-2">
                 <div class="flex items-center rounded-md bg-white px-3 outline-1 -outline-offset-1 outline-gray-300 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-primary-500">
                   <div class="shrink-0 text-base text-gray-500 select-none sm:text-sm/6">€</div>
                   <input
                     type="text"
-                    name="other-amount"
-                    id="other-amount"
+                    name="otherAmount"
+                    id="otherAmount"
                     class="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6"
-                    aria-describedby="other-amount-description"
+                    aria-describedby="otherAmount-description"
                     disabled
                   >
                 </div>
               </div>
-              <p class="mt-2 text-sm text-gray-500" id="other-amount-description">Vul hier het gewenste bedrag in (9,95).</p>
-              <p class="text-sm text-red-600 hidden" id="other-amount-error"></p>
+              <p class="mt-2 text-sm text-gray-500" id="otherAmount-description">Vul hier het gewenste bedrag in (9,95).</p>
+              <p class="text-sm text-red-600 hidden" id="otherAmount-error"></p>
             </div>
           </div>
 
@@ -178,40 +178,22 @@
             <legend class="text-sm/6 font-semibold text-gray-900">Frequentie <span class="text-primary-400">*</span></legend>
             <p class="mt-1 text-sm/6 text-gray-600">Wat is de frequentie van jouw sponsoring?</p>
             <div class="mt-6 space-y-6 sm:flex sm:items-center sm:space-y-0 sm:space-x-10">
+                @foreach (App\Domains\Donation\Enums\Frequency::cases() as $case)
                 <div class="flex items-center">
                   <input
-                    id="single"
+                    id="{{ $case->value }}"
                     required
                     name="frequency"
                     type="radio"
-                    value="single"
+                    value="{{ $case->value }}"
                     checked
                     class="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-primary-500 checked:bg-primary-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
                   >
-                  <label for="single" class="ml-3 block text-sm/6 font-medium text-gray-900">Eenmalig</label>
+                  <label for="{{ $case->value }}" class="ml-3 block text-sm/6 font-medium text-gray-900">
+                      {{ $case->label() }}
+                  </label>
                 </div>
-              <div class="flex items-center">
-                <input
-                  id="monthly"
-                  value="monthly"
-                  required
-                  name="frequency"
-                  type="radio"
-                  class="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-primary-500 checked:bg-primary-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
-                >
-                <label for="monthly" class="ml-3 block text-sm/6 font-medium text-gray-900">Maandelijks</label>
-              </div>
-              <div class="flex items-center">
-                <input
-                  id="yearly"
-                  value="yearly"
-                  required
-                  name="frequency"
-                  type="radio"
-                  class="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-primary-500 checked:bg-primary-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
-                >
-                <label for="yearly" class="ml-3 block text-sm/6 font-medium text-gray-900">Jaarlijks</label>
-              </div>
+                @endforeach
             </div>
           </fieldset>
       </div>
@@ -370,14 +352,14 @@
           </p>
         </div>
         <div>
-          <label for="account-holder" class="block text-sm/6 font-medium text-gray-900">
+          <label for="accountHolder" class="block text-sm/6 font-medium text-gray-900">
             Naam rekeninghouder <span class="text-primary-400">*</span>
           </label>
           <div class="mt-2">
             <input
               type="text"
-              name="account-holder"
-              id="account-holder"
+              name="accountHolder"
+              id="accountHolder"
               required
               class="block w-full rounded-md px-3 py-1.5
                      bg-white
@@ -386,10 +368,88 @@
                      placeholder:text-gray-400
                      focus:outline-2 focus:-outline-offset-2 focus:outline-primary-500
                      sm:text-sm/6"
+              aria-described-by="accountHolder-description"
             >
           </div>
-          <p class="mt-2 text-sm text-gray-500" id="account-holder-description">De naam van de rekeninghouder van de hieronder ingevulde bankrekening.</p>
-          <p class="text-sm text-red-600 hidden" id="account-holder-error"></p>
+          <p class="mt-2 text-sm text-gray-500" id="accountHolder-description">
+              De naam van de rekeninghouder van de hieronder ingevulde bankrekening.
+          </p>
+          <p class="text-sm text-red-600 hidden" id="accountHolder-error"></p>
+        </div>
+        <div>
+          <label for="address" class="block text-sm/6 font-medium text-gray-900">
+            Adres <span class="text-primary-400">*</span>
+          </label>
+          <div class="mt-2">
+            <input
+              type="text"
+              name="address"
+              id="address"
+              required
+              class="block w-full rounded-md px-3 py-1.5
+                     bg-white
+                     text-base text-gray-900
+                     outline-1 -outline-offset-1 outline-gray-300
+                     placeholder:text-gray-400
+                     focus:outline-2 focus:-outline-offset-2 focus:outline-primary-500
+                     sm:text-sm/6"
+              aria-described-by="address-description"
+            >
+          </div>
+          <p class="mt-2 text-sm text-gray-500" id="address-description">
+              Het woonadres van de rekeninghouder.
+          </p>
+          <p class="text-sm text-red-600 hidden" id="address-error"></p>
+        </div>
+        <div>
+          <label for="zipcode" class="block text-sm/6 font-medium text-gray-900">
+            Postcode <span class="text-primary-400">*</span>
+          </label>
+          <div class="mt-2">
+            <input
+              type="text"
+              name="zipcode"
+              id="zipcode"
+              required
+              class="block w-full rounded-md px-3 py-1.5
+                     bg-white
+                     text-base text-gray-900
+                     outline-1 -outline-offset-1 outline-gray-300
+                     placeholder:text-gray-400
+                     focus:outline-2 focus:-outline-offset-2 focus:outline-primary-500
+                     sm:text-sm/6"
+              aria-described-by="zipcode-description"
+            >
+          </div>
+          <p class="mt-2 text-sm text-gray-500" id="zipcode-description">
+              De postcode van het woonadres van de rekeninghouder.
+          </p>
+          <p class="text-sm text-red-600 hidden" id="zipcode-error"></p>
+        </div>
+        <div>
+          <label for="city" class="block text-sm/6 font-medium text-gray-900">
+            Woonplaats <span class="text-primary-400">*</span>
+          </label>
+          <div class="mt-2">
+            <input
+              type="text"
+              name="city"
+              id="city"
+              required
+              class="block w-full rounded-md px-3 py-1.5
+                     bg-white
+                     text-base text-gray-900
+                     outline-1 -outline-offset-1 outline-gray-300
+                     placeholder:text-gray-400
+                     focus:outline-2 focus:-outline-offset-2 focus:outline-primary-500
+                     sm:text-sm/6"
+              aria-described-by="city-description"
+            >
+          </div>
+          <p class="mt-2 text-sm text-gray-500" id="city-description">
+              De woonplaats van de rekeninghouder.
+          </p>
+          <p class="text-sm text-red-600 hidden" id="city-error"></p>
         </div>
         <div>
           <label for="iban" class="block text-sm/6 font-medium text-gray-900">
@@ -415,6 +475,56 @@
           </p>
           <p class="text-sm text-red-600 hidden" id="iban-error"></p>
         </div>
+        <div class="flex gap-3" data-made-dependent="frequency" data-made-dependent-values="monthly">
+            <div class="flex h-6 shrink-0 items-center">
+                <div class="group grid size-4 grid-cols-1">
+                    <input
+                    id="authority-monthly"
+                    aria-describedby="authority-monthly-description"
+                    name="authority"
+                    type="checkbox"
+                    required
+                    class="col-start-1 row-start-1 appearance-none rounded-sm border border-gray-300 bg-white checked:border-primary-500 checked:bg-primary-500 indeterminate:border-primary-500 indeterminate:bg-primary-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 disabled:border-gray-300 disabled:bg-gray-100 disabled:checked:bg-gray-100 forced-colors:appearance-auto"
+                    >
+                    <svg class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-white group-has-disabled:stroke-gray-950/25" viewBox="0 0 14 14" fill="none">
+                        <path class="opacity-0 group-has-checked:opacity-100" d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        <path class="opacity-0 group-has-indeterminate:opacity-100" d="M3 7H11" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <p class="text-sm text-red-600 hidden" id="authority-error"></p>
+            </div>
+            <div class="text-sm/6">
+                <label for="authority-monthly" class="font-medium text-gray-900">Machtigingsverklaring</label>
+                <p id="authority-monthly-description" class="text-gray-500">
+                    Ik geef {{ config('app.name') }} toestemming om maandelijks het hierboven gekozen bedrag automatisch van mijn rekening af te schrijven via SEPA-incasso. Ik kan deze machtiging op elk moment intrekken.
+                </p>
+            </div>
+        </div>
+        <div class="flex gap-3" data-made-dependent="frequency" data-made-dependent-values="yearly">
+            <div class="flex h-6 shrink-0 items-center">
+                <div class="group grid size-4 grid-cols-1">
+                    <input
+                    id="authority-yearly"
+                    aria-describedby="authority-yearly-description"
+                    name="authority"
+                    type="checkbox"
+                    required
+                    class="col-start-1 row-start-1 appearance-none rounded-sm border border-gray-300 bg-white checked:border-primary-500 checked:bg-primary-500 indeterminate:border-primary-500 indeterminate:bg-primary-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 disabled:border-gray-300 disabled:bg-gray-100 disabled:checked:bg-gray-100 forced-colors:appearance-auto"
+                    >
+                    <svg class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-white group-has-disabled:stroke-gray-950/25" viewBox="0 0 14 14" fill="none">
+                        <path class="opacity-0 group-has-checked:opacity-100" d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        <path class="opacity-0 group-has-indeterminate:opacity-100" d="M3 7H11" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <p class="text-sm text-red-600 hidden" id="authority-error"></p>
+            </div>
+            <div class="text-sm/6">
+                <label for="authority-yearly" class="font-medium text-gray-900">Machtigingsverklaring</label>
+                <p id="authority-yearly-description" class="text-gray-500">
+                    Ik geef {{ config('app.name') }} toestemming om jaarlijks het hierboven gekozen bedrag automatisch van mijn rekening af te schrijven via SEPA-incasso. Ik kan deze machtiging op elk moment intrekken.
+                </p>
+            </div>
+        </div>
       </div>
       <div class="py-8 flex flex-col gap-8">
         <div>
@@ -433,6 +543,7 @@
                   <path class="opacity-0 group-has-indeterminate:opacity-100" d="M3 7H11" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
               </div>
+              <p class="text-sm text-red-600 hidden" id="newsletter-error"></p>
             </div>
             <div class="text-sm/6">
               <label for="newsletter" class="font-medium text-gray-900">Nieuwsbrief</label>
@@ -467,6 +578,25 @@
           <p class="mt-8 mb-4 text-xs text-black">
             Giften aan Moz kids zijn fiscaal aftrekbaar.
           </p>
+
+          <div
+              role="alert"
+              data-visible="true"
+              data-has-title="true"
+              data-made-dependent="frequency"
+              data-made-dependent-values="single"
+              title="This is a primary alert"
+              class="flex flex-grow flex-row mb-4 w-full py-3 px-4 gap-x-1 rounded-lg items-start text-blue-600 bg-blue-50 dark:bg-blue-50/50"
+          >
+              <div class="flex-none relative w-9 h-9 rounded-full grid place-items-center bg-blue-50 dark:bg-blue-100 border-blue-100 shadow-sm border-1">
+                  <svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" class="fill-current w-6 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                      <path d="M12 22C17.51 22 22 17.51 22 12C22 6.49 17.51 2 12 2C6.49 2 2 6.49 2 12C2 17.51 6.49 22 12 22ZM12.75 16C12.75 16.41 12.41 16.75 12 16.75C11.59 16.75 11.25 16.41 11.25 16L11.25 11C11.25 10.59 11.59 10.25 12 10.25C12.41 10.25 12.75 10.59 12.75 11L12.75 16ZM11.08 7.62C11.13 7.49 11.2 7.39 11.29 7.29C11.39 7.2 11.5 7.13 11.62 7.08C11.74 7.03 11.87 7 12 7C12.13 7 12.26 7.03 12.38 7.08C12.5 7.13 12.61 7.2 12.71 7.29C12.8 7.39 12.87 7.49 12.92 7.62C12.97 7.74 13 7.87 13 8C13 8.13 12.97 8.26 12.92 8.38C12.87 8.5 12.8 8.61 12.71 8.71C12.61 8.8 12.5 8.87 12.38 8.92C12.14 9.02 11.86 9.02 11.62 8.92C11.5 8.87 11.39 8.8 11.29 8.71C11.2 8.61 11.13 8.5 11.08 8.38C11.03 8.26 11 8.13 11 8C11 7.87 11.03 7.74 11.08 7.62Z"></path>
+                  </svg>
+              </div>
+              <div class="h-full flex-grow min-h-10 ms-2 flex flex-col box-border text-inherit justify-center items-center">
+                  <div class="text-sm w-full font-medium block text-inherit leading-5">Let op! Je wordt na het versturen van dit formulier doorgestuurd naar Mollie om de donatie verder af te handelen.</div>
+              </div>
+          </div>
 
           <x-button type="submit" color="primary">
             Doneren

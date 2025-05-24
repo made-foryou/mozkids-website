@@ -12,55 +12,65 @@ use App\Domains\Newsletter\Data\SubscribingData;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\DonationFormRequest;
 use App\Models\WebsiteSetting;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Mail;
 use Made\Cms\Facades\Cms;
+use PDO;
 
 class DonationFormHandleController extends Controller
 {
-    public function __construct(
-        protected readonly WebsiteSetting $settings,
-    ) { }
+    public function __construct(protected readonly WebsiteSetting $settings) {}
 
-    public function __invoke(DonationFormRequest $request)
-    {
+    public function __invoke(
+        DonationFormRequest $request
+    ): JsonResponse|RedirectResponse {
         $data = DonationData::fromRequest($request);
-
-        // Send information to Moz Kids.
-        Mail::to($this->getEmailAddress())->send(
-            new DonationRequestMail($data)
-        );
-
-        // // Send confirmation to user.
-        Mail::to($data->email)->send(
-            new DonationRequestConfirmationMail($data)
-        );
 
         if ($data->newsletter) {
             SubscribeToNewsletterAction::run(
                 new SubscribingData(
                     $data->email,
                     $data->firstname,
-                    !empty($data->infix) ? $data->infix . ' ' : '' . $data->surname,
-                ),
+                    !empty($data->infix)
+                        ? $data->infix . " "
+                        : "" . $data->surname
+                )
             );
         }
 
-        // @todo conversie plaatsen - voor het bijhouden van de gebruiker zijn sessie.
-        // https://app.todoist.com/app/task/acties-van-bezoekers-bijhouden-6Xxc9MvcRj4g5Fj4
+        if ($data->frequency->manually()) {
+            // Send information to Moz Kids.
+            Mail::to($this->getEmailAddress())->send(
+                new DonationRequestMail($data)
+            );
 
-        $successPage = $this->settings->getDonationSuccessPage();
+            // // Send confirmation to user.
+            Mail::to($data->email)->send(
+                new DonationRequestConfirmationMail($data)
+            );
 
-        if ($successPage) {
-            return response()->json([
-                'redirect' => Cms::url($successPage),
-            ]);
+            // @todo conversie plaatsen - voor het bijhouden van de gebruiker zijn sessie.
+            // https://app.todoist.com/app/task/acties-van-bezoekers-bijhouden-6Xxc9MvcRj4g5Fj4
+
+            $successPage = $this->settings->getDonationSuccessPage();
+
+            if ($successPage) {
+                return response()->json([
+                    "redirect" => Cms::url($successPage),
+                ]);
+            }
+
+            return response()->json([], 200);
+        } else {
+            // @todo: Doorsturen naar mollie en het proces starten.
+            return redirect("https://mollie.nl");
         }
-
-        return response()->json([], 200);
     }
 
     protected function getEmailAddress(): string
     {
-        return $this->settings->donation_email ?? config('mozkids.donation_email');
+        return $this->settings->donation_email ??
+            config("mozkids.donation_email");
     }
 }
