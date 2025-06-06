@@ -15,7 +15,7 @@
 
     @endif
 
-    @if ($next)
+    @if ($next->isNotEmpty())
 
         @include('partials.news.related-posts', ['posts' => $next, 'overview' => $newsPage])
 
