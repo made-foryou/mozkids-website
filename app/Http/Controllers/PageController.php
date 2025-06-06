@@ -16,22 +16,22 @@ class PageController extends Controller implements CmsRoutingContract
 {
     public function __construct(
         protected readonly WebsiteSetting $websiteSetting,
-        protected readonly NewsSettings $newsSettings,
-    ) { }
+        protected readonly NewsSettings $newsSettings
+    ) {}
 
     public function __invoke(Request $request, Page|Model $model): View|Response
     {
         if ($model->is($this->newsSettings->newsPage())) {
-            return view('pages.news.index', [
-                'model' => $model,
-                'donation_button' => $this->websiteSetting->donation_button,
-                'posts' => MadeNews::news(),
+            return view("pages.news.index", [
+                "model" => $model,
+                "donation_button" => $this->websiteSetting->donation_button,
+                "posts" => MadeNews::news()->paginate(9),
             ]);
-        }   
+        }
 
-        return view('pages.page', [
-            'model' => $model,
-            'donation_button' => $this->websiteSetting->donation_button,
+        return view("pages.page", [
+            "model" => $model,
+            "donation_button" => $this->websiteSetting->donation_button,
         ]);
     }
 }

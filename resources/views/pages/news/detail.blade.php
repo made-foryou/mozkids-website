@@ -12,7 +12,13 @@
     @if ($model && $model->content)
 
         {!! Cms::renderContentStrips($model->content) !!}
-        
+
+    @endif
+
+    @if ($next)
+
+        @include('partials.news.related-posts', ['posts' => $next, 'overview' => $newsPage])
+
     @endif
 
 @endsection
