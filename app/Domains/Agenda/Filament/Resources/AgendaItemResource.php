@@ -38,7 +38,7 @@ class AgendaItemResource extends Resource
 {
     protected static ?string $model = AgendaItem::class;
 
-    protected static ?string $slug = 'agenda-item';
+    protected static ?string $slug = "agenda-item";
 
     public static function form(Form $form): Form
     {
@@ -46,75 +46,71 @@ class AgendaItemResource extends Resource
             ->schema([
                 Group::make()
                     ->schema([
+                        Section::make()->schema([
+                            TextInput::make("name")->label("Naam")->required(),
 
-                        Section::make()
-                            ->schema([
-                                TextInput::make('name')
-                                    ->label('Naam')
-                                    ->required(),
+                            DatePicker::make("start_date")
+                                ->label("Startdatum")
+                                ->helperText(
+                                    "De datum waarop het evenment / het agendapunt plaats vind en/of start."
+                                )
+                                ->required()
+                                ->default(now()),
 
-                                DatePicker::make('start_date')
-                                    ->label('Startdatum')
-                                    ->helperText('De datum waarop het evenment / het agendapunt plaats vind en/of start.')
-                                    ->required()
-                                    ->default(now()),
+                            DatePicker::make("end_date")
+                                ->label("Einddatum")
+                                ->helperText(
+                                    "Tot wanneer het agendapunt loopt."
+                                )
+                                ->default(now()),
 
-                                DatePicker::make('end_date')
-                                    ->label('Einddatum')
-                                    ->helperText('Tot wanneer het agendapunt loopt.')
-                                    ->default(now()),
+                            RichEditor::make("description")->label("Inhoud"),
 
-                                RichEditor::make('description')
-                                    ->label('Inhoud'),
+                            SpatieMediaLibraryFileUpload::make("image")
+                                ->collection("image")
+                                ->image()
+                                ->imageEditor(),
+                        ]),
+                    ])
+                    ->columnSpan(["lg" => 2]),
 
-                                SpatieMediaLibraryFileUpload::make('image')
-                                    ->collection('image')
-                                    ->image()
-                                    ->imageEditor(),
-                            ]),
-
-                        ])
-                        ->columnSpan(['lg' => 2]),
-
-                Group::make()
-                    ->schema([
-
-                        Section::make()
-                            ->schema([
-
-                                Select::make('status')
-                                    ->label('Status')
-                                    ->helperText(
-                                        'Deze status van het agendapunt geeft aan waarvoor het 
-                                        agendapunt gebruikt kan worden. Zodra de status is 
-                                        ingesteld op gepubliceerd, kan elke bezoeker het 
+                Group::make()->schema([
+                    Section::make()->schema([
+                        Select::make("status")
+                            ->label("Status")
+                            ->helperText(
+                                'Deze status van het agendapunt geeft aan waarvoor het
+                                        agendapunt gebruikt kan worden. Zodra de status is
+                                        ingesteld op gepubliceerd, kan elke bezoeker het
                                         agendapunt bekijken.'
-                                    )
-                                    ->options(PublishingStatus::options())
-                                    ->default(array_key_first(PublishingStatus::options())),
+                            )
+                            ->options(PublishingStatus::options())
+                            ->default(
+                                array_key_first(PublishingStatus::options())
+                            ),
 
-                                Select::make('language')
-                                    ->relationship('language', 'name')
-                                    ->preload()
-                                    ->default(
-                                        Language::query()
-                                            ->default()
-                                            ->first()
-                                            ->id
-                                    )
-                                    ->label('Taal')
-                                    ->helperText('De taal van de inhoud van het agendapunt.'),
+                        Select::make("language")
+                            ->relationship("language", "name")
+                            ->preload()
+                            ->default(Language::query()->default()->first()->id)
+                            ->label("Taal")
+                            ->helperText(
+                                "De taal van de inhoud van het agendapunt."
+                            ),
 
-                                Select::make('translated_from_id')
-                                    ->label('Vertaling van')
-                                    ->disabled()
-                                    ->relationship('translatedFrom', 'name')
-                                    ->helperText('Dit agendapunt is een vertaling van het hierboven geselecteerde agendapunt. Dit is niet te wijzigen.')
-                                    ->visible(fn (Get $get) => $get('translated_from_id') !== null),
-
-                            ]),
-
+                        Select::make("translated_from_id")
+                            ->label("Vertaling van")
+                            ->disabled()
+                            ->relationship("translatedFrom", "name")
+                            ->helperText(
+                                "Dit agendapunt is een vertaling van het hierboven geselecteerde agendapunt. Dit is niet te wijzigen."
+                            )
+                            ->visible(
+                                fn(Get $get) => $get("translated_from_id") !==
+                                    null
+                            ),
                     ]),
+                ]),
             ])
             ->columns(3);
     }
@@ -123,61 +119,66 @@ class AgendaItemResource extends Resource
     {
         return $table
             ->columns([
-                SpatieMediaLibraryImageColumn::make('image')
-                    ->label('Afbeelding')
-                    ->collection('image')
-                    ->conversion('preview')
+                SpatieMediaLibraryImageColumn::make("image")
+                    ->label("Afbeelding")
+                    ->collection("image")
+                    ->conversion("preview")
                     ->circular(),
-                    
-                TextColumn::make('start_date')
-                    ->label('Start datum')
+
+                TextColumn::make("start_date")
+                    ->label("Start datum")
                     ->sortable()
                     ->date(),
 
-                TextColumn::make('end_date')
-                    ->label('Eind datum')
+                TextColumn::make("end_date")
+                    ->label("Eind datum")
                     ->sortable()
                     ->date(),
 
-                TextColumn::make('name')
-                    ->label('Naam')
+                TextColumn::make("name")
+                    ->label("Naam")
                     ->weight(FontWeight::Bold)
                     ->searchable()
                     ->sortable(),
 
-                SpatieMediaLibraryImageColumn::make('language.flag')
-                    ->collection('flag')
-                    ->label('Taal')
+                SpatieMediaLibraryImageColumn::make("language.flag")
+                    ->collection("flag")
+                    ->label("Taal")
                     ->size(20)
                     ->circular(),
 
-                TextColumn::make('status')
-                    ->label('Status')
+                TextColumn::make("status")
+                    ->label("Status")
                     ->badge()
-                    ->color(fn (PublishingStatus $state) => $state->color())
-                    ->formatStateUsing(fn (PublishingStatus $state) => $state->label()),
+                    ->color(fn(PublishingStatus $state) => $state->color())
+                    ->formatStateUsing(
+                        fn(PublishingStatus $state) => $state->label()
+                    ),
 
-                TextColumn::make('translatedFrom.name')
-                    ->label('Vertaling van')
+                TextColumn::make("translatedFrom.name")
+                    ->label("Vertaling van")
                     ->searchable()
                     ->sortable(),
 
-                TextColumn::make('createdBy.name')
-                    ->label('Aangemaakt door'),
+                TextColumn::make("createdBy.name")->label("Aangemaakt door"),
 
-                TextColumn::make('updated_at')
-                    ->label('Gewijzigd op')
-                    ->since(),                
+                TextColumn::make("updated_at")->label("Gewijzigd op")->since(),
             ])
-            ->heading('Agendapunten')
+            ->heading("Agendapunten")
             ->filters([
-                SelectFilter::make('language_id')
-                    ->relationship('language', 'name')
-                    ->label('Taal'),
+                SelectFilter::make("language_id")
+                    ->relationship("language", "name")
+                    ->label("Taal"),
 
-                SelectFilter::make('translated_from_id')
-                    ->options(AgendaItem::query()->get()->mapWithKeys(fn ($item) => [$item->id => $item->name]))
-                    ->label('Vertaling van'),
+                SelectFilter::make("translated_from_id")
+                    ->options(
+                        AgendaItem::query()
+                            ->get()
+                            ->mapWithKeys(
+                                fn($item) => [$item->id => $item->name]
+                            )
+                    )
+                    ->label("Vertaling van"),
 
                 TrashedFilter::make(),
             ])
@@ -186,8 +187,7 @@ class AgendaItemResource extends Resource
                     ActionGroup::make([
                         TranslateAction::make(),
                         EditAction::make(),
-                    ])
-                        ->dropdown(false),
+                    ])->dropdown(false),
 
                     DeleteAction::make(),
                 ]),
@@ -200,7 +200,7 @@ class AgendaItemResource extends Resource
                 ]),
             ])
             ->defaultPaginationPageOption(50)
-            ->defaultSort('start_date', 'desc');
+            ->defaultSort("start_date", "desc");
     }
 
     /**
@@ -211,9 +211,9 @@ class AgendaItemResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListAgendaItems::route('/'),
-            'create' => Pages\CreateAgendaItem::route('/create'),
-            'edit' => Pages\EditAgendaItem::route('/{record}/edit'),
+            "index" => Pages\ListAgendaItems::route("/"),
+            "create" => Pages\CreateAgendaItem::route("/create"),
+            "edit" => Pages\EditAgendaItem::route("/{record}/edit"),
         ];
     }
 
@@ -224,18 +224,19 @@ class AgendaItemResource extends Resource
      */
     public static function getEloquentQuery(): Builder
     {
-        return parent::getEloquentQuery()
-            ->withoutGlobalScopes([
-                SoftDeletingScope::class,
-            ]);
-    }/**
+        return parent::getEloquentQuery()->withoutGlobalScopes([
+            SoftDeletingScope::class,
+        ]);
+    }
+
+    /**
      * Retrieves the navigation label for the resource.
      *
      * @return string The navigation label.
      */
     public static function getNavigationLabel(): string
     {
-        return 'Agenda punten';
+        return "Agenda punten";
     }
 
     /**
@@ -245,7 +246,7 @@ class AgendaItemResource extends Resource
      */
     public static function getPluralLabel(): ?string
     {
-        return 'Agenda punten';
+        return "Agenda punten";
     }
 
     /**
@@ -255,7 +256,7 @@ class AgendaItemResource extends Resource
      */
     public static function getModelLabel(): string
     {
-        return 'Agenda punt';
+        return "Agenda punt";
     }
 
     /**
@@ -265,7 +266,7 @@ class AgendaItemResource extends Resource
      */
     public static function getNavigationGroup(): ?string
     {
-        return 'Agenda';
+        return "Agenda";
     }
 
     /**
