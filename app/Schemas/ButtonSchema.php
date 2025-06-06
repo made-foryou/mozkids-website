@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Schemas;
 
 use App\Components\UsesInternalLinks;
+use Filament\Forms\Components\Field;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 
@@ -12,45 +13,51 @@ class ButtonSchema
 {
     use UsesInternalLinks;
 
+    /**
+     * @return array<int, Field>
+     */
     public static function schema(): array
     {
         return [
-            Select::make('color')
-                ->label('Button kleur')
+            Select::make("color")
+                ->label("Button kleur")
                 ->options([
-                    'primary' => 'Rood',
-                    'secondary' => 'Creme',
-                    'white' => 'Wit',
+                    "primary" => "Rood",
+                    "secondary" => "Creme",
+                    "white" => "Wit",
                 ])
-                ->default('primary'),
+                ->default("primary"),
 
-            TextInput::make('label')
-                ->label('Button tekst'),
+            TextInput::make("label")->label("Button tekst"),
 
-            Select::make('website_link')
-                ->label('Linken naar website onderdeel')
+            Select::make("website_link")
+                ->label("Linken naar website onderdeel")
                 ->nullable()
                 ->options(self::options()),
         ];
     }
 
+    /**
+     * @param array<mixed, mixed> $attributes
+     *
+     * @return array<mixed, mixed>
+     */
     public static function resolveViewAttributes(array $attributes): array
     {
-        if (!empty($attributes['buttons'])) {
-            $attributes['buttons'] = array_map(function (array $button): array {
-                if ($button['website_link'] === null) {
+        if (!empty($attributes["buttons"])) {
+            $attributes["buttons"] = array_map(function (array $button): array {
+                if ($button["website_link"] === null) {
                     return $button;
                 }
 
-                [$model, $id] = explode(':', $button['website_link']);
+                [$model, $id] = explode(":", $button["website_link"]);
 
-                $target = $model::query()
-                    ->findOrFail($id);
+                $target = $model::query()->findOrFail($id);
 
-                $button['website_link'] = $target;
+                $button["website_link"] = $target;
 
                 return $button;
-            }, $attributes['buttons']);
+            }, $attributes["buttons"]);
         }
 
         return $attributes;
