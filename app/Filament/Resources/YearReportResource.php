@@ -38,6 +38,7 @@ class YearReportResource extends Resource
 
                     Forms\Components\FileUpload::make("file")
                         ->label("Bestand")
+                        ->preserveFilenames()
                         ->required(),
                 ]),
             ]),

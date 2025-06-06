@@ -139,6 +139,7 @@ return [
                 Strips\TextStrip::class,
                 Strips\CoreValuesStrip::class,
                 Strips\BlocksContentStrip::class,
+                Strips\YearReportsStrip::class,
             ],
 
             /**

@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Number;
 
 /**
  * @property-read int $id
@@ -39,7 +42,7 @@ class YearReport extends Model
     {
         return [
             "id" => "integer",
-            "year" => "date",
+            "year" => "string",
             "title" => "string",
             "description" => "string",
             "file" => "string",
@@ -47,5 +50,14 @@ class YearReport extends Model
             "updated_at" => "datetime",
             "deleted_at" => "datetime",
         ];
+    }
+
+    public function fileSize(): Attribute
+    {
+        return new Attribute(
+            get: fn($value, array $attributes): string => Number::fileSize(
+                filesize(storage_path("app/public/{$attributes["file"]}"))
+            )
+        );
     }
 }
