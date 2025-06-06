@@ -4,6 +4,7 @@
 
 use App\Domains\Agenda\Filament\Resources\AgendaItemResource;
 use App\Domains\Website\Settings\WebsiteSettings;
+use App\Filament\Resources\YearReportResource;
 use App\Models\WebsiteSetting;
 use App\Strips;
 use Filament\Navigation\NavigationGroup;
@@ -56,7 +57,7 @@ return [
          */
         "default" => true,
 
-        "resources" => [AgendaItemResource::class],
+        "resources" => [AgendaItemResource::class, YearReportResource::class],
 
         "pages" => [],
 
@@ -66,6 +67,9 @@ return [
             NavigationGroup::make()
                 ->label("Agenda")
                 ->icon("heroicon-o-calendar"),
+            NavigationGroup::make()
+                ->label("Organisatie")
+                ->icon("heroicon-o-academic-cap"),
         ],
     ],
 
@@ -135,6 +139,7 @@ return [
                 Strips\TextStrip::class,
                 Strips\CoreValuesStrip::class,
                 Strips\BlocksContentStrip::class,
+                Strips\YearReportsStrip::class,
             ],
 
             /**
