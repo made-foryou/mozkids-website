@@ -11,37 +11,37 @@ class QuoteStrip implements ContentStrip
 {
     public static function id(): string
     {
-        return 'quote';
+        return "quote";
     }
 
-    public static function render(array $attributes = []): \Illuminate\Contracts\View\View
-    {
-        $attributes['live'] = true;
+    public static function render(
+        array $attributes = []
+    ): \Illuminate\Contracts\View\View {
+        $attributes["live"] = true;
 
-        return view('strips.' . self::id(), $attributes);
+        return view("strips." . self::id(), $attributes);
     }
 
-    public static function block(string $context = 'form'): \Filament\Forms\Components\Builder\Block
-    {
+    public static function block(
+        string $context = "form"
+    ): \Filament\Forms\Components\Builder\Block {
         return \Filament\Forms\Components\Builder\Block::make(self::id())
-            ->label('Quote')
-            ->icon('heroicon-s-chat-bubble-bottom-center-text')
+            ->label("Quote")
+            ->icon("heroicon-s-chat-bubble-bottom-center-text")
             ->schema([
-                \Filament\Forms\Components\Textarea::make('quote')
-                    ->label('Quote')
-                    ->required(),
-                \Filament\Forms\Components\TextInput::make('author')
-                    ->label('Auteur')
-                    ->required(),
-                
-                FileUpload::make('image')
-                    ->label('Afbeelding')
+                \Filament\Forms\Components\Textarea::make("quote")->label(
+                    "Quote"
+                ),
+
+                \Filament\Forms\Components\TextInput::make("author")->label(
+                    "Auteur"
+                ),
+
+                FileUpload::make("image")
+                    ->label("Afbeelding")
                     ->image()
                     ->imageEditor()
-                    ->imageEditorAspectRatios([
-                        '116:65',
-                        '547:175',
-                    ])
+                    ->imageEditorAspectRatios(["116:65", "547:175"])
                     ->preserveFilenames()
                     ->required(),
             ]);
