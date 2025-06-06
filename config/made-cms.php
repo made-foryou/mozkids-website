@@ -134,6 +134,7 @@ return [
                 Strips\LargeSmallColumnStrip::class,
                 Strips\TextStrip::class,
                 Strips\CoreValuesStrip::class,
+                Strips\BlocksContentStrip::class,
             ],
 
             /**

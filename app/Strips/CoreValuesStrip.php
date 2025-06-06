@@ -48,17 +48,26 @@ class CoreValuesStrip implements ContentStrip
 
                     RichEditor::make("title")->label("Titel"),
 
-                    Repeater::make("values")->schema(
-                        components: [
-                            Select::make("icon")
-                                ->options(self::iconOptions())
-                                ->label("Icoon"),
+                    Repeater::make("values")
+                        ->label("Onderdelen")
+                        ->addActionLabel("Nieuw onderdeel toevoegen")
+                        ->schema(
+                            components: [
+                                Select::make("icon")
+                                    ->options(self::iconOptions())
+                                    ->label("Icoon"),
 
-                            TextInput::make("title")->label("Titel"),
+                                TextInput::make("title")->label("Titel"),
 
-                            RichEditor::make("content")->label("Omschrijving"),
-                        ]
-                    ),
+                                RichEditor::make("content")->label(
+                                    "Omschrijving"
+                                ),
+                            ]
+                        )
+                        ->grid([
+                            "default" => 1,
+                            "md" => 3,
+                        ]),
                 ]
             );
     }
