@@ -133,6 +133,7 @@ return [
                 Strips\CallToActionStrip::class,
                 Strips\LargeSmallColumnStrip::class,
                 Strips\TextStrip::class,
+                Strips\CoreValuesStrip::class,
             ],
 
             /**
