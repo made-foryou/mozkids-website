@@ -12,26 +12,28 @@
         >
             Contact
         </span>
-        <h2 class="mb-6">
-            Contactgegevens
-        </h2>
-        <p>
-            <strong>Post adres</strong><br />
-            {{ $item['address']->address }}<br />
-            {{ $item['address']->zipcode }}, {{ $item['address']->city }}<br />
-            {{ $item['address']->country }}
-        </p>
-        <p>
-            <strong>Telefoonnummer</strong><br />
-            <a href="tel:{{ $item['contact']->phoneNumber }}">{{ $item['contact']->phone ?? $item['contact']->phoneNumber }}</a>
-        </p>
-        <p>
-            <strong>E-mailadres</strong><br />
-            <a href="mailto:{{ $item['contact']->email }}">{{ $item['contact']->email }}</a>
-        </p>
-        <h2 class="mt-12 mb-6">
-            Volg ons
-        </h2>
+        <div class="prose">
+            <h3 class="mb-6">
+                Contactgegevens
+            </h3>
+            <p>
+                <strong>Post adres</strong><br />
+                {{ $item['address']->address }}<br />
+                {{ $item['address']->zipcode }}, {{ $item['address']->city }}<br />
+                {{ $item['address']->country }}
+            </p>
+            <p>
+                <strong>Telefoonnummer</strong><br />
+                <a href="tel:{{ $item['contact']->phoneNumber }}">{{ $item['contact']->phone ?? $item['contact']->phoneNumber }}</a>
+            </p>
+            <p>
+                <strong>E-mailadres</strong><br />
+                <a href="mailto:{{ $item['contact']->email }}">{{ $item['contact']->email }}</a>
+            </p>
+            <h3 class="mt-12 mb-6 font-bold text-lg">
+                Volg ons
+            </h3>
+        </div>
         <strong class="block mb-4">Social media</strong>
         <div class="flex flex-col justify-start gap-4 space-y-3.5">
         @foreach ($item['social'] as $account)
