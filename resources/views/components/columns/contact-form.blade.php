@@ -13,7 +13,7 @@
                 Contactformulier
             </h2>
             <p>
-                Doormiddel van onderstaand formulier kunt u met al uw vragen en/of opmerkingen bij
+                Door middel van onderstaand formulier kunt u met al uw vragen en/of opmerkingen bij
                 ons terecht.
             </p>
         </div>
