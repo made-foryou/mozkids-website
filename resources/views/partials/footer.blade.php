@@ -5,7 +5,7 @@
             Contactgegevens
         </x-footer-title>
         <span class="inline-block w-full text-primary-500 text-xs lg:text-sm font-sans font-bold">
-            Addres
+            Adres
         </span>
         <span class="inline-block w-full text-black text-xs/4 lg:text-sm/5.5 font-sans">
             {{ $address->address }}<br />
@@ -58,7 +58,7 @@
                 <span class="inline-block w-full text-black text-xs/4 lg:text-sm/5.5 font-sans">
                     {{ $sinAccount->account }}
                 </span>
-            </div>  
+            </div>
             <div>
                 <span class="inline-block w-full text-primary-500 text-[0.6rem] lg:text-xs font-sans font-light">
                     Giften aan Moz Kids zijn fiscaal aftrekbaar.
@@ -70,7 +70,7 @@
         </div>
     </div>
 </div>
-<div class="flex flex-row justify-between items-center 
+<div class="flex flex-row justify-between items-center
             text-black text-[0.6rem] font-sans font-light
             sm:pt-6.5 sm:border-t sm:border-secondary-500 sm:mt-10">
     <div class="space-x-4">
