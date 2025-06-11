@@ -16,44 +16,63 @@ class PageFillableContentStrip implements ContentStrip
 {
     public static function render(array $attributes = []): View
     {
-        $attributes['live'] = true;
+        $attributes["live"] = true;
 
-        if (!empty($attributes['link'])) {
-            $attributes['linkModel'] = Page::findOrFail((int) $attributes['link']);
+        if (!empty($attributes["link"])) {
+            $attributes["linkModel"] = Page::findOrFail(
+                (int) $attributes["link"]
+            );
         }
 
-        return view('strips.page-fillable-content-strip', $attributes);
+        return view("strips.page-fillable-content-strip", $attributes);
     }
 
     public static function id(): string
     {
-        return 'page-fillable-content-strip';
+        return "page-fillable-content-strip";
     }
 
-    public static function block(string $context = 'form'): Block
+    public static function block(string $context = "form"): Block
     {
         return Block::make(self::id())
-            ->label('Pagina vullende inhoudsstrook')
-            ->icon('heroicon-s-command-line')
+            ->label("Pagina vullende inhoudsstrook")
+            ->icon("heroicon-s-command-line")
             ->schema([
-                TextInput::make('title')
-                    ->label('Titel'),
+                TextInput::make("title")->label("Titel"),
 
-                RichEditor::make('content')
-                    ->label('Inhoud'),
+                RichEditor::make("content")
+                    ->label("Inhoud")
+                    ->toolbarButtons([
+                        "attachFiles",
+                        "blockquote",
+                        "bold",
+                        "bulletList",
+                        "codeBlock",
+                        "h1",
+                        "h2",
+                        "h3",
+                        "h4",
+                        "italic",
+                        "link",
+                        "orderedList",
+                        "redo",
+                        "strike",
+                        "underline",
+                        "undo",
+                    ]),
 
-                TextInput::make('label')
-                    ->label('Button tekst'),
+                TextInput::make("label")->label("Button tekst"),
 
-                Select::make('link')
-                    ->label('Button link')
-                    ->options(fn () => Page::query()
-                        ->select(['id', 'name'])
+                Select::make("link")->label("Button link")->options(
+                    fn() => Page::query()
+                        ->select(["id", "name"])
                         ->published()
                         ->get()
-                        ->mapWithKeys(fn (Page $page) => [$page->id => $page->name])
+                        ->mapWithKeys(
+                            fn(Page $page) => [$page->id => $page->name]
+                        )
                         ->toArray()
-                    ),
+                ),
             ])
             ->columns(2);
     }

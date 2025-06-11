@@ -57,9 +57,26 @@ class BlocksContentStrip implements ContentStrip
                                 "Titel"
                             ),
 
-                            Forms\Components\RichEditor::make("content")->label(
-                                "Inhoud"
-                            ),
+                            Forms\Components\RichEditor::make("content")
+                                ->label("Inhoud")
+                                ->toolbarButtons([
+                                    "attachFiles",
+                                    "blockquote",
+                                    "bold",
+                                    "bulletList",
+                                    "codeBlock",
+                                    "h1",
+                                    "h2",
+                                    "h3",
+                                    "h4",
+                                    "italic",
+                                    "link",
+                                    "orderedList",
+                                    "redo",
+                                    "strike",
+                                    "underline",
+                                    "undo",
+                                ]),
                         ])
                         ->grid([
                             "default" => 1,

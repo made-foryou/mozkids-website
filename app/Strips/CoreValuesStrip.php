@@ -46,7 +46,26 @@ class CoreValuesStrip implements ContentStrip
                 components: [
                     TextInput::make("subtitle")->label("Subtitel"),
 
-                    RichEditor::make("title")->label("Titel"),
+                    RichEditor::make("title")
+                        ->label("Titel")
+                        ->toolbarButtons([
+                            "attachFiles",
+                            "blockquote",
+                            "bold",
+                            "bulletList",
+                            "codeBlock",
+                            "h1",
+                            "h2",
+                            "h3",
+                            "h4",
+                            "italic",
+                            "link",
+                            "orderedList",
+                            "redo",
+                            "strike",
+                            "underline",
+                            "undo",
+                        ]),
 
                     Repeater::make("values")
                         ->label("Onderdelen")
@@ -59,9 +78,26 @@ class CoreValuesStrip implements ContentStrip
 
                                 TextInput::make("title")->label("Titel"),
 
-                                RichEditor::make("content")->label(
-                                    "Omschrijving"
-                                ),
+                                RichEditor::make("content")
+                                    ->label("Omschrijving")
+                                    ->toolbarButtons([
+                                        "attachFiles",
+                                        "blockquote",
+                                        "bold",
+                                        "bulletList",
+                                        "codeBlock",
+                                        "h1",
+                                        "h2",
+                                        "h3",
+                                        "h4",
+                                        "italic",
+                                        "link",
+                                        "orderedList",
+                                        "redo",
+                                        "strike",
+                                        "underline",
+                                        "undo",
+                                    ]),
                             ]
                         )
                         ->grid([
