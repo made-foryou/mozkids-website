@@ -32,7 +32,26 @@ class TextStrip implements ContentStrip
             ->schema([
                 TextInput::make("title"),
 
-                RichEditor::make("content")->label("Inhoud"),
+                RichEditor::make("content")
+                    ->label("Inhoud")
+                    ->toolbarButtons([
+                        "attachFiles",
+                        "blockquote",
+                        "bold",
+                        "bulletList",
+                        "codeBlock",
+                        "h1",
+                        "h2",
+                        "h3",
+                        "h4",
+                        "italic",
+                        "link",
+                        "orderedList",
+                        "redo",
+                        "strike",
+                        "underline",
+                        "undo",
+                    ]),
             ]);
     }
 }
