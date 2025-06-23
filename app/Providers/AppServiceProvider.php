@@ -6,6 +6,7 @@ use App\Models\WebsiteSetting;
 use App\View\Composers\DonateDirectLinkComposer;
 use App\View\Composers\DonationButtonComposer;
 use App\View\Composers\InformationSettingsComposer;
+use App\View\Composers\LatestActivitiesComposer;
 use App\View\Composers\LatestNewsComposer;
 use App\View\Composers\MainMenuItemsComposer;
 use App\View\Composers\StatementsMenuItemsComposer;
@@ -82,6 +83,11 @@ class AppServiceProvider extends ServiceProvider
         Facades\View::composer(
             'components.columns.news',
             LatestNewsComposer::class
+        );
+
+        Facades\View::composer(
+            'components.columns.agenda',
+            LatestActivitiesComposer::class
         );
     }
 
