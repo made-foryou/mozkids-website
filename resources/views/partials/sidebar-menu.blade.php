@@ -5,11 +5,11 @@
     >
         @include('svg.logo')
     </div>
-    <nav 
+    <nav
         class="flex flex-1 flex-col"
     >
-        <ul 
-            role="list" 
+        <ul
+            role="list"
             class="flex flex-1 flex-col gap-y-7"
         >
 
@@ -20,29 +20,15 @@
                     class="-mx-2 space-y-1"
                 >
 
+                    @foreach ($items as $item)
+
                     <li>
-                        <a href="#" class="group flex gap-x-3 rounded-md p-2 text-sm/6 text-black">
-                            <span>Over Moz Kids</span>
+                        <a href="{{ Cms::url($item->linkable) }}" class="group flex gap-x-3 rounded-md p-2 text-sm/6 text-black">
+                            <span>{{ $item->linkName }}</span>
                         </a>
                     </li>
 
-                    <li>
-                        <a href="#" class="group flex gap-x-3 rounded-md p-2 text-sm/6 text-black">
-                            <span>Activiteiten</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#" class="group flex gap-x-3 rounded-md p-2 text-sm/6 text-black">
-                            <span>Nieuws</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#" class="group flex gap-x-3 rounded-md p-2 text-sm/6 text-black">
-                            <span>Contact</span>
-                        </a>
-                    </li>
+                    @endforeach
 
                 </ul>
 

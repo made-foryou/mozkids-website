@@ -15,9 +15,11 @@
     </x-container>
 </section>
 <section class="relative w-full pb-25">
-    <x-container class="max-w-6xl py-6 lg:py-8">
+    <x-container class="max-w-6xl py-6 lg:py-8 space-y-8">
 
     @foreach ($items as $year => $entries)
+
+        <div>
 
         <span class="text-black font-sans block tracking-wide font-semibold text-xl lg:text-2xl">
             {{ $year }}
@@ -29,6 +31,8 @@
             <x-calendar.overview-item :item="$entry" />
 
         @endforeach
+
+        </div>
 
         </div>
 

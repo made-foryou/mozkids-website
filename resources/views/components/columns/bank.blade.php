@@ -3,7 +3,7 @@
 ])
 
 <div class="bg-white rounded-xl py-8 px-7">
-    <div>
+    <div class="prose">
         <span
             class="block
                 mb-4
@@ -12,7 +12,7 @@
         >
             Bank
         </span>
-        <h2 class="mb-6">
+        <h2 class="mb-6 font-bold text-lg">
             Financiële gegevens
         </h2>
         @foreach ($item['accounts'] as $account)

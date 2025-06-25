@@ -9,7 +9,7 @@
 
 @section('content')
 
-    @include('strips.hero-strip', ['content' => 'Nieuwsberichten', 'buttons' => []])
+    @include('strips.hero-strip', ['content' => 'Nieuwsberichten', 'buttons' => [], 'heading' => true, 'heading_number' => '1'])
 
     @include('partials.news.overview', ['paddingTop' => false, 'posts' => $posts])
 

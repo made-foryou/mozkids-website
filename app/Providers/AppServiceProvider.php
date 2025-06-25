@@ -6,6 +6,8 @@ use App\Models\WebsiteSetting;
 use App\View\Composers\DonateDirectLinkComposer;
 use App\View\Composers\DonationButtonComposer;
 use App\View\Composers\InformationSettingsComposer;
+use App\View\Composers\LatestActivitiesComposer;
+use App\View\Composers\LatestNewsComposer;
 use App\View\Composers\MainMenuItemsComposer;
 use App\View\Composers\StatementsMenuItemsComposer;
 use Illuminate\Support\Facades;
@@ -23,8 +25,8 @@ class AppServiceProvider extends ServiceProvider
             $client = new ApiClient();
 
             $client->setConfig([
-                'apiKey' => config('services.mailchimp.api_key'),
-                'server' => config('services.mailchimp.server_prefix'),
+                "apiKey" => config("services.mailchimp.api_key"),
+                "server" => config("services.mailchimp.server_prefix"),
             ]);
 
             return $client;
@@ -42,18 +44,51 @@ class AppServiceProvider extends ServiceProvider
 
         $settings = app()->make(WebsiteSetting::class);
 
-        Facades\View::share('donationPage', $this->resolveLink($settings->donation_page));
-        Facades\View::share('donation_button', $settings->donation_button);
+        Facades\View::share(
+            "donationPage",
+            $this->resolveLink($settings->donation_page)
+        );
+        Facades\View::share("donation_button", $settings->donation_button);
 
-        Facades\View::composer('partials.navigation', MainMenuItemsComposer::class);
+        Facades\View::composer(
+            "partials.navigation",
+            MainMenuItemsComposer::class
+        );
 
-        Facades\View::composer('partials.footer', StatementsMenuItemsComposer::class);
+        Facades\View::composer(
+            "partials.sidebar-menu",
+            MainMenuItemsComposer::class
+        );
 
-        Facades\View::composer('partials.footer', InformationSettingsComposer::class);
+        Facades\View::composer(
+            "partials.footer",
+            StatementsMenuItemsComposer::class
+        );
 
-        Facades\View::composer('partials.donation-button', DonationButtonComposer::class);
+        Facades\View::composer(
+            "partials.footer",
+            InformationSettingsComposer::class
+        );
 
-        Facades\View::composer('components.columns.donation-form', DonateDirectLinkComposer::class);
+        Facades\View::composer(
+            "partials.donation-button",
+            DonationButtonComposer::class
+        );
+
+        Facades\View::composer(
+            "components.columns.donation-form",
+            DonateDirectLinkComposer::class
+        );
+
+        Facades\View::composer(
+            'components.columns.news',
+            LatestNewsComposer::class
+        );
+
+        Facades\View::composer(
+            'components.columns.agenda',
+            LatestActivitiesComposer::class
+        );
     }
 
     public function resolveLink(string|null $link = null)
@@ -62,7 +97,7 @@ class AppServiceProvider extends ServiceProvider
             return null;
         }
 
-        [$model, $id] = explode(':', $link);
+        [$model, $id] = explode(":", $link);
 
         return $model::query()->find($id);
     }

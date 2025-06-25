@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "888293b7091bc92903cbb0adbad0fd9b",
+    "content-hash": "1379805401fe0acceb58b202f8cc1a94",
     "packages": [
         {
             "name": "anourvalar/eloquent-serialize",
@@ -2315,6 +2315,70 @@
             "time": "2025-02-03T10:55:03+00:00"
         },
         {
+            "name": "itsmalikjones/blade-iconic",
+            "version": "1.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ItsMalikJones/blade-iconic.git",
+                "reference": "f46e05a4edf4e020971e687153d7a4e1e707aa40"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ItsMalikJones/blade-iconic/zipball/f46e05a4edf4e020971e687153d7a4e1e707aa40",
+                "reference": "f46e05a4edf4e020971e687153d7a4e1e707aa40",
+                "shasum": ""
+            },
+            "require": {
+                "blade-ui-kit/blade-icons": "^1.0",
+                "php": "^7.4|^8.0|^8.1"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^6.15|^7.0|^8.0",
+                "phpunit/phpunit": "^9.3"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "ItsMalikJones\\BladeIconic\\BladeIconicServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "ItsMalikJones\\BladeIconic\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Malik Alleyne-Jones",
+                    "homepage": "https://twitter.com/ItsMalikJones"
+                }
+            ],
+            "description": "A package to easily make use of Iconic icons in your Laravel Blade views",
+            "homepage": "https://github.com/itsmalikjones/blade-iconic",
+            "keywords": [
+                "blade",
+                "iconic",
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/itsmalikjones/blade-iconic/issues",
+                "source": "https://github.com/itsmalikjones/blade-iconic"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/ItsMalikJones",
+                    "type": "github"
+                }
+            ],
+            "time": "2023-02-21T15:07:49+00:00"
+        },
+        {
             "name": "kirschbaum-development/eloquent-power-joins",
             "version": "4.2.0",
             "source": {
@@ -3727,16 +3791,16 @@
         },
         {
             "name": "made-foryou/cms",
-            "version": "0.15.6",
+            "version": "0.15.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/made-foryou/cms.git",
-                "reference": "a75269325acdc57522956d2623fcf5df1a42f044"
+                "reference": "d013c81b200722e5e4ef69ecb336d12a497a6656"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/made-foryou/cms/zipball/a75269325acdc57522956d2623fcf5df1a42f044",
-                "reference": "a75269325acdc57522956d2623fcf5df1a42f044",
+                "url": "https://api.github.com/repos/made-foryou/cms/zipball/d013c81b200722e5e4ef69ecb336d12a497a6656",
+                "reference": "d013c81b200722e5e4ef69ecb336d12a497a6656",
                 "shasum": ""
             },
             "require": {
@@ -3831,7 +3895,7 @@
                     "url": "https://github.com/made-foryou"
                 }
             ],
-            "time": "2025-05-19T13:31:26+00:00"
+            "time": "2025-06-06T14:37:23+00:00"
         },
         {
             "name": "maennchen/zipstream-php",
@@ -6280,6 +6344,82 @@
                 }
             ],
             "time": "2024-05-17T09:06:10+00:00"
+        },
+        {
+            "name": "spatie/laravel-honeypot",
+            "version": "4.6.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-honeypot.git",
+                "reference": "38d164f14939e943b92771859fc206c74cba8397"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-honeypot/zipball/38d164f14939e943b92771859fc206c74cba8397",
+                "reference": "38d164f14939e943b92771859fc206c74cba8397",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^8.0|^9.0|^10.0|^11.0|^12.0",
+                "illuminate/encryption": "^8.0|^9.0|^10.0|^11.0|^12.0",
+                "illuminate/http": "^8.0|^9.0|^10.0|^11.0|^12.0",
+                "illuminate/support": "^8.0|^9.0|^10.0|^11.0|^12.0",
+                "illuminate/validation": "^8.0|^9.0|^10.0|^11.0|^12.0",
+                "nesbot/carbon": "^2.0|^3.0",
+                "php": "^8.0",
+                "spatie/laravel-package-tools": "^1.9",
+                "symfony/http-foundation": "^5.1.2|^6.0|^7.0"
+            },
+            "require-dev": {
+                "livewire/livewire": "^2.10|^3.0",
+                "orchestra/testbench": "^6.23|^7.0|^8.0|^9.0|^10.0",
+                "pestphp/pest-plugin-livewire": "^1.0|^2.1|^3.0",
+                "phpunit/phpunit": "^9.6|^10.5|^11.5",
+                "spatie/pest-plugin-snapshots": "^1.1|^2.1",
+                "spatie/phpunit-snapshot-assertions": "^4.2|^5.1",
+                "spatie/test-time": "^1.2.1"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Spatie\\Honeypot\\HoneypotServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\Honeypot\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Preventing spam submitted through forms",
+            "homepage": "https://github.com/spatie/laravel-honeypot",
+            "keywords": [
+                "laravel-honeypot",
+                "spatie"
+            ],
+            "support": {
+                "source": "https://github.com/spatie/laravel-honeypot/tree/4.6.1"
+            },
+            "funding": [
+                {
+                    "url": "https://spatie.be/open-source/support-us",
+                    "type": "custom"
+                }
+            ],
+            "time": "2025-05-05T13:50:37+00:00"
         },
         {
             "name": "spatie/laravel-medialibrary",

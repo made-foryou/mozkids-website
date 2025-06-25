@@ -1,5 +1,10 @@
+@if ($columns === 3)
+<div {{ $attributes->merge(['class' => 'flex flex-col gap-4']) }}>
+@else
 <div {{ $attributes->merge(['class' => 'flex flex-col gap-8 divide-y divide-white']) }}>
-@foreach ($items as $item) 
+@endif
+
+@foreach ($items as $item)
 
 @if ($item['type'] === 'text') 
     <x-columns.text 
@@ -9,7 +14,8 @@
         :left="$isLeft()" 
         :subtitle="$item['subtitle']" 
         :content="$item['content']" 
-        :buttons="$item['buttons']" 
+        :buttons="$item['buttons']"
+        :columns="$columns"
     />
 @endif
 
@@ -20,7 +26,8 @@
     
     <x-columns.image 
         :image="$image" 
-        :alt="$item['alt']" 
+        :alt="$item['alt']"
+        :columns="$columns"
     />
 @endif
 

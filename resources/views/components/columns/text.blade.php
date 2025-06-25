@@ -7,25 +7,27 @@
     'subtitle' => '',
     'content' => '',
     'buttons' => [],
+
+    'columns' => 1,
 ])
 
 @if ($count > 1 && $first)
     <div
-        class="pt-0 pb-10
+        class="pt-0 @if ($columns === 3) pb-4 @else pb-10 @endif
             text-sm text-black font-sans
-            md:pb-12.5 @if ($left) md:mr-18 @else md:ml-18 @endif"
+            @if ($columns !== 3) @if ($left) md:pb-12.5 md:mr-18 @else md:pb-12.5 md:ml-18 @endif @endif"
     >
 @elseif ($count > 1 && $last)
 <div
-    class="pb-0 pt-10
+    class="pb-0 @if ($columns === 3) pt-0 @else pt-10 @endif
         text-sm text-black font-sans
-        md:pt-12.5 @if ($left) md:mr-18 @else md:ml-18 @endif"
+         @if ($columns !== 3) @if ($left) md:pt-0 md:mr-18 @else md:pt-12.5 md:ml-18 @endif @endif"
 >
 @else
 <div
-    class="py-10
+    class="@if ($columns === 3) py-4 @else py-10 @endif
         text-sm text-black font-sans
-        md:py-12.5 @if ($left) md:mr-18 @else md:ml-18 @endif"
+        @if ($columns !== 3) @if ($left) md:py-0 md:mr-18 @else md:py-12.5 md:ml-18 @endif @endif"
 >
 @endif
     <span

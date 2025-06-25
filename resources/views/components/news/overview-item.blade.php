@@ -1,4 +1,4 @@
-<a 
+<a
     {{ $attributes->merge(['class' => 'block bg-white shadow-sm rounded-lg overflow-hidden group cursor-pointer transition ease-in-out duration-245 hover:shadow-md']) }}
     href="{{ Made\Cms\Facades\Cms::url($post) }}"
 >
@@ -16,11 +16,11 @@
             {{ $post->name }}
         </span>
         <p
-            class="block mt-6"
+            class="block mt-6 mb-4"
         >
             {{ $post->introduction ?? '' }}
         </p>
-        <span 
+        <span
             class="block text-primary-500 font-sans group-hover:underline"
         >
             Lees verder...

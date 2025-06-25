@@ -19,6 +19,7 @@ class Column extends Component
         public array $items = [],
         public string $side = self::MIDDLE,
         public bool $live = true,
+        public int $columns = 1,
     ) {
         //
     }

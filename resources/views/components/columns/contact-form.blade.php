@@ -8,41 +8,45 @@
         >
             Contact
         </span>
-        <h2 class="mb-6">
-            Contactformulier
-        </h2>
-        <p>
-            Doormiddel van onderstaand formulier kunt u met al uw vragen en/of opmerkingen bij 
-            ons terecht.
-        </p>
+        <div class="prose mb-8">
+            <h2 class="mb-6">
+                Contactformulier
+            </h2>
+            <p>
+                Door middel van onderstaand formulier kunt u met al uw vragen en/of opmerkingen bij
+                ons terecht.
+            </p>
+        </div>
     </div>
     <div>
         <form
-            data-made-form="" 
-            action="{{ route('api.contact-form') }}" 
-            method="POST" 
+            data-made-form=""
+            action="{{ route('api.contact-form') }}"
+            method="POST"
             class="flex flex-col gap-2"
         >
 
             @csrf
+
+            <x-honeypot />
 
             <div>
                 <label for="name" class="block text-sm/6 font-medium text-gray-900">
                     Naam <span class="text-primary-400">*</span>
                 </label>
                 <div class="mt-2">
-                    <input 
-                    type="text" 
-                    name="name" 
-                    id="name" 
+                    <input
+                    type="text"
+                    name="name"
+                    id="name"
                     required
                     class="block w-full rounded-md px-3 py-1.5
-                            bg-white 
-                            text-base text-gray-900 
-                            outline-1 -outline-offset-1 outline-gray-300 
-                            placeholder:text-gray-400 
-                            focus:outline-2 focus:-outline-offset-2 focus:outline-primary-500 
-                            sm:text-sm/6" 
+                            bg-white
+                            text-base text-gray-900
+                            outline-1 -outline-offset-1 outline-gray-300
+                            placeholder:text-gray-400
+                            focus:outline-2 focus:-outline-offset-2 focus:outline-primary-500
+                            sm:text-sm/6"
                     >
                 </div>
                 <p class="text-sm text-gray-500" id="name-description"></p>
@@ -54,18 +58,18 @@
                     E-mailadres <span class="text-primary-400">*</span>
                 </label>
                 <div class="mt-2">
-                    <input 
-                    type="email" 
-                    name="email" 
-                    id="email" 
+                    <input
+                    type="email"
+                    name="email"
+                    id="email"
                     required
                     class="block w-full rounded-md px-3 py-1.5
-                            bg-white 
-                            text-base text-gray-900 
-                            outline-1 -outline-offset-1 outline-gray-300 
-                            placeholder:text-gray-400 
-                            focus:outline-2 focus:-outline-offset-2 focus:outline-primary-500 
-                            sm:text-sm/6" 
+                            bg-white
+                            text-base text-gray-900
+                            outline-1 -outline-offset-1 outline-gray-300
+                            placeholder:text-gray-400
+                            focus:outline-2 focus:-outline-offset-2 focus:outline-primary-500
+                            sm:text-sm/6"
                     >
                 </div>
                 <p class="text-sm text-gray-500" id="email-description"></p>
@@ -77,17 +81,17 @@
                     Telefoonnummer
                 </label>
                 <div class="mt-2">
-                    <input 
-                        type="text" 
-                        name="phone" 
-                        id="phone" 
+                    <input
+                        type="text"
+                        name="phone"
+                        id="phone"
                         class="block w-full rounded-md px-3 py-1.5
-                                bg-white 
-                                text-base text-gray-900 
-                                outline-1 -outline-offset-1 outline-gray-300 
-                                placeholder:text-gray-400 
-                                focus:outline-2 focus:-outline-offset-2 focus:outline-primary-500 
-                                sm:text-sm/6" 
+                                bg-white
+                                text-base text-gray-900
+                                outline-1 -outline-offset-1 outline-gray-300
+                                placeholder:text-gray-400
+                                focus:outline-2 focus:-outline-offset-2 focus:outline-primary-500
+                                sm:text-sm/6"
                     >
                 </div>
                 <p class="text-sm text-gray-500" id="phone-description"></p>
@@ -99,17 +103,17 @@
                     Onderwerp
                 </label>
                 <div class="mt-2">
-                    <input 
-                        type="text" 
-                        name="subject" 
-                        id="subject" 
+                    <input
+                        type="text"
+                        name="subject"
+                        id="subject"
                         class="block w-full rounded-md px-3 py-1.5
-                                bg-white 
-                                text-base text-gray-900 
-                                outline-1 -outline-offset-1 outline-gray-300 
-                                placeholder:text-gray-400 
-                                focus:outline-2 focus:-outline-offset-2 focus:outline-primary-500 
-                                sm:text-sm/6" 
+                                bg-white
+                                text-base text-gray-900
+                                outline-1 -outline-offset-1 outline-gray-300
+                                placeholder:text-gray-400
+                                focus:outline-2 focus:-outline-offset-2 focus:outline-primary-500
+                                sm:text-sm/6"
                     >
                 </div>
                 <p class="text-sm text-gray-500" id="subject-description"></p>
@@ -121,18 +125,18 @@
                     Bericht <span class="text-primary-400">*</span>
                 </label>
                 <div class="mt-2">
-                    <textarea 
-                        name="message" 
+                    <textarea
+                        name="message"
                         id="message"
                         rows="7"
                         required
                         class="block w-full rounded-md px-3 py-1.5
-                                bg-white 
-                                text-base text-gray-900 
-                                outline-1 -outline-offset-1 outline-gray-300 
-                                placeholder:text-gray-400 
-                                focus:outline-2 focus:-outline-offset-2 focus:outline-primary-500 
-                                sm:text-sm/6" 
+                                bg-white
+                                text-base text-gray-900
+                                outline-1 -outline-offset-1 outline-gray-300
+                                placeholder:text-gray-400
+                                focus:outline-2 focus:-outline-offset-2 focus:outline-primary-500
+                                sm:text-sm/6"
                     ></textarea>
                 </div>
                 <p class="text-sm text-gray-500" id="message-description"></p>
@@ -142,11 +146,11 @@
             <div class="flex gap-3">
                 <div class="flex h-6 shrink-0 items-center">
                 <div class="group grid size-4 grid-cols-1">
-                    <input 
-                    id="privacy" 
-                    aria-describedby="privacy-description" 
-                    name="privacy" 
-                    type="checkbox"  
+                    <input
+                    id="privacy"
+                    aria-describedby="privacy-description"
+                    name="privacy"
+                    type="checkbox"
                     required
                     class="col-start-1 row-start-1 appearance-none rounded-sm border border-gray-300 bg-white checked:border-primary-500 checked:bg-primary-500 indeterminate:border-primary-500 indeterminate:bg-primary-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 disabled:border-gray-300 disabled:bg-gray-100 disabled:checked:bg-gray-100 forced-colors:appearance-auto"
                     >
