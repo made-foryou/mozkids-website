@@ -13,6 +13,7 @@ use App\View\Composers\StatementsMenuItemsComposer;
 use Illuminate\Support\Facades;
 use Illuminate\Support\ServiceProvider;
 use MailchimpMarketing\ApiClient;
+use Mollie\Api\MollieApiClient;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -29,6 +30,12 @@ class AppServiceProvider extends ServiceProvider
                 "server" => config("services.mailchimp.server_prefix"),
             ]);
 
+            return $client;
+        });
+
+        $this->app->bind(MollieApiClient::class, function ($app) {
+            $client = new MollieApiClient();
+            $client->setApiKey(config("mozkids.mollie_api_key"));
             return $client;
         });
     }

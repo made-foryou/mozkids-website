@@ -16,11 +16,17 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Mail;
 use Made\Cms\Facades\Cms;
+use Mollie\Api\Http\Requests\CreatePaymentRequest;
+use Mollie\Api\MollieApiClient;
+use Mollie\Api\Resources\Payment;
 use PDO;
 
 class DonationFormHandleController extends Controller
 {
-    public function __construct(protected readonly WebsiteSetting $settings) {}
+    public function __construct(
+        protected readonly WebsiteSetting $settings,
+        protected readonly MollieApiClient $mollieApiClient
+    ) {}
 
     public function __invoke(
         DonationFormRequest $request
@@ -63,8 +69,16 @@ class DonationFormHandleController extends Controller
 
             return response()->json([], 200);
         } else {
-            // @todo: Doorsturen naar mollie en het proces starten.
-            return redirect("https://mollie.nl");
+
+            // @todo conversie plaatsen - voor het bijhouden van de gebruiker zijn sessie.
+            // https://app.todoist.com/app/task/acties-van-bezoekers-bijhouden-6Xxc9MvcRj4g5Fj4
+
+            /** @var Payment $payment */
+            $payment = $this->mollieApiClient->send($data->toPaymentRequest());
+
+            return redirect()->json([
+                'redirect' => $payment->getCheckoutUrl()
+            ]);
         }
     }
 

@@ -89,7 +89,6 @@ class DonationFormRequest extends FormRequest
                     )?->manually() ?? false
                 ),
                 "nullable",
-                "accepted",
             ],
             "newsletter" => ["nullable"],
             "privacy" => ["required", "accepted"],

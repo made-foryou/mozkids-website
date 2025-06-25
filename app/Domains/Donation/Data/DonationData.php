@@ -8,6 +8,9 @@ use App\Domains\Donation\Enums\DonationType;
 use App\Domains\Donation\Enums\Frequency;
 use App\Http\Requests\Api\DonationFormRequest;
 use Illuminate\Http\Request;
+use Made\Cms\Facades\Cms;
+use Mollie\Api\Http\Data\Money;
+use Mollie\Api\Http\Requests\CreatePaymentRequest;
 
 readonly class DonationData
 {
@@ -30,6 +33,17 @@ readonly class DonationData
         public bool $newsletter,
         public bool $privacy
     ) {}
+
+    public function toPaymentRequest(): CreatePaymentRequest
+    {
+        return new CreatePaymentRequest(
+            'donatie via mozkids.nl',
+            new Money('EUR', number_format($this->amount, 2)),
+            url('/donatie-succesvol'),
+            url('/donatie-geannuleerd'),
+            route('mollie-webhook'),
+        );
+    }
 
     public static function fromRequest(
         DonationFormRequest|Request $request

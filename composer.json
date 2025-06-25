@@ -21,6 +21,7 @@
         "laravel/tinker": "^2.9",
         "made-foryou/cms": "^0.15",
         "mailchimp/marketing": "^3.0",
+        "mollie/mollie-api-php": "^3.1",
         "nembie/iban-rule": "^1.0",
         "spatie/laravel-honeypot": "^4.6",
         "symfony/http-client": "^7.2",
