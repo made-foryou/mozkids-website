@@ -28,6 +28,8 @@
 
             @csrf
 
+            <x-honeypot />
+
             <div>
                 <label for="name" class="block text-sm/6 font-medium text-gray-900">
                     Naam <span class="text-primary-400">*</span>
