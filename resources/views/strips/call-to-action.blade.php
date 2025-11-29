@@ -1,3 +1,7 @@
+@php
+    $live = $live ?? false;
+@endphp
+
 <section
     class="relative
            w-full

@@ -2,7 +2,7 @@
     {{ $attributes->merge(['class' => 'block bg-white shadow-sm rounded-lg overflow-hidden group cursor-pointer transition ease-in-out duration-245 hover:shadow-md']) }}
     href="{{ Made\Cms\Facades\Cms::url($post) }}"
 >
-    <figure>
+    <figure class="h-[250px]">
         {{ $post->getFirstMedia('featured_image') }}
     </figure>
     <div
