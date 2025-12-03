@@ -8,6 +8,10 @@
     <meta name="description" content="{{ $meta?->description ?? config('app.description') }}">
     <meta name="robots" content="{{ $meta?->robot ?? '' }}">
 
+    <meta property="og:title" content="{{ $meta?->title ?? config('app.name') }}">
+    <meta property="og:description" content="{{ $meta?->description ?? config('app.description') }}">
+    <meta property="og:image" content="{{ $meta?->getFirstMediaUrl('meta_image') ?? '' }}">
+
     <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
