@@ -22,7 +22,6 @@ class ContactFormHandleController extends Controller
     public function __invoke(ContactFormRequest $request): JsonResponse
     {
         Mail::to($this->getEmailAddress())
-            ->cc('natasjavoorsluijs@gmail.com')
             ->send(
                 new ContactFormMail(ContactFormData::fromRequest($request))
             );

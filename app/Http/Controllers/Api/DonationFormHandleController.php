@@ -26,9 +26,11 @@ class DonationFormHandleController extends Controller
         $data = DonationData::fromRequest($request);
 
         // Send information to Moz Kids.
-        Mail::to($this->getEmailAddress())->send(
-            new DonationRequestMail($data)
-        );
+        Mail::to($this->getEmailAddress())
+            ->cc($this->getCcEmail())
+            ->send(
+                new DonationRequestMail($data)
+            );
 
         // // Send confirmation to user.
         Mail::to($data->email)->send(
@@ -62,5 +64,10 @@ class DonationFormHandleController extends Controller
     protected function getEmailAddress(): string
     {
         return $this->settings->donation_email ?? config('mozkids.donation_email');
+    }
+
+    protected function getCcEmail(): string
+    {
+        return config('mozkids.donation_cc');
     }
 }
