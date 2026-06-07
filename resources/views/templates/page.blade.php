@@ -19,6 +19,9 @@
 
     @yield('meta')
 
+    <script src="https://web.cmp.usercentrics.eu/modules/autoblocker.js"></script>
+    <script id="usercentrics-cmp" src="https://web.cmp.usercentrics.eu/ui/loader.js" data-settings-id="Bs2PSjF_ax9E8S" async></script>
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
@@ -43,9 +46,6 @@
 
         gtag('config', 'G-7GEV9B0E6T');
     </script>
-
-    <script src="https://web.cmp.usercentrics.eu/modules/autoblocker.js"></script>
-    <script id="usercentrics-cmp" src="https://web.cmp.usercentrics.eu/ui/loader.js" data-settings-id="Bs2PSjF_ax9E8S" async></script>
 
     @yield('scripts')
 @endsection
