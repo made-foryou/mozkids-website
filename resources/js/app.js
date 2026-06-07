@@ -10,19 +10,13 @@ import MadeForm from './modules/form';
 
 import 'swiper/css';
 
-
-window.addEventListener('load', () => {
-
+function init() {
     Sidebar.initialize();
-
     PhotoSlider.initialize();
-
     MailchimpForm.initialize();
-
     ButtonRadio.initialize();
 
     const highlights = [];
-
     const regex = /\[([a-zA-Z0-9\s]*)\]/;
 
     highlights.push(
@@ -31,24 +25,21 @@ window.addEventListener('load', () => {
 
     HighlightText.initialize(highlights);
 
-});
-
-window.addEventListener('DOMContentLoaded', () => {
     const donationForm = document.querySelector('[data-made-donation-form]');
 
     if (donationForm) {
         new DonationForm(donationForm);
     }
-});
 
-window.addEventListener('DOMContentLoaded', () => {
-    const contactForm = document.querySelectorAll('[data-made-form]');
+    document.querySelectorAll('[data-made-form]').forEach(form => {
+        new MadeForm(form);
+    });
+}
 
-    if (contactForm.length > 0) {
-        contactForm.forEach(form => {
-            new MadeForm(form);
-        });
-    }
-})
+if (document.readyState !== 'loading') {
+    init();
+} else {
+    window.addEventListener('DOMContentLoaded', init);
+}
 
 window.Sidebar = Sidebar;

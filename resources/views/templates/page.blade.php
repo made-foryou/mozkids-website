@@ -37,7 +37,7 @@
     @yield('styles')
 
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7GEV9B0E6T"></script>
+    <script async data-cookieconsent="statistics" src="https://www.googletagmanager.com/gtag/js?id=G-7GEV9B0E6T"></script>
     <script data-cookieconsent="ignore">
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}

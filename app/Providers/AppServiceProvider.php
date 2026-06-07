@@ -42,6 +42,15 @@ class AppServiceProvider extends ServiceProvider
             return;
         }
 
+        Facades\Vite::useScriptTagAttributes([
+            'data-cookieconsent' => 'necessary',
+        ]);
+        Facades\Vite::usePreloadTagAttributes(
+            fn (?string $src) => str_ends_with($src, '.js')
+                ? ['data-cookieconsent' => 'necessary']
+                : false
+        );
+
         $settings = app()->make(WebsiteSetting::class);
 
         Facades\View::share(
