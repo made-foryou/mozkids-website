@@ -566,6 +566,76 @@ html.sidebar-open .burger .burger__bar--3 {
 }
 
 /* -------------------------------------------------------------------------- */
+/*  Agenda strip — collapsible item-content (zelfde principe als timeline)    */
+/* -------------------------------------------------------------------------- */
+
+.agenda-item:not(.is-no-collapse) {
+    cursor: pointer;
+}
+
+.agenda-item__content {
+    position: relative;
+    max-height: 4.5em;
+    overflow: hidden;
+    transition: max-height 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.agenda-item__content::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2.4em;
+    background: linear-gradient(to top,
+                var(--color-secondary-500, rgb(244 241 234)) 25%,
+                rgb(244 241 234 / 0) 100%);
+    pointer-events: none;
+    transition: opacity 0.35s ease-out;
+}
+
+.agenda-item.is-expanded .agenda-item__content::after {
+    opacity: 0;
+}
+
+.agenda-item.is-no-collapse {
+    cursor: default;
+}
+
+.agenda-item.is-no-collapse .agenda-item__content {
+    max-height: none;
+}
+
+.agenda-item.is-no-collapse .agenda-item__content::after {
+    display: none;
+}
+
+/* Toggle labels — wissel tussen "Lees meer" en "Inklappen". */
+.agenda-item__toggle-label--expanded {
+    display: none;
+}
+
+.agenda-item.is-expanded .agenda-item__toggle-label--collapsed {
+    display: none;
+}
+
+.agenda-item.is-expanded .agenda-item__toggle-label--expanded {
+    display: inline;
+}
+
+.agenda-item.is-expanded .agenda-item__toggle-chevron {
+    transform: rotate(180deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .agenda-item__content,
+    .agenda-item__content::after,
+    .agenda-item__toggle-chevron {
+        transition: none;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
 /*  Timeline strip — collapsible content (eerste ±3 regels zichtbaar)         */
 /* -------------------------------------------------------------------------- */
 
