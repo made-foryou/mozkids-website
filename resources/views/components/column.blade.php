@@ -1,5 +1,5 @@
 @if ($columns === 3)
-<div {{ $attributes->merge(['class' => 'flex flex-col gap-4']) }}>
+<div {{ $attributes->merge(['class' => 'flex flex-col gap-4 h-full']) }}>
 @else
 <div {{ $attributes->merge(['class' => 'flex flex-col gap-8 divide-y divide-white']) }}>
 @endif
