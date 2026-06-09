@@ -566,6 +566,80 @@ html.sidebar-open .burger .burger__bar--3 {
 }
 
 /* -------------------------------------------------------------------------- */
+/*  Timeline strip — collapsible content (eerste ±3 regels zichtbaar)         */
+/* -------------------------------------------------------------------------- */
+
+/* Hele kaart wordt klikbaar zolang er meer content is dan past in de
+   collapsed state. Bij `.is-no-collapse` (korte content) blijft de kaart
+   gewoon statisch. */
+.timeline-item:not(.is-no-collapse) .timeline-item__card {
+    cursor: pointer;
+}
+
+.timeline-item__content {
+    position: relative;
+    max-height: 5em;
+    overflow: hidden;
+    transition: max-height 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Zachte fade-out onderaan de geclipte tekst, kleur matched de glas-kaart.
+   Hoogte iets meer dan een regel zodat de overgang rustig is. */
+.timeline-item__content::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2.6em;
+    background: linear-gradient(to top,
+                rgb(255 255 255 / 0.94) 25%,
+                rgb(255 255 255 / 0) 100%);
+    pointer-events: none;
+    transition: opacity 0.35s ease-out;
+}
+
+.timeline-item.is-expanded .timeline-item__content::after {
+    opacity: 0;
+}
+
+/* Wanneer content sowieso binnen de collapsed-hoogte past: alle clipping
+   en fade-out weg, en zorg dat max-height geen visueel cropping geeft. */
+.timeline-item.is-no-collapse .timeline-item__content {
+    max-height: none;
+}
+
+.timeline-item.is-no-collapse .timeline-item__content::after {
+    display: none;
+}
+
+/* Toggle labels — wissel tussen "Lees meer" en "Inklappen". */
+.timeline-item__toggle-label--expanded {
+    display: none;
+}
+
+.timeline-item.is-expanded .timeline-item__toggle-label--collapsed {
+    display: none;
+}
+
+.timeline-item.is-expanded .timeline-item__toggle-label--expanded {
+    display: inline;
+}
+
+/* Chevron draait om bij uitklappen. */
+.timeline-item.is-expanded .timeline-item__toggle-chevron {
+    transform: rotate(180deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .timeline-item__content,
+    .timeline-item__content::after,
+    .timeline-item__toggle-chevron {
+        transition: none;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
 /*  Quote strip — editorial cover-quote met ken-burns                          */
 /* -------------------------------------------------------------------------- */
 

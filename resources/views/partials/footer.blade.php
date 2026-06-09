@@ -192,19 +192,7 @@
         </div>
 
         <div class="flex flex-row flex-wrap gap-x-1.5">
-            <a href="https://fourdesign.nl"
-               rel="nofollow"
-               target="_blank"
-               class="hover:text-primary-500 transition-colors duration-300">
-                Design Fourdesign
-            </a>
-            <a href="https://made-foryou.nl"
-               rel="nofollow"
-               target="_blank"
-               class="hidden sm:inline-block hover:text-primary-500 transition-colors duration-300">
-                &amp; ontwikkeling Made
-            </a>
-            <span>&copy; Mozkids {{ now()->format('Y') }}</span>
+            <span>&copy; Moz Kids {{ now()->format('Y') }}</span>
         </div>
     </div>
 </div>

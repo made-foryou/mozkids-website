@@ -4,6 +4,7 @@ import Sidebar from './modules/sidebar';
 import Navigation from './modules/navigation';
 import Reveal from './modules/reveal';
 import DonationButton from './modules/donation-button';
+import Timeline from './modules/timeline';
 import HighlightText, { Highlight } from './modules/highlight-text';
 import PhotoSlider from './modules/photo-slider';
 import MailchimpForm from './modules/mailchim-form';
@@ -18,6 +19,7 @@ function init() {
     Navigation.initialize();
     Reveal.initialize();
     DonationButton.initialize();
+    Timeline.initialize();
     PhotoSlider.initialize();
     MailchimpForm.initialize();
     ButtonRadio.initialize();

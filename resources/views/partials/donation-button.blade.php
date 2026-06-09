@@ -1,7 +1,7 @@
 <a href="{{ Cms::url($donationPage) }}"
    class="donation-fab group fixed z-30
-          bottom-10 lg:bottom-12 left-1/2
-          inline-flex items-center gap-4
+          bottom-10 lg:bottom-13 left-1/2
+          hidden md:inline-flex items-center gap-4
           pl-1.5 pr-5 py-1.5
           rounded-full
           bg-secondary-900/82 backdrop-blur-xl
