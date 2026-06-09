@@ -257,6 +257,85 @@ html.sidebar-open .burger .burger__bar--3 {
    nodig dankzij dezelfde `--sidebar-delay` variabele die in de blade wordt
    doorgegeven. */
 
+/* -------------------------------------------------------------------------- */
+/*  Hero — editorial display met handgetekende highlight                       */
+/* -------------------------------------------------------------------------- */
+
+/* Hero heading: editorial typografie met text-balance voor mooie regels. */
+.hero-heading {
+    text-wrap: balance;
+}
+
+/* Highlighted woorden — de JS wrapt [text] in <span class="text-primary-500">.
+   We voegen een handgetekende SVG swoop toe als onderstreping. Scoped op .hero
+   zodat highlights in body-tekst rustig blijven. */
+.hero [data-highlightable] .text-primary-500 {
+    position: relative;
+    display: inline-block;
+    isolation: isolate;
+}
+
+.hero [data-highlightable] .text-primary-500::after {
+    content: '';
+    position: absolute;
+    left: -0.08em;
+    right: -0.08em;
+    bottom: -0.12em;
+    height: 0.32em;
+    background-color: currentColor;
+    -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 14' preserveAspectRatio='none'><path d='M2 9 C 20 3, 40 12, 60 7 S 100 4, 118 8' stroke='black' stroke-width='2.6' fill='none' stroke-linecap='round'/></svg>");
+            mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 14' preserveAspectRatio='none'><path d='M2 9 C 20 3, 40 12, 60 7 S 100 4, 118 8' stroke='black' stroke-width='2.6' fill='none' stroke-linecap='round'/></svg>");
+    -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
+    -webkit-mask-size: 100% 100%;
+            mask-size: 100% 100%;
+    opacity: 0.55;
+    transform-origin: left center;
+    transform: scaleX(0);
+    animation: hero-swoop-draw 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: 700ms;
+}
+
+@keyframes hero-swoop-draw {
+    from {
+        transform: scaleX(0);
+    }
+    to {
+        transform: scaleX(1);
+    }
+}
+
+/* Gestaffelde reveal: eyebrow → heading → buttons. */
+@keyframes hero-fade-up {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-eyebrow,
+.hero-heading,
+.hero-buttons .hero-button {
+    opacity: 0;
+    animation: hero-fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.hero-eyebrow {
+    animation-delay: 120ms;
+}
+
+.hero-heading {
+    animation-delay: 240ms;
+}
+
+.hero-buttons .hero-button {
+    animation-delay: var(--hero-button-delay, 600ms);
+}
+
 /* Respecteer reduced-motion-voorkeuren. */
 @media (prefers-reduced-motion: reduce) {
     .nav-list > li,
@@ -264,10 +343,18 @@ html.sidebar-open .burger .burger__bar--3 {
     .made-sidebar.block .sidebar-footer,
     .made-sidebar.block .sidebar-eyebrow,
     .nav-item[data-has-children]:hover > .submenu .submenu-item,
-    .nav-item[data-has-children]:focus-within > .submenu .submenu-item {
+    .nav-item[data-has-children]:focus-within > .submenu .submenu-item,
+    .hero-eyebrow,
+    .hero-heading,
+    .hero-buttons .hero-button {
         animation: none;
         opacity: 1;
         transform: none;
+    }
+
+    .hero [data-highlightable] .text-primary-500::after {
+        animation: none;
+        transform: scaleX(1);
     }
 
     .donate-cta__beat,
