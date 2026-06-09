@@ -427,6 +427,58 @@ html.sidebar-open .burger .burger__bar--3 {
 }
 
 /* -------------------------------------------------------------------------- */
+/*  Quote strip — editorial cover-quote met ken-burns                          */
+/* -------------------------------------------------------------------------- */
+
+/* Langzame ken-burns op de achtergrondfoto: subtiele zoom + drift. */
+@keyframes quote-kenburns {
+    0% {
+        transform: scale(1.04) translate(0, 0);
+    }
+    50% {
+        transform: scale(1.08) translate(-1.5%, -0.8%);
+    }
+    100% {
+        transform: scale(1.04) translate(0, 0);
+    }
+}
+
+.quote-frame__photo {
+    animation: quote-kenburns 28s ease-in-out infinite;
+    transform-origin: center;
+}
+
+/* Drijvende fade-in op de decoratieve quote-mark, los van de body reveal. */
+@keyframes quote-mark-in {
+    from {
+        opacity: 0;
+        transform: translate(-6px, 6px) rotate(-4deg);
+    }
+    to {
+        opacity: 1;
+        transform: translate(0, 0) rotate(0);
+    }
+}
+
+.quote-frame__mark {
+    opacity: 0;
+    animation: quote-mark-in 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: 350ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .quote-frame__photo {
+        animation: none;
+        transform: none;
+    }
+    .quote-frame__mark {
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
 /*  Hero — editorial display met handgetekende highlight                       */
 /* -------------------------------------------------------------------------- */
 
