@@ -26,8 +26,7 @@ class YearReportsStrip implements ContentStrip
             array_merge($attributes, [
                 "reports" => YearReport::query()
                     ->orderByDesc("year")
-                    ->get()
-                    ->groupBy("year"),
+                    ->get(),
             ])
         );
     }
