@@ -1,7 +1,8 @@
 <section class="text-strip relative
                 w-full
                 pt-3 pb-8
-                lg:pt-4 lg:pb-12">
+                lg:pt-4 lg:pb-12
+                [&:first-child]:pt-12 lg:[&:first-child]:pt-16">
 
     <x-container class="max-w-4xl">
 
