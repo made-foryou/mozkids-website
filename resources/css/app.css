@@ -427,6 +427,56 @@ html.sidebar-open .burger .burger__bar--3 {
 }
 
 /* -------------------------------------------------------------------------- */
+/*  Floating donation button — verschijnt bij scroll-pauze                    */
+/* -------------------------------------------------------------------------- */
+
+/* Combineer de horizontale centrering (-50%) met de vertical slide in één
+   `translate`-declaratie zodat Tailwind's `-translate-x-1/2` utility hier niet
+   nodig is en de CSS niet conflicteert met de animatie. */
+.donation-fab {
+    opacity: 0;
+    translate: -50% 28px;
+    pointer-events: none;
+    will-change: opacity, translate;
+}
+
+.donation-fab.is-active {
+    opacity: 1;
+    translate: -50% 0;
+    pointer-events: auto;
+}
+
+/* Een rustige ring die langzaam pulseert rond het hartje, alleen wanneer de
+   knop actief in beeld is — voorkomt animatie-ruis als hij verborgen is. */
+@keyframes donation-fab-ring {
+    0% {
+        transform: scale(1);
+        opacity: 0.55;
+    }
+    80% {
+        transform: scale(1.35);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1.35);
+        opacity: 0;
+    }
+}
+
+.donation-fab.is-active .donation-fab__pulse {
+    animation: donation-fab-ring 2.4s ease-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .donation-fab {
+        transition: none;
+    }
+    .donation-fab .donation-fab__pulse {
+        animation: none;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
 /*  Quote strip — editorial cover-quote met ken-burns                          */
 /* -------------------------------------------------------------------------- */
 
