@@ -4,9 +4,8 @@
 
 <section
     class="relative
-           py-12 w-full
-           bg-secondary-500
-           lg:py-18"
+           py-8 w-full
+           lg:py-12"
 >
     <x-container
         class="max-w-6xl w-full"

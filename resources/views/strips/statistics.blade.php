@@ -6,7 +6,7 @@
 
 <section class="statistics-strip relative
                 w-full
-                py-14 lg:py-22">
+                py-8 lg:py-12">
 
     <x-container class="relative max-w-6xl">
 
@@ -17,9 +17,9 @@
 
         <ul class="statistics-grid
                    list-none
-                   grid grid-cols-{{ $mobileColumns }} gap-x-6 gap-y-12
-                   py-12 lg:py-14
-                   md:grid-cols-{{ $columns }} md:gap-x-10 md:gap-y-14">
+                   grid grid-cols-{{ $mobileColumns }} gap-x-6 gap-y-10
+                   py-8 lg:py-10
+                   md:grid-cols-{{ $columns }} md:gap-x-10 md:gap-y-12">
 
             @foreach ($stats as $stat)
 

@@ -4,7 +4,7 @@
 
 <section class="quote-strip relative
                 w-full
-                py-14 lg:py-22">
+                py-8 lg:py-12">
 
     <x-container class="max-w-6xl">
 

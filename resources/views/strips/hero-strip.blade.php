@@ -6,7 +6,7 @@
 @endphp
 
 <section class="hero relative
-                py-16 lg:py-24">
+                py-10 lg:py-16">
 
     <x-container class="relative flex flex-col justify-center items-center max-w-[760px]">
 

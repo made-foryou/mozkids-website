@@ -2,7 +2,7 @@
     class="relative
            w-full"
 >
-    <x-container class="flex flex-col justify-center items-center w-full border-b border-secondary-100 py-12 lg:py-18 max-w-6xl">
+    <x-container class="flex flex-col justify-center items-center w-full border-b border-secondary-100 py-8 lg:py-12 max-w-6xl">
 
         <span
             class="block

@@ -5,9 +5,8 @@
 <section
     class="relative
            w-full
-           py-12
-           bg-secondary-500
-           lg:py-18"
+           py-8
+           lg:py-12"
 >
     <x-container
         class="max-w-6xl flex flex-col md:flex-row gap-10"

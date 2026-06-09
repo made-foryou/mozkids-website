@@ -1,7 +1,7 @@
 
-<section class="relative flex flex-grow w-full py-12">
+<section class="relative flex flex-grow w-full py-8 lg:py-12">
     <x-container class="flex-grow flex flex-col justify-center items-center">
-        <div class="py-25 flex justify-center items-center flex-col">
+        <div class="py-12 lg:py-16 flex justify-center items-center flex-col">
             <span 
                 class="block mb-10
                     text-black text-6xl lg:text-8xl font-sans tracking-wide font-semibold"

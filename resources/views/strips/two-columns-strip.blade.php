@@ -3,7 +3,7 @@
 @endphp
 
 <section class="two-columns-strip relative
-                py-14 lg:py-22">
+                py-8 lg:py-12">
 
     <x-container class="max-w-6xl grid md:grid-cols-2 gap-10 md:gap-12 lg:gap-16 items-center">
 

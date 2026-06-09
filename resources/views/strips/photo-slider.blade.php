@@ -5,8 +5,7 @@
 
 <section class="photo-slider-section relative
                 w-full
-                py-14
-                lg:py-20">
+                py-8 lg:py-12">
 
     <span class="photo-slider-glow
                  pointer-events-none absolute left-1/2 top-1/2
