@@ -141,6 +141,8 @@ return [
                 Strips\BlocksContentStrip::class,
                 Strips\YearReportsStrip::class,
                 Strips\TimelineStrip::class,
+                Strips\FaqStrip::class,
+                Strips\BoardMembersStrip::class,
             ],
 
             /**

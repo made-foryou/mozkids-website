@@ -566,6 +566,137 @@ html.sidebar-open .burger .burger__bar--3 {
 }
 
 /* -------------------------------------------------------------------------- */
+/*  Team slider — disabled/locked nav-states (zelfde pattern als photo nav)   */
+/* -------------------------------------------------------------------------- */
+
+.team-slider__btn--disabled {
+    opacity: 0.35;
+    pointer-events: none;
+}
+
+.team-slider__btn--locked {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Team — vanaf lg geen slider maar een statische 3-koloms grid              */
+/* -------------------------------------------------------------------------- */
+
+/* Vanaf 1024px wordt Swiper door JS gedestroyed. De Swiper-class structuur
+   blijft in de HTML staan; we overschrijven de display zodat de slides als
+   editorial grid presenteren. Controls vallen weg want navigatie is niet nodig
+   als alles tegelijk in beeld staat. */
+@media (min-width: 1024px) {
+    .board-members-strip .made-team-slider {
+        overflow: visible;
+    }
+
+    .board-members-strip .made-team-slider .swiper-wrapper {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 2rem;
+        transform: none !important;
+    }
+
+    .board-members-strip .made-team-slider .swiper-slide {
+        width: auto !important;
+        margin: 0 !important;
+        flex-shrink: 1;
+    }
+
+    .board-members-strip .team-slider__controls {
+        display: none;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Team bio — collapsible eerste ~4 regels                                    */
+/* -------------------------------------------------------------------------- */
+
+.team-member__bio {
+    position: relative;
+    max-height: 6.6em;
+    overflow: hidden;
+    transition: max-height 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Fade-out matched de pagina-achtergrond (secondary-500). De team-members
+   zitten direct op de page-bg, dus de gradient bottomt naar die crème-kleur. */
+.team-member__bio::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2.6em;
+    background: linear-gradient(to top,
+                var(--color-secondary-500, rgb(244 241 234)) 25%,
+                rgb(244 241 234 / 0) 100%);
+    pointer-events: none;
+    transition: opacity 0.35s ease-out;
+}
+
+.team-member.is-expanded .team-member__bio::after {
+    opacity: 0;
+}
+
+.team-member.is-no-collapse .team-member__bio {
+    max-height: none;
+}
+
+.team-member.is-no-collapse .team-member__bio::after,
+.team-member.is-no-collapse .team-member__toggle {
+    display: none;
+}
+
+/* Toggle labels — wissel tussen "Lees meer" en "Inklappen". */
+.team-member__toggle-label--expanded {
+    display: none;
+}
+
+.team-member.is-expanded .team-member__toggle-label--collapsed {
+    display: none;
+}
+
+.team-member.is-expanded .team-member__toggle-label--expanded {
+    display: inline;
+}
+
+.team-member.is-expanded .team-member__toggle-chevron {
+    transform: rotate(180deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .team-member__bio,
+    .team-member__bio::after,
+    .team-member__toggle-chevron {
+        transition: none;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/*  FAQ strip — accordion-stijl, default helemaal dichtgeklapt                */
+/* -------------------------------------------------------------------------- */
+
+.faq-item.is-open .faq-item__chevron {
+    background-color: rgb(228 35 19);
+    color: white;
+}
+
+.faq-item.is-open .faq-item__chevron-icon {
+    transform: rotate(180deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .faq-item__answer,
+    .faq-item__chevron,
+    .faq-item__chevron-icon {
+        transition: none;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
 /*  Agenda strip — collapsible item-content (zelfde principe als timeline)    */
 /* -------------------------------------------------------------------------- */
 

@@ -6,6 +6,9 @@ import Reveal from './modules/reveal';
 import DonationButton from './modules/donation-button';
 import Timeline from './modules/timeline';
 import Agenda from './modules/agenda';
+import Faq from './modules/faq';
+import TeamSlider from './modules/team-slider';
+import TeamBio from './modules/team-bio';
 import HighlightText, { Highlight } from './modules/highlight-text';
 import PhotoSlider from './modules/photo-slider';
 import MailchimpForm from './modules/mailchim-form';
@@ -22,7 +25,10 @@ function init() {
     DonationButton.initialize();
     Timeline.initialize();
     Agenda.initialize();
+    Faq.initialize();
     PhotoSlider.initialize();
+    TeamSlider.initialize();
+    TeamBio.initialize();
     MailchimpForm.initialize();
     ButtonRadio.initialize();
 
