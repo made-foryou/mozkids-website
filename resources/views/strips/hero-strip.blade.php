@@ -53,49 +53,14 @@
             <div class="hero-buttons
                         mt-10 flex flex-row flex-wrap justify-center gap-3">
                 @foreach ($buttons as $button)
-                    @php
-                        $variant = $button['color'] ?? 'primary';
-                        $baseClasses = 'hero-cta group relative inline-flex items-center gap-2.5
-                                        pl-5 pr-5 py-3 rounded-full
-                                        text-[12px] font-semibold tracking-[0.08em] uppercase
-                                        overflow-hidden
-                                        transition-[transform,box-shadow,background-color,color] duration-300 ease-out
-                                        hover:-translate-y-0.5
-                                        focus-visible:outline-2 focus-visible:outline-offset-2
-                                        focus-visible:outline-primary-500';
-                        $variantClasses = match ($variant) {
-                            'secondary' => 'hero-cta--ghost bg-transparent text-primary-500 ring-1 ring-primary-500/40
-                                            hover:bg-primary-500 hover:text-white hover:ring-primary-500
-                                            hover:shadow-[0_12px_28px_-8px_rgba(228,35,19,0.55)]',
-                            'white' => 'hero-cta--white bg-white text-primary-500 ring-1 ring-secondary-900/5
-                                        hover:bg-primary-500 hover:text-white
-                                        hover:shadow-[0_12px_28px_-8px_rgba(228,35,19,0.55)]',
-                            default => 'hero-cta--primary bg-primary-500 text-white
-                                        hover:bg-primary-500
-                                        hover:shadow-[0_12px_28px_-8px_rgba(228,35,19,0.55)]',
-                        };
-                    @endphp
-
-                    <a
-                        href="{{ Cms::url($button['website_link']) }}"
-                        class="hero-button {{ $baseClasses }} {{ $variantClasses }}"
+                    <x-cta
+                        :color="$button['color']"
+                        :href="Cms::url($button['website_link'])"
+                        class="hero-button"
                         style="--hero-button-delay: {{ 600 + ($loop->index * 80) }}ms"
                     >
-                        <span class="hero-cta__sheen absolute inset-0
-                                     bg-gradient-to-r from-transparent via-white/25 to-transparent
-                                     -translate-x-full
-                                     transition-transform duration-700 ease-out
-                                     group-hover:translate-x-full"></span>
-
-                        <span class="relative">{{ $button['label'] }}</span>
-
-                        <span class="hero-cta__arrow relative inline-flex translate-x-0
-                                     transition-transform duration-300 ease-out
-                                     group-hover:translate-x-1"
-                              aria-hidden="true">
-                            @include('svg.arrow-right')
-                        </span>
-                    </a>
+                        {{ $button['label'] }}
+                    </x-cta>
                 @endforeach
             </div>
         @endif

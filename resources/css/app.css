@@ -335,6 +335,98 @@ html.sidebar-open .burger .burger__bar--3 {
    doorgegeven. */
 
 /* -------------------------------------------------------------------------- */
+/*  Reveal — scroll-getriggerde fade/slide animaties (data-reveal="...")      */
+/* -------------------------------------------------------------------------- */
+
+[data-reveal] {
+    opacity: 0;
+    transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+                translate 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--reveal-delay, 0ms);
+    will-change: opacity, translate;
+}
+
+[data-reveal="fade-up"] {
+    translate: 0 24px;
+}
+
+[data-reveal="slide-right"] {
+    translate: -28px 0;
+}
+
+[data-reveal="slide-left"] {
+    translate: 28px 0;
+}
+
+[data-reveal].is-revealed {
+    opacity: 1;
+    translate: 0 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    [data-reveal] {
+        opacity: 1;
+        translate: 0 0;
+        transition: none;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Two-columns strip — verfijnde typografie en ritme                          */
+/* -------------------------------------------------------------------------- */
+
+.column-text__prose {
+    color: rgb(49 48 47 / 0.82);
+    line-height: 1.7;
+    font-size: 0.95rem;
+}
+
+.column-text__prose h1,
+.column-text__prose h2,
+.column-text__prose h3,
+.column-text__prose h4 {
+    color: var(--color-secondary-900);
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    line-height: 1.15;
+    text-wrap: balance;
+    margin-bottom: 1rem;
+}
+
+.column-text__prose h2 {
+    font-size: clamp(1.6rem, 2.4vw, 2.1rem);
+}
+
+.column-text__prose h3 {
+    font-size: clamp(1.3rem, 2vw, 1.6rem);
+}
+
+.column-text__prose p {
+    margin-bottom: 1rem;
+}
+
+.column-text__prose p:last-child {
+    margin-bottom: 0;
+}
+
+.column-text__prose strong {
+    color: var(--color-secondary-900);
+    font-weight: 600;
+}
+
+.column-text__prose a {
+    color: var(--color-primary-500);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    transition: color 200ms ease-out;
+}
+
+.column-text__prose a:hover {
+    color: var(--color-primary-700);
+}
+
+/* -------------------------------------------------------------------------- */
 /*  Hero — editorial display met handgetekende highlight                       */
 /* -------------------------------------------------------------------------- */
 

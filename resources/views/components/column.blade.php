@@ -6,14 +6,14 @@
 
 @foreach ($items as $item)
 
-@if ($item['type'] === 'text') 
-    <x-columns.text 
-        :count="count($items)" 
-        :first="$loop->first" 
-        :last="$loop->last" 
-        :left="$isLeft()" 
-        :subtitle="$item['subtitle']" 
-        :content="$item['content']" 
+@if ($item['type'] === 'text')
+    <x-columns.text
+        :count="count($items)"
+        :first="$loop->first"
+        :last="$loop->last"
+        :left="$isLeft()"
+        :subtitle="$item['subtitle']"
+        :content="$item['content']"
         :buttons="$item['buttons']"
         :columns="$columns"
     />
@@ -22,10 +22,10 @@
 @if ($item['type'] === 'image')
     @php
         $image = $live ? asset("storage/{$item['image']}") : asset('storage/' . array_pop($item['image']));
-    @endphp     
-    
-    <x-columns.image 
-        :image="$image" 
+    @endphp
+
+    <x-columns.image
+        :image="$image"
         :alt="$item['alt']"
         :columns="$columns"
     />
