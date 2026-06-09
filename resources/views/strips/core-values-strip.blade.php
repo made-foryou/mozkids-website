@@ -90,8 +90,7 @@
                               aria-hidden="true"></span>
 
                         <span class="relative inline-flex w-full h-full
-                                     [&_svg]:w-full [&_svg]:h-full
-                                     [&_svg]:fill-current">
+                                     [&_svg]:w-full [&_svg]:h-full">
                             @include($value['icon']->icon())
                         </span>
                     </figure>
