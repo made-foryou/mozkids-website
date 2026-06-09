@@ -44,9 +44,9 @@
                         title="{{ $item->linkable->meta->title }}"
                         @if ($isActive) aria-current="page" @endif
                         @if ($hasChildren) aria-haspopup="true" aria-expanded="false" @endif
-                        class="nav-link group relative inline-flex items-center gap-1.5
-                               px-4 py-2.5 rounded-full
-                               text-[13px] tracking-[0.01em] font-medium
+                        class="nav-link group relative inline-flex items-center gap-2
+                               px-4 py-3 rounded-full
+                               text-[13px] uppercase tracking-[0.14em] font-semibold
                                text-secondary-900/85
                                transition-colors duration-300 ease-out
                                hover:text-primary-500
@@ -65,21 +65,21 @@
                             <span class="nav-link__chevron relative z-10 inline-flex
                                          transition-transform duration-300 ease-out"
                                   aria-hidden="true">
-                                <svg viewBox="0 0 12 12" class="w-2.5 h-2.5 fill-none stroke-current"
+                                <svg viewBox="0 0 12 12" class="w-2 h-2 fill-none stroke-current"
                                      stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M3 4.5 6 7.5 9 4.5" />
                                 </svg>
                             </span>
                         @endif
 
-                        <span class="nav-link__underline absolute left-4 right-4 bottom-1
+                        <span class="nav-link__underline absolute left-4 right-4 bottom-1.5
                                      h-px origin-left scale-x-0
                                      bg-current
                                      transition-transform duration-300 ease-out
                                      group-hover:scale-x-100"></span>
 
                         @if ($isActive)
-                            <span class="nav-link__dot absolute left-1/2 -bottom-1.5 -translate-x-1/2
+                            <span class="nav-link__dot absolute left-1/2 -bottom-1 -translate-x-1/2
                                          w-1 h-1 rounded-full bg-primary-500
                                          nav-pulse"
                                   aria-hidden="true"></span>
