@@ -2,7 +2,7 @@
     $currentUrl = rtrim(request()->url(), '/');
 @endphp
 
-<div class="nav-shell flex flex-row justify-between items-center w-full gap-6 lg:gap-10">
+<div class="nav-shell flex flex-row justify-between items-center w-full gap-6 xl:gap-10">
 
     <a
         href="{{ url('/') }}"
@@ -18,7 +18,7 @@
         @include('svg.logo')
     </a>
 
-    <nav class="hidden lg:block" aria-label="Hoofdnavigatie">
+    <nav class="hidden xl:block" aria-label="Hoofdnavigatie">
         <ul class="nav-list flex flex-row items-center gap-1">
 
             @foreach ($items as $item)
@@ -173,7 +173,7 @@
         </ul>
     </nav>
 
-    <div class="hidden lg:block">
+    <div class="hidden xl:block">
         @if (!empty($donationPage))
             <a
                 href="{{ Cms::url($donationPage) }}"
@@ -216,7 +216,7 @@
     </div>
 
 
-    <div class="block lg:hidden">
+    <div class="block xl:hidden">
         <button
             type="button"
             class="burger group relative

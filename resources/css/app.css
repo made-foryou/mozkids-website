@@ -49,12 +49,89 @@
     ::file-selector-button {
         border-color: var(--color-gray-200, currentColor);
     }
+
+    /* Voorkom horizontale viewport-overflow (bv. door de foto-slider peek).
+       `clip` ipv `hidden` zodat position: fixed (de site header) en sticky
+       elementen niet worden beïnvloed. Browsers zonder clip-support vallen
+       terug op hidden. */
+    html,
+    body {
+        overflow-x: hidden;
+        overflow-x: clip;
+    }
 }
 
-.swiper-slide-active {
-    .swiper-slide-overlay {
-        opacity: 1;
+/* -------------------------------------------------------------------------- */
+/*  Foto slider — editorial focus op de actieve slide                         */
+/* -------------------------------------------------------------------------- */
+
+/* Lokaal clippen voorkomt dat de peek-slides links/rechts de viewport
+   uitduwen op smalle schermen. */
+.photo-slider-section {
+    overflow-x: hidden;
+    overflow-x: clip;
+}
+
+/* Niet-actieve slides krijgen een sluier + duidelijke schaling-terug zodat
+   de actieve slide visueel naar voren springt. */
+.photo-slide {
+    transform: scale(0.93);
+    filter: saturate(0.85);
+    transition: transform 600ms cubic-bezier(0.22, 1, 0.36, 1),
+                filter 600ms ease-out,
+                box-shadow 600ms ease-out;
+    box-shadow: 0 12px 28px -16px rgba(49, 48, 47, 0.25);
+}
+
+.photo-slide .photo-slide__shade {
+    opacity: 1;
+}
+
+.swiper-slide-active.photo-slide {
+    transform: scale(1);
+    filter: saturate(1);
+    box-shadow:
+        0 40px 90px -32px rgba(49, 48, 47, 0.45),
+        0 18px 40px -22px rgba(228, 35, 19, 0.18);
+}
+
+.swiper-slide-active .photo-slide__shade {
+    opacity: 0;
+}
+
+/* Overlay-kaart komt rustig in op de actieve slide. */
+.swiper-slide-active .photo-overlay {
+    opacity: 1;
+    translate: 0 0;
+    transition-delay: 220ms;
+}
+
+/* Disabled nav: zachte fade + cursor uit, blijft zichtbaar als oriëntatiepunt.
+   Locked nav: hele rij verbergen wanneer er maar één slide is. */
+.photo-nav__btn--disabled {
+    opacity: 0.35;
+    pointer-events: none;
+}
+
+.photo-nav__btn--locked {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Subtiele ademing op de glow achter de slider. */
+@keyframes photo-glow-pulse {
+    0%, 100% {
+        opacity: 0.9;
+        transform: translate(-50%, -50%) scale(1);
     }
+    50% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.05);
+    }
+}
+
+.photo-slider-glow {
+    animation: photo-glow-pulse 12s ease-in-out infinite;
 }
 
 figure > img {
@@ -355,6 +432,10 @@ html.sidebar-open .burger .burger__bar--3 {
     .hero [data-highlightable] .text-primary-500::after {
         animation: none;
         transform: scaleX(1);
+    }
+
+    .photo-slider-glow {
+        animation: none;
     }
 
     .donate-cta__beat,

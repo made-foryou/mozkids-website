@@ -1,6 +1,6 @@
 <div
     class="made-sidebar
-           relative z-50 hidden lg:hidden"
+           relative z-50 hidden xl:hidden"
     role="dialog"
     aria-modal="true"
 >
