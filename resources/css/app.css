@@ -372,6 +372,95 @@ html.sidebar-open .burger .burger__bar--3 {
 }
 
 /* -------------------------------------------------------------------------- */
+/*  Text strip — verfijnde prose typografie                                    */
+/* -------------------------------------------------------------------------- */
+
+.text-strip__prose {
+    line-height: 1.7;
+    font-size: 0.95rem;
+}
+
+.text-strip__prose h1,
+.text-strip__prose h2,
+.text-strip__prose h3,
+.text-strip__prose h4 {
+    color: var(--color-secondary-900);
+    font-weight: 600;
+    letter-spacing: -0.018em;
+    line-height: 1.18;
+    text-wrap: balance;
+}
+
+.text-strip__prose h2 {
+    font-size: clamp(1.5rem, 2.3vw, 1.85rem);
+    margin-top: 2.4rem;
+    margin-bottom: 0.9rem;
+}
+
+.text-strip__prose h3 {
+    font-size: clamp(1.2rem, 1.8vw, 1.45rem);
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+}
+
+.text-strip__prose h4 {
+    font-size: 1.1rem;
+    margin-top: 1.6rem;
+    margin-bottom: 0.5rem;
+}
+
+.text-strip__prose p {
+    margin-bottom: 1rem;
+}
+
+.text-strip__prose p:last-child {
+    margin-bottom: 0;
+}
+
+.text-strip__prose strong {
+    color: var(--color-secondary-900);
+    font-weight: 600;
+}
+
+.text-strip__prose a {
+    color: var(--color-primary-500);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    transition: color 200ms ease-out;
+}
+
+.text-strip__prose a:hover {
+    color: var(--color-primary-700);
+}
+
+.text-strip__prose ul,
+.text-strip__prose ol {
+    padding-left: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.text-strip__prose ul {
+    list-style: disc;
+}
+
+.text-strip__prose ol {
+    list-style: decimal;
+}
+
+.text-strip__prose li {
+    margin-bottom: 0.35rem;
+}
+
+.text-strip__prose blockquote {
+    border-left: 2px solid var(--color-primary-500);
+    padding-left: 1.25rem;
+    margin: 1.5rem 0;
+    font-style: italic;
+    color: rgb(49 48 47 / 0.7);
+}
+
+/* -------------------------------------------------------------------------- */
 /*  Two-columns strip — verfijnde typografie en ritme                          */
 /* -------------------------------------------------------------------------- */
 
