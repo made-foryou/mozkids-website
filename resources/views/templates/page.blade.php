@@ -66,7 +66,15 @@
     @include('partials.sidebar-menu')
 
     <div class="flex flex-col justify-between items-center min-h-screen min-w-screen bg-secondary-500">
-        <header class="left-0 fixed z-20 flex-none w-full bg-secondary-500/70 backdrop-blur-2xl py-6">
+        <header
+            data-site-header
+            class="site-header
+                   fixed left-0 top-0 z-30 flex-none w-full
+                   bg-secondary-500/72 backdrop-blur-xl
+                   border-b border-secondary-900/0
+                   transition-[padding,background-color,border-color,box-shadow] duration-300 ease-out
+                   py-6"
+        >
             <x-container class="max-w-6xl">
                 @include('partials.navigation')
             </x-container>
@@ -76,7 +84,7 @@
             @yield('content')
         </main>
         <footer class="flex-none bg-white w-full">
-            <x-container class="max-w-6xl py-10">
+            <x-container class="max-w-6xl py-8 lg:py-10">
                 @include('partials.footer')
             </x-container>
         </footer>

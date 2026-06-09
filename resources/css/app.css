@@ -49,16 +49,969 @@
     ::file-selector-button {
         border-color: var(--color-gray-200, currentColor);
     }
+
+    /* Voorkom horizontale viewport-overflow (bv. door de foto-slider peek).
+       `clip` ipv `hidden` zodat position: fixed (de site header) en sticky
+       elementen niet worden beïnvloed. Browsers zonder clip-support vallen
+       terug op hidden. */
+    html,
+    body {
+        overflow-x: hidden;
+        overflow-x: clip;
+    }
 }
 
-.swiper-slide-active {
-    .swiper-slide-overlay {
-        opacity: 1;
+/* -------------------------------------------------------------------------- */
+/*  Foto slider — editorial focus op de actieve slide                         */
+/* -------------------------------------------------------------------------- */
+
+/* Lokaal clippen voorkomt dat de peek-slides links/rechts de viewport
+   uitduwen op smalle schermen. */
+.photo-slider-section {
+    overflow-x: hidden;
+    overflow-x: clip;
+}
+
+/* Niet-actieve slides krijgen een sluier + duidelijke schaling-terug zodat
+   de actieve slide visueel naar voren springt. */
+.photo-slide {
+    transform: scale(0.93);
+    filter: saturate(0.85);
+    transition: transform 600ms cubic-bezier(0.22, 1, 0.36, 1),
+                filter 600ms ease-out,
+                box-shadow 600ms ease-out;
+    box-shadow: 0 12px 28px -16px rgba(49, 48, 47, 0.25);
+}
+
+.photo-slide .photo-slide__shade {
+    opacity: 1;
+}
+
+.swiper-slide-active.photo-slide {
+    transform: scale(1);
+    filter: saturate(1);
+    box-shadow:
+        0 40px 90px -32px rgba(49, 48, 47, 0.45),
+        0 18px 40px -22px rgba(228, 35, 19, 0.18);
+}
+
+.swiper-slide-active .photo-slide__shade {
+    opacity: 0;
+}
+
+/* Overlay-kaart komt rustig in op de actieve slide. */
+.swiper-slide-active .photo-overlay {
+    opacity: 1;
+    translate: 0 0;
+    transition-delay: 220ms;
+}
+
+/* Disabled nav: zachte fade + cursor uit, blijft zichtbaar als oriëntatiepunt.
+   Locked nav: hele rij verbergen wanneer er maar één slide is. */
+.photo-nav__btn--disabled {
+    opacity: 0.35;
+    pointer-events: none;
+}
+
+.photo-nav__btn--locked {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Subtiele ademing op de glow achter de slider. */
+@keyframes photo-glow-pulse {
+    0%, 100% {
+        opacity: 0.9;
+        transform: translate(-50%, -50%) scale(1);
     }
+    50% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.05);
+    }
+}
+
+.photo-slider-glow {
+    animation: photo-glow-pulse 12s ease-in-out infinite;
 }
 
 figure > img {
     object-fit: cover;
     width: 100%;
     height: 100%;
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Navigation — Verfijnd Warm                                                */
+/* -------------------------------------------------------------------------- */
+
+/* Scroll-aware header: krimpt subtiel met een verfijnde rand & shadow. */
+.site-header.is-scrolled {
+    padding-block: 0.875rem;
+    background-color: rgb(244 241 234 / 0.86);
+    border-bottom-color: rgb(49 48 47 / 0.06);
+    box-shadow: 0 8px 28px -18px rgb(49 48 47 / 0.18);
+}
+
+.site-header .nav-logo svg,
+.site-header .sidebar-logo svg {
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.site-header.is-scrolled .nav-logo svg {
+    transform: scale(0.92);
+}
+
+/* Vermijd horizontale scroll bij open mobiel menu. */
+html.sidebar-open,
+html.sidebar-open body {
+    overflow: hidden;
+}
+
+/* Actieve link: subtiele rust onder de tekst — gebruikt CSS-variabele. */
+.nav-link.is-active .nav-link__underline {
+    transform: scaleX(1);
+    background-color: rgb(228 35 19 / 0.45);
+}
+
+/* Pulse op de actieve dot (en sidebar bullet). */
+@keyframes nav-pulse {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgb(228 35 19 / 0.4);
+    }
+    50% {
+        box-shadow: 0 0 0 6px rgb(228 35 19 / 0);
+    }
+}
+
+.nav-pulse {
+    animation: nav-pulse 2.4s ease-out infinite;
+}
+
+/* Kloppend hartje op de doneer-cta. */
+@keyframes heart-beat {
+    0%, 28%, 100% { transform: scale(1); }
+    14%           { transform: scale(1.18); }
+    42%           { transform: scale(1.12); }
+}
+
+.donate-cta__beat {
+    transform-origin: center;
+    animation: heart-beat 2.4s ease-in-out infinite;
+}
+
+.donate-cta:hover .donate-cta__beat {
+    animation-duration: 1.1s;
+}
+
+/* Subtle entrance op desktop nav items wanneer de pagina laadt. */
+@keyframes nav-item-in {
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (min-width: 1024px) {
+    .nav-list > li {
+        opacity: 0;
+        animation: nav-item-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        animation-delay: calc(120ms + var(--nav-delay, 0ms));
+    }
+}
+
+/* Gestaffelde reveal voor mobiele sidebar items. */
+@keyframes sidebar-item-in {
+    from {
+        opacity: 0;
+        transform: translateX(14px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.made-sidebar.block .sidebar-item,
+.made-sidebar.block .sidebar-footer {
+    opacity: 0;
+    animation: sidebar-item-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: var(--sidebar-delay, 100ms);
+}
+
+.made-sidebar.block .sidebar-eyebrow {
+    opacity: 0;
+    animation: sidebar-item-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: 60ms;
+}
+
+/* Burger → X transformatie wanneer de sidebar open is. */
+html.sidebar-open .burger .burger__bar--1 {
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+    width: 100%;
+}
+
+html.sidebar-open .burger .burger__bar--2 {
+    opacity: 0;
+    transform: translateY(-50%) scaleX(0);
+}
+
+html.sidebar-open .burger .burger__bar--3 {
+    bottom: 50%;
+    transform: translateY(50%) rotate(-45deg);
+    width: 100%;
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Submenu — desktop dropdown + mobiele sublijst                             */
+/* -------------------------------------------------------------------------- */
+
+/* Hover-open van het dropdown panel (desktop). focus-within voert hetzelfde
+   gedrag uit voor toetsenbordgebruikers. Een kleine veiligheidsbuffer onder
+   het panel voorkomt dat de muis 'tussen' de parent en het panel raakt. */
+@media (min-width: 1024px) {
+    /* Centrering + initiele lichte upward translate, beide via de moderne
+       `translate`-property zodat we Tailwind v4 niet dubbel uitvoeren. */
+    .nav-item[data-has-children] > .submenu {
+        translate: -50% 4px;
+    }
+
+    .nav-item[data-has-children] > .submenu::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -16px;
+        right: -16px;
+        height: 16px;
+    }
+
+    .nav-item[data-has-children]:hover > .submenu,
+    .nav-item[data-has-children]:focus-within > .submenu {
+        opacity: 1;
+        translate: -50% 0;
+        pointer-events: auto;
+    }
+
+    .nav-item[data-has-children]:hover > .nav-link .nav-link__chevron,
+    .nav-item[data-has-children]:focus-within > .nav-link .nav-link__chevron {
+        transform: rotate(-180deg);
+    }
+}
+
+/* Reveal van submenu items: gestaffeld vanaf boven naar onder. */
+@keyframes submenu-item-in {
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (min-width: 1024px) {
+    .nav-item[data-has-children]:hover > .submenu .submenu-item,
+    .nav-item[data-has-children]:focus-within > .submenu .submenu-item {
+        animation: submenu-item-in 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        animation-delay: var(--submenu-delay, 80ms);
+        opacity: 0;
+    }
+}
+
+/* Actieve submenu link: rustige indicator door achtergrond + kleur — al
+   ingesteld via utility classes; deze laag forceert de achtergrond bij
+   meerdere selectors zonder !important conflicten. */
+.submenu-link.is-active .submenu-link__marker {
+    box-shadow: 0 0 0 3px rgb(228 35 19 / 0.12);
+}
+
+/* Mobiel: sub-items volgen de gestaffelde sidebar-reveal — geen extra regels
+   nodig dankzij dezelfde `--sidebar-delay` variabele die in de blade wordt
+   doorgegeven. */
+
+/* -------------------------------------------------------------------------- */
+/*  Reveal — scroll-getriggerde fade/slide animaties (data-reveal="...")      */
+/* -------------------------------------------------------------------------- */
+
+[data-reveal] {
+    opacity: 0;
+    transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+                translate 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--reveal-delay, 0ms);
+    will-change: opacity, translate;
+}
+
+[data-reveal="fade-up"] {
+    translate: 0 24px;
+}
+
+[data-reveal="slide-right"] {
+    translate: -28px 0;
+}
+
+[data-reveal="slide-left"] {
+    translate: 28px 0;
+}
+
+[data-reveal].is-revealed {
+    opacity: 1;
+    translate: 0 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    [data-reveal] {
+        opacity: 1;
+        translate: 0 0;
+        transition: none;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Text strip — verfijnde prose typografie                                    */
+/* -------------------------------------------------------------------------- */
+
+.text-strip__prose {
+    line-height: 1.7;
+    font-size: 0.95rem;
+}
+
+.text-strip__prose h1,
+.text-strip__prose h2,
+.text-strip__prose h3,
+.text-strip__prose h4 {
+    color: var(--color-secondary-900);
+    font-weight: 600;
+    letter-spacing: -0.018em;
+    line-height: 1.18;
+    text-wrap: balance;
+}
+
+.text-strip__prose h2 {
+    font-size: clamp(1.5rem, 2.3vw, 1.85rem);
+    margin-top: 2.4rem;
+    margin-bottom: 0.9rem;
+}
+
+.text-strip__prose h3 {
+    font-size: clamp(1.2rem, 1.8vw, 1.45rem);
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+}
+
+.text-strip__prose h4 {
+    font-size: 1.1rem;
+    margin-top: 1.6rem;
+    margin-bottom: 0.5rem;
+}
+
+.text-strip__prose p {
+    margin-bottom: 1rem;
+}
+
+.text-strip__prose p:last-child {
+    margin-bottom: 0;
+}
+
+.text-strip__prose strong {
+    color: var(--color-secondary-900);
+    font-weight: 600;
+}
+
+.text-strip__prose a {
+    color: var(--color-primary-500);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    transition: color 200ms ease-out;
+}
+
+.text-strip__prose a:hover {
+    color: var(--color-primary-700);
+}
+
+.text-strip__prose ul,
+.text-strip__prose ol {
+    padding-left: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.text-strip__prose ul {
+    list-style: disc;
+}
+
+.text-strip__prose ol {
+    list-style: decimal;
+}
+
+.text-strip__prose li {
+    margin-bottom: 0.35rem;
+}
+
+.text-strip__prose blockquote {
+    border-left: 2px solid var(--color-primary-500);
+    padding-left: 1.25rem;
+    margin: 1.5rem 0;
+    font-style: italic;
+    color: rgb(49 48 47 / 0.7);
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Two-columns strip — verfijnde typografie en ritme                          */
+/* -------------------------------------------------------------------------- */
+
+.column-text__prose {
+    color: rgb(49 48 47 / 0.82);
+    line-height: 1.7;
+    font-size: 0.95rem;
+}
+
+.column-text__prose h1,
+.column-text__prose h2,
+.column-text__prose h3,
+.column-text__prose h4 {
+    color: var(--color-secondary-900);
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    line-height: 1.15;
+    text-wrap: balance;
+    margin-bottom: 1rem;
+}
+
+.column-text__prose h2 {
+    font-size: clamp(1.6rem, 2.4vw, 2.1rem);
+}
+
+.column-text__prose h3 {
+    font-size: clamp(1.3rem, 2vw, 1.6rem);
+}
+
+.column-text__prose p {
+    margin-bottom: 1rem;
+}
+
+.column-text__prose p:last-child {
+    margin-bottom: 0;
+}
+
+.column-text__prose strong {
+    color: var(--color-secondary-900);
+    font-weight: 600;
+}
+
+.column-text__prose a {
+    color: var(--color-primary-500);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    transition: color 200ms ease-out;
+}
+
+.column-text__prose a:hover {
+    color: var(--color-primary-700);
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Floating donation button — verschijnt bij scroll-pauze                    */
+/* -------------------------------------------------------------------------- */
+
+/* Combineer de horizontale centrering (-50%) met de vertical slide in één
+   `translate`-declaratie zodat Tailwind's `-translate-x-1/2` utility hier niet
+   nodig is en de CSS niet conflicteert met de animatie. */
+.donation-fab {
+    opacity: 0;
+    translate: -50% 28px;
+    pointer-events: none;
+    will-change: opacity, translate;
+}
+
+.donation-fab.is-active {
+    opacity: 1;
+    translate: -50% 0;
+    pointer-events: auto;
+}
+
+/* Een rustige ring die langzaam pulseert rond het hartje, alleen wanneer de
+   knop actief in beeld is — voorkomt animatie-ruis als hij verborgen is. */
+@keyframes donation-fab-ring {
+    0% {
+        transform: scale(1);
+        opacity: 0.55;
+    }
+    80% {
+        transform: scale(1.35);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1.35);
+        opacity: 0;
+    }
+}
+
+.donation-fab.is-active .donation-fab__pulse {
+    animation: donation-fab-ring 2.4s ease-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .donation-fab {
+        transition: none;
+    }
+    .donation-fab .donation-fab__pulse {
+        animation: none;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Team slider — disabled/locked nav-states (zelfde pattern als photo nav)   */
+/* -------------------------------------------------------------------------- */
+
+.team-slider__btn--disabled {
+    opacity: 0.35;
+    pointer-events: none;
+}
+
+.team-slider__btn--locked {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Team — vanaf lg geen slider maar een statische 3-koloms grid              */
+/* -------------------------------------------------------------------------- */
+
+/* Vanaf 1024px wordt Swiper door JS gedestroyed. De Swiper-class structuur
+   blijft in de HTML staan; we overschrijven de display zodat de slides als
+   editorial grid presenteren. Controls vallen weg want navigatie is niet nodig
+   als alles tegelijk in beeld staat. */
+@media (min-width: 1024px) {
+    .board-members-strip .made-team-slider {
+        overflow: visible;
+    }
+
+    .board-members-strip .made-team-slider .swiper-wrapper {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 2rem;
+        transform: none !important;
+    }
+
+    .board-members-strip .made-team-slider .swiper-slide {
+        width: auto !important;
+        margin: 0 !important;
+        flex-shrink: 1;
+    }
+
+    .board-members-strip .team-slider__controls {
+        display: none;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Team bio — collapsible eerste ~4 regels                                    */
+/* -------------------------------------------------------------------------- */
+
+.team-member__bio {
+    position: relative;
+    max-height: 6.6em;
+    overflow: hidden;
+    transition: max-height 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Fade-out matched de pagina-achtergrond (secondary-500). De team-members
+   zitten direct op de page-bg, dus de gradient bottomt naar die crème-kleur. */
+.team-member__bio::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2.6em;
+    background: linear-gradient(to top,
+                var(--color-secondary-500, rgb(244 241 234)) 25%,
+                rgb(244 241 234 / 0) 100%);
+    pointer-events: none;
+    transition: opacity 0.35s ease-out;
+}
+
+.team-member.is-expanded .team-member__bio::after {
+    opacity: 0;
+}
+
+.team-member.is-no-collapse .team-member__bio {
+    max-height: none;
+}
+
+.team-member.is-no-collapse .team-member__bio::after,
+.team-member.is-no-collapse .team-member__toggle {
+    display: none;
+}
+
+/* Toggle labels — wissel tussen "Lees meer" en "Inklappen". */
+.team-member__toggle-label--expanded {
+    display: none;
+}
+
+.team-member.is-expanded .team-member__toggle-label--collapsed {
+    display: none;
+}
+
+.team-member.is-expanded .team-member__toggle-label--expanded {
+    display: inline;
+}
+
+.team-member.is-expanded .team-member__toggle-chevron {
+    transform: rotate(180deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .team-member__bio,
+    .team-member__bio::after,
+    .team-member__toggle-chevron {
+        transition: none;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/*  FAQ strip — accordion-stijl, default helemaal dichtgeklapt                */
+/* -------------------------------------------------------------------------- */
+
+.faq-item.is-open .faq-item__chevron {
+    background-color: rgb(228 35 19);
+    color: white;
+}
+
+.faq-item.is-open .faq-item__chevron-icon {
+    transform: rotate(180deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .faq-item__answer,
+    .faq-item__chevron,
+    .faq-item__chevron-icon {
+        transition: none;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Agenda strip — collapsible item-content (zelfde principe als timeline)    */
+/* -------------------------------------------------------------------------- */
+
+.agenda-item:not(.is-no-collapse) {
+    cursor: pointer;
+}
+
+.agenda-item__content {
+    position: relative;
+    max-height: 4.5em;
+    overflow: hidden;
+    transition: max-height 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.agenda-item__content::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2.4em;
+    background: linear-gradient(to top,
+                var(--color-secondary-500, rgb(244 241 234)) 25%,
+                rgb(244 241 234 / 0) 100%);
+    pointer-events: none;
+    transition: opacity 0.35s ease-out;
+}
+
+.agenda-item.is-expanded .agenda-item__content::after {
+    opacity: 0;
+}
+
+.agenda-item.is-no-collapse {
+    cursor: default;
+}
+
+.agenda-item.is-no-collapse .agenda-item__content {
+    max-height: none;
+}
+
+.agenda-item.is-no-collapse .agenda-item__content::after {
+    display: none;
+}
+
+/* Toggle labels — wissel tussen "Lees meer" en "Inklappen". */
+.agenda-item__toggle-label--expanded {
+    display: none;
+}
+
+.agenda-item.is-expanded .agenda-item__toggle-label--collapsed {
+    display: none;
+}
+
+.agenda-item.is-expanded .agenda-item__toggle-label--expanded {
+    display: inline;
+}
+
+.agenda-item.is-expanded .agenda-item__toggle-chevron {
+    transform: rotate(180deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .agenda-item__content,
+    .agenda-item__content::after,
+    .agenda-item__toggle-chevron {
+        transition: none;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Timeline strip — collapsible content (eerste ±3 regels zichtbaar)         */
+/* -------------------------------------------------------------------------- */
+
+/* Hele kaart wordt klikbaar zolang er meer content is dan past in de
+   collapsed state. Bij `.is-no-collapse` (korte content) blijft de kaart
+   gewoon statisch. */
+.timeline-item:not(.is-no-collapse) .timeline-item__card {
+    cursor: pointer;
+}
+
+.timeline-item__content {
+    position: relative;
+    max-height: 5em;
+    overflow: hidden;
+    transition: max-height 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Zachte fade-out onderaan de geclipte tekst, kleur matched de glas-kaart.
+   Hoogte iets meer dan een regel zodat de overgang rustig is. */
+.timeline-item__content::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2.6em;
+    background: linear-gradient(to top,
+                rgb(255 255 255 / 0.94) 25%,
+                rgb(255 255 255 / 0) 100%);
+    pointer-events: none;
+    transition: opacity 0.35s ease-out;
+}
+
+.timeline-item.is-expanded .timeline-item__content::after {
+    opacity: 0;
+}
+
+/* Wanneer content sowieso binnen de collapsed-hoogte past: alle clipping
+   en fade-out weg, en zorg dat max-height geen visueel cropping geeft. */
+.timeline-item.is-no-collapse .timeline-item__content {
+    max-height: none;
+}
+
+.timeline-item.is-no-collapse .timeline-item__content::after {
+    display: none;
+}
+
+/* Toggle labels — wissel tussen "Lees meer" en "Inklappen". */
+.timeline-item__toggle-label--expanded {
+    display: none;
+}
+
+.timeline-item.is-expanded .timeline-item__toggle-label--collapsed {
+    display: none;
+}
+
+.timeline-item.is-expanded .timeline-item__toggle-label--expanded {
+    display: inline;
+}
+
+/* Chevron draait om bij uitklappen. */
+.timeline-item.is-expanded .timeline-item__toggle-chevron {
+    transform: rotate(180deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .timeline-item__content,
+    .timeline-item__content::after,
+    .timeline-item__toggle-chevron {
+        transition: none;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Quote strip — editorial cover-quote met ken-burns                          */
+/* -------------------------------------------------------------------------- */
+
+/* Langzame ken-burns op de achtergrondfoto: subtiele zoom + drift. */
+@keyframes quote-kenburns {
+    0% {
+        transform: scale(1.04) translate(0, 0);
+    }
+    50% {
+        transform: scale(1.08) translate(-1.5%, -0.8%);
+    }
+    100% {
+        transform: scale(1.04) translate(0, 0);
+    }
+}
+
+.quote-frame__photo {
+    animation: quote-kenburns 28s ease-in-out infinite;
+    transform-origin: center;
+}
+
+/* Drijvende fade-in op de decoratieve quote-mark, los van de body reveal. */
+@keyframes quote-mark-in {
+    from {
+        opacity: 0;
+        transform: translate(-6px, 6px) rotate(-4deg);
+    }
+    to {
+        opacity: 1;
+        transform: translate(0, 0) rotate(0);
+    }
+}
+
+.quote-frame__mark {
+    opacity: 0;
+    animation: quote-mark-in 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: 350ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .quote-frame__photo {
+        animation: none;
+        transform: none;
+    }
+    .quote-frame__mark {
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Hero — editorial display met handgetekende highlight                       */
+/* -------------------------------------------------------------------------- */
+
+/* Hero heading: editorial typografie met text-balance voor mooie regels. */
+.hero-heading {
+    text-wrap: balance;
+}
+
+/* Highlighted woorden — de JS wrapt [text] in <span class="text-primary-500">.
+   We voegen een handgetekende SVG swoop toe als onderstreping. Scoped op .hero
+   zodat highlights in body-tekst rustig blijven. */
+.hero [data-highlightable] .text-primary-500 {
+    position: relative;
+    display: inline-block;
+    isolation: isolate;
+}
+
+.hero [data-highlightable] .text-primary-500::after {
+    content: '';
+    position: absolute;
+    left: -0.08em;
+    right: -0.08em;
+    bottom: -0.12em;
+    height: 0.32em;
+    background-color: currentColor;
+    -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 14' preserveAspectRatio='none'><path d='M2 9 C 20 3, 40 12, 60 7 S 100 4, 118 8' stroke='black' stroke-width='2.6' fill='none' stroke-linecap='round'/></svg>");
+            mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 14' preserveAspectRatio='none'><path d='M2 9 C 20 3, 40 12, 60 7 S 100 4, 118 8' stroke='black' stroke-width='2.6' fill='none' stroke-linecap='round'/></svg>");
+    -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
+    -webkit-mask-size: 100% 100%;
+            mask-size: 100% 100%;
+    opacity: 0.55;
+    transform-origin: left center;
+    transform: scaleX(0);
+    animation: hero-swoop-draw 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: 700ms;
+}
+
+@keyframes hero-swoop-draw {
+    from {
+        transform: scaleX(0);
+    }
+    to {
+        transform: scaleX(1);
+    }
+}
+
+/* Gestaffelde reveal: eyebrow → heading → buttons. */
+@keyframes hero-fade-up {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-eyebrow,
+.hero-heading,
+.hero-buttons .hero-button {
+    opacity: 0;
+    animation: hero-fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.hero-eyebrow {
+    animation-delay: 120ms;
+}
+
+.hero-heading {
+    animation-delay: 240ms;
+}
+
+.hero-buttons .hero-button {
+    animation-delay: var(--hero-button-delay, 600ms);
+}
+
+/* Respecteer reduced-motion-voorkeuren. */
+@media (prefers-reduced-motion: reduce) {
+    .nav-list > li,
+    .made-sidebar.block .sidebar-item,
+    .made-sidebar.block .sidebar-footer,
+    .made-sidebar.block .sidebar-eyebrow,
+    .nav-item[data-has-children]:hover > .submenu .submenu-item,
+    .nav-item[data-has-children]:focus-within > .submenu .submenu-item,
+    .hero-eyebrow,
+    .hero-heading,
+    .hero-buttons .hero-button {
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+
+    .hero [data-highlightable] .text-primary-500::after {
+        animation: none;
+        transform: scaleX(1);
+    }
+
+    .photo-slider-glow {
+        animation: none;
+    }
+
+    .donate-cta__beat,
+    .nav-pulse {
+        animation: none;
+    }
+
+    .site-header,
+    .nav-logo svg,
+    .nav-link,
+    .nav-link__bg,
+    .nav-link__underline,
+    .donate-cta,
+    .donate-cta__sheen,
+    .donate-cta__arrow,
+    .burger__bar,
+    .sidebar-close svg,
+    .sidebar-link {
+        transition-duration: 0.001ms !important;
+    }
 }

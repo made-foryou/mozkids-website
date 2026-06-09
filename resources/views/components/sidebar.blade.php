@@ -1,60 +1,57 @@
-<div 
-    class="made-sidebar 
-           relative z-50 hidden lg:hidden"
+<div
+    class="made-sidebar
+           relative z-50 hidden xl:hidden"
     role="dialog"
-    arial-modal="true"
+    aria-modal="true"
 >
 
-    <div 
+    <div
         class="fixed inset-0 hidden
-               bg-gray-900/80 opacity-0
-               transition-opacity ease-linear duration-300" 
+               bg-secondary-900/55 opacity-0
+               backdrop-blur-md
+               transition-opacity ease-out duration-500"
         aria-hidden="true"
         data-backdrop
+        data-made-sidebar-closer
     ></div>
 
-    <div 
-        class="fixed inset-0 flex"
-    >
+    <div class="fixed inset-0 flex">
 
-        <div 
-            class="relative 
+        <div
+            class="relative
                    hidden flex-1
-                   mr-16 w-full max-w-xs
-                   transition ease-in-out duration-300 transform
-                   -translate-x-full" 
+                   ml-auto w-full max-w-md
+                   transition-transform ease-[cubic-bezier(0.22,1,0.36,1)] duration-500
+                   translate-x-full"
             data-menu
         >
 
-            <div 
-                class="absolute top-0 left-full 
+            <div
+                class="absolute top-6 -left-16
                        hidden justify-center
-                       w-16 pt-5
                        opacity-0
-                       ease-in-out duration-300" 
+                       transition-opacity ease-out duration-500"
                 data-close-button
+            ></div>
+
+            <div
+                class="sidebar-panel relative
+                       flex grow flex-col gap-y-2
+                       overflow-y-auto overflow-x-hidden
+                       px-8 pb-10
+                       bg-secondary-500
+                       shadow-[-30px_0_60px_-20px_rgba(49,48,47,0.25)]"
             >
+                <div class="pointer-events-none absolute -top-32 -right-32 w-72 h-72
+                            rounded-full bg-primary-500/8 blur-3xl"
+                     aria-hidden="true"></div>
+                <div class="pointer-events-none absolute -bottom-40 -left-20 w-72 h-72
+                            rounded-full bg-primary-500/5 blur-3xl"
+                     aria-hidden="true"></div>
 
-                <button 
-                    type="button" 
-                    class="-m-2.5 p-2.5" 
-                    data-closer
-                >
-                    <span class="sr-only">Close sidebar</span>
-                    <svg class="size-6 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-                    </svg>
-                </button>
-
-            </div>
-
-            <div 
-                class="flex grow flex-col gap-y-6
-                       overflow-y-auto
-                       px-6 pb-4
-                       bg-secondary-500"
-            >
-                {{ $slot }}
+                <div class="relative">
+                    {{ $slot }}
+                </div>
             </div>
 
         </div>

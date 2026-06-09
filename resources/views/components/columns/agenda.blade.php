@@ -1,40 +1,79 @@
-<div class="bg-white rounded-xl py-4 px-7">
-    <span
-        class="block
-            mb-9 pb-3
-            border-b border-secondary-500
-            text-xs text-primary-500 font-sans tracking-wide uppercase leading-8.5
-            md:text-sm"
-    >
-        Activiteitenagenda
+<div class="info-card group relative
+            h-full flex flex-col
+            bg-white/82 backdrop-blur-md
+            rounded-2xl
+            ring-1 ring-secondary-900/5
+            shadow-[0_18px_44px_-22px_rgba(49,48,47,0.32)]
+            px-7 py-7 lg:px-8 lg:py-8
+            transition-[transform,box-shadow] duration-500 ease-out
+            hover:-translate-y-1
+            hover:shadow-[0_28px_60px_-26px_rgba(49,48,47,0.4)]">
+
+    <span class="info-card__eyebrow
+                 inline-flex items-center gap-2
+                 mb-7
+                 text-[10px] md:text-[11px] font-semibold uppercase tracking-[0.22em]
+                 text-primary-500">
+        <span class="inline-block w-1 h-1 rounded-full bg-primary-500 nav-pulse"
+              aria-hidden="true"></span>
+        <span>Activiteitenagenda</span>
+        <span class="ml-1 inline-block w-6 h-px
+                     bg-gradient-to-r from-primary-500/40 to-transparent"
+              aria-hidden="true"></span>
     </span>
-    <div class="divide-y divide-secondary-500 border-b border-secondary-500">
+
+    <ul class="info-card__list flex-1 flex flex-col gap-2">
+
         @foreach ($items as $item)
-
-        <div class="pb-9.5">
-            <span class="block text-xs text-dark font-sans leading-5.5 mb-3.5 md:text-sm">
-                 {{ $item->start_date->translatedFormat('d F Y') }}
-
-                @if (!empty($item->end_date))
-
-                    tot en met {{ $item->end_date->translatedFormat('d F Y') }}
-
-                @endif
-            </span>
-            <span class="block text-base md:text-lg text-dark mb-3.5 font-sans tracking-wide">
-                {{ $item->name }}
-            </span>
-            <span class="block text-xs md:text-sm text-dark leading-5.5 font-sans">
-                {!! substr(strip_tags($item->description), 0, 100) !!}
-            </span>
-        </div>
-
+            <li class="info-card__item group/item
+                       -mx-3 px-3 py-3 rounded-xl
+                       transition-colors duration-300 ease-out
+                       hover:bg-primary-500/4">
+                <span class="info-card__date
+                             inline-flex items-center gap-2
+                             mb-2
+                             text-[11px] font-medium uppercase tracking-[0.14em]
+                             text-secondary-900/55">
+                    <span class="inline-block w-1.5 h-1.5 rounded-[2px]
+                                 bg-primary-500
+                                 transition-transform duration-300 ease-out
+                                 group-hover/item:scale-125"
+                          aria-hidden="true"></span>
+                    <span>{{ $item->start_date->translatedFormat('d F Y') }}
+                        @if (!empty($item->end_date))
+                            — {{ $item->end_date->translatedFormat('d F Y') }}
+                        @endif
+                    </span>
+                </span>
+                <span class="info-card__title
+                             block mb-2
+                             text-base md:text-lg
+                             text-secondary-900 font-semibold tracking-[-0.01em] leading-snug">
+                    {{ $item->name }}
+                </span>
+                <span class="info-card__excerpt
+                             block
+                             text-[13px] md:text-sm
+                             text-secondary-900/65 leading-relaxed">
+                    {!! substr(strip_tags($item->description), 0, 100) . '...' !!}
+                </span>
+            </li>
         @endforeach
-    </div>
-    <a href="/activiteiten" class="flex flex-row justify-between items-center w-full pt-5.5 text-xs text-dark font-semibold leading-5.5 font-sans">
-        <span class="inline-block">Bekijk de volledige activiteitenagenda</span>
-        <figure class="inline-block">
+    </ul>
+
+    <a href="/activiteiten"
+       class="info-card__link group/link
+              mt-7 inline-flex items-center justify-between gap-3
+              text-[12px] font-semibold uppercase tracking-[0.12em]
+              text-secondary-900
+              transition-colors duration-300 ease-out
+              hover:text-primary-500">
+        <span>Bekijk alle activiteiten</span>
+        <span class="inline-flex items-center
+                     transition-transform duration-300 ease-out
+                     group-hover/link:translate-x-1"
+              aria-hidden="true">
             @include('svg.arrow-right')
-        </figure>
+        </span>
     </a>
 </div>

@@ -1,178 +1,286 @@
-<div class="bg-white rounded-xl py-8 px-7">
-    <div>
-        <span
-            class="block
-                mb-4
-                text-xs text-primary-500 font-sans tracking-wide uppercase
-                md:text-sm"
-        >
-            Contact
+<div class="contact-form
+            relative h-full
+            bg-white/82 backdrop-blur-md
+            rounded-2xl
+            ring-1 ring-secondary-900/5
+            shadow-[0_18px_44px_-22px_rgba(49,48,47,0.32)]
+            px-6 py-7 md:px-8 md:py-9
+            overflow-hidden">
+
+    <span class="contact-form__glow
+                 pointer-events-none absolute -top-24 -right-24
+                 w-72 h-72
+                 rounded-full
+                 bg-primary-500/6 blur-3xl"
+          aria-hidden="true"></span>
+
+    <header class="contact-form__header relative mb-7"
+            data-reveal="fade-up"
+            style="--reveal-delay: 0ms">
+
+        <span class="contact-form__eyebrow
+                     inline-flex items-center gap-2
+                     mb-3
+                     text-[10px] md:text-[11px] font-semibold uppercase tracking-[0.22em]
+                     text-primary-500">
+            <span class="inline-block w-1 h-1 rounded-full bg-primary-500 nav-pulse"
+                  aria-hidden="true"></span>
+            <span>Contact</span>
+            <span class="ml-1 inline-block w-6 h-px
+                         bg-gradient-to-r from-primary-500/40 to-transparent"
+                  aria-hidden="true"></span>
         </span>
-        <div class="prose mb-8">
-            <h2 class="mb-6">
-                Contactformulier
-            </h2>
-            <p>
-                Door middel van onderstaand formulier kunt u met al uw vragen en/of opmerkingen bij
-                ons terecht.
-            </p>
+
+        <h2 class="contact-form__title
+                   text-2xl md:text-3xl
+                   text-secondary-900 font-semibold
+                   tracking-[-0.018em] leading-[1.15] text-balance
+                   mb-3">
+            Stuur ons een bericht
+        </h2>
+
+        <p class="contact-form__intro
+                  text-[13px] md:text-sm
+                  text-secondary-900/70 leading-relaxed">
+            Heb je een vraag of opmerking? Vul het formulier in en we nemen zo snel
+            mogelijk contact met je op.
+        </p>
+    </header>
+
+    <form data-made-form=""
+          action="{{ route('api.contact-form') }}"
+          method="POST"
+          class="contact-form__form relative
+                 flex flex-col gap-5"
+          data-reveal="fade-up"
+          style="--reveal-delay: 120ms">
+
+        @csrf
+        <x-honeypot />
+
+        <div class="contact-form__field">
+            <label for="name"
+                   class="contact-form__label
+                          block mb-1.5
+                          text-[12px] md:text-[13px] font-medium
+                          text-secondary-900">
+                Naam
+                <span class="contact-form__required text-primary-500" aria-hidden="true">*</span>
+                <span class="sr-only">(verplicht)</span>
+            </label>
+            <input type="text"
+                   name="name"
+                   id="name"
+                   required
+                   autocomplete="name"
+                   class="contact-form__input
+                          block w-full
+                          px-4 py-3 rounded-xl
+                          bg-white
+                          text-sm text-secondary-900
+                          placeholder:text-secondary-900/35
+                          ring-1 ring-secondary-900/12
+                          transition-[box-shadow,background-color,ring-color] duration-200 ease-out
+                          hover:ring-secondary-900/20
+                          focus:outline-none focus:ring-2 focus:ring-primary-500/45
+                          focus:bg-white
+                          aria-[invalid=true]:ring-2 aria-[invalid=true]:ring-primary-500/60" />
+            <p class="contact-form__error
+                      hidden mt-1.5
+                      text-[11px] font-medium text-primary-500"
+               id="name-error"></p>
         </div>
-    </div>
-    <div>
-        <form
-            data-made-form=""
-            action="{{ route('api.contact-form') }}"
-            method="POST"
-            class="flex flex-col gap-2"
-        >
 
-            @csrf
+        <div class="contact-form__field">
+            <label for="email"
+                   class="contact-form__label
+                          block mb-1.5
+                          text-[12px] md:text-[13px] font-medium
+                          text-secondary-900">
+                E-mailadres
+                <span class="contact-form__required text-primary-500" aria-hidden="true">*</span>
+                <span class="sr-only">(verplicht)</span>
+            </label>
+            <input type="email"
+                   name="email"
+                   id="email"
+                   required
+                   autocomplete="email"
+                   class="contact-form__input
+                          block w-full
+                          px-4 py-3 rounded-xl
+                          bg-white
+                          text-sm text-secondary-900
+                          placeholder:text-secondary-900/35
+                          ring-1 ring-secondary-900/12
+                          transition-[box-shadow,background-color,ring-color] duration-200 ease-out
+                          hover:ring-secondary-900/20
+                          focus:outline-none focus:ring-2 focus:ring-primary-500/45
+                          focus:bg-white
+                          aria-[invalid=true]:ring-2 aria-[invalid=true]:ring-primary-500/60" />
+            <p class="contact-form__error
+                      hidden mt-1.5
+                      text-[11px] font-medium text-primary-500"
+               id="email-error"></p>
+        </div>
 
-            <x-honeypot />
+        <div class="contact-form__field-row
+                    grid grid-cols-1 sm:grid-cols-2 gap-5">
 
-            <div>
-                <label for="name" class="block text-sm/6 font-medium text-gray-900">
-                    Naam <span class="text-primary-400">*</span>
-                </label>
-                <div class="mt-2">
-                    <input
-                    type="text"
-                    name="name"
-                    id="name"
-                    required
-                    class="block w-full rounded-md px-3 py-1.5
-                            bg-white
-                            text-base text-gray-900
-                            outline-1 -outline-offset-1 outline-gray-300
-                            placeholder:text-gray-400
-                            focus:outline-2 focus:-outline-offset-2 focus:outline-primary-500
-                            sm:text-sm/6"
-                    >
-                </div>
-                <p class="text-sm text-gray-500" id="name-description"></p>
-                <p class="text-sm text-red-600 hidden" id="name-error"></p>
-            </div>
-
-            <div>
-                <label for="email" class="block text-sm/6 font-medium text-gray-900">
-                    E-mailadres <span class="text-primary-400">*</span>
-                </label>
-                <div class="mt-2">
-                    <input
-                    type="email"
-                    name="email"
-                    id="email"
-                    required
-                    class="block w-full rounded-md px-3 py-1.5
-                            bg-white
-                            text-base text-gray-900
-                            outline-1 -outline-offset-1 outline-gray-300
-                            placeholder:text-gray-400
-                            focus:outline-2 focus:-outline-offset-2 focus:outline-primary-500
-                            sm:text-sm/6"
-                    >
-                </div>
-                <p class="text-sm text-gray-500" id="email-description"></p>
-                <p class="text-sm text-red-600 hidden" id="email-error"></p>
-            </div>
-
-            <div>
-                <label for="phone" class="block text-sm/6 font-medium text-gray-900">
+            <div class="contact-form__field">
+                <label for="phone"
+                       class="contact-form__label
+                              block mb-1.5
+                              text-[12px] md:text-[13px] font-medium
+                              text-secondary-900">
                     Telefoonnummer
                 </label>
-                <div class="mt-2">
-                    <input
-                        type="text"
-                        name="phone"
-                        id="phone"
-                        class="block w-full rounded-md px-3 py-1.5
-                                bg-white
-                                text-base text-gray-900
-                                outline-1 -outline-offset-1 outline-gray-300
-                                placeholder:text-gray-400
-                                focus:outline-2 focus:-outline-offset-2 focus:outline-primary-500
-                                sm:text-sm/6"
-                    >
-                </div>
-                <p class="text-sm text-gray-500" id="phone-description"></p>
-                <p class="text-sm text-red-600 hidden" id="phone-error"></p>
+                <input type="tel"
+                       name="phone"
+                       id="phone"
+                       autocomplete="tel"
+                       class="contact-form__input
+                              block w-full
+                              px-4 py-3 rounded-xl
+                              bg-white
+                              text-sm text-secondary-900
+                              placeholder:text-secondary-900/35
+                              ring-1 ring-secondary-900/12
+                              transition-[box-shadow,background-color,ring-color] duration-200 ease-out
+                              hover:ring-secondary-900/20
+                              focus:outline-none focus:ring-2 focus:ring-primary-500/45
+                              focus:bg-white
+                              aria-[invalid=true]:ring-2 aria-[invalid=true]:ring-primary-500/60" />
+                <p class="contact-form__error
+                          hidden mt-1.5
+                          text-[11px] font-medium text-primary-500"
+                   id="phone-error"></p>
             </div>
 
-            <div>
-                <label for="subject" class="block text-sm/6 font-medium text-gray-900">
+            <div class="contact-form__field">
+                <label for="subject"
+                       class="contact-form__label
+                              block mb-1.5
+                              text-[12px] md:text-[13px] font-medium
+                              text-secondary-900">
                     Onderwerp
                 </label>
-                <div class="mt-2">
-                    <input
-                        type="text"
-                        name="subject"
-                        id="subject"
-                        class="block w-full rounded-md px-3 py-1.5
-                                bg-white
-                                text-base text-gray-900
-                                outline-1 -outline-offset-1 outline-gray-300
-                                placeholder:text-gray-400
-                                focus:outline-2 focus:-outline-offset-2 focus:outline-primary-500
-                                sm:text-sm/6"
-                    >
-                </div>
-                <p class="text-sm text-gray-500" id="subject-description"></p>
-                <p class="text-sm text-red-600 hidden" id="subject-error"></p>
+                <input type="text"
+                       name="subject"
+                       id="subject"
+                       class="contact-form__input
+                              block w-full
+                              px-4 py-3 rounded-xl
+                              bg-white
+                              text-sm text-secondary-900
+                              placeholder:text-secondary-900/35
+                              ring-1 ring-secondary-900/12
+                              transition-[box-shadow,background-color,ring-color] duration-200 ease-out
+                              hover:ring-secondary-900/20
+                              focus:outline-none focus:ring-2 focus:ring-primary-500/45
+                              focus:bg-white
+                              aria-[invalid=true]:ring-2 aria-[invalid=true]:ring-primary-500/60" />
+                <p class="contact-form__error
+                          hidden mt-1.5
+                          text-[11px] font-medium text-primary-500"
+                   id="subject-error"></p>
             </div>
+        </div>
 
-            <div>
-                <label for="message" class="block text-sm/6 font-medium text-gray-900">
-                    Bericht <span class="text-primary-400">*</span>
-                </label>
-                <div class="mt-2">
-                    <textarea
-                        name="message"
-                        id="message"
-                        rows="7"
-                        required
-                        class="block w-full rounded-md px-3 py-1.5
-                                bg-white
-                                text-base text-gray-900
-                                outline-1 -outline-offset-1 outline-gray-300
-                                placeholder:text-gray-400
-                                focus:outline-2 focus:-outline-offset-2 focus:outline-primary-500
-                                sm:text-sm/6"
-                    ></textarea>
-                </div>
-                <p class="text-sm text-gray-500" id="message-description"></p>
-                <p class="text-sm text-red-600 hidden" id="message-error"></p>
-            </div>
+        <div class="contact-form__field">
+            <label for="message"
+                   class="contact-form__label
+                          block mb-1.5
+                          text-[12px] md:text-[13px] font-medium
+                          text-secondary-900">
+                Bericht
+                <span class="contact-form__required text-primary-500" aria-hidden="true">*</span>
+                <span class="sr-only">(verplicht)</span>
+            </label>
+            <textarea name="message"
+                      id="message"
+                      rows="6"
+                      required
+                      class="contact-form__textarea
+                             block w-full resize-y
+                             px-4 py-3 rounded-xl
+                             bg-white
+                             text-sm text-secondary-900 leading-relaxed
+                             placeholder:text-secondary-900/35
+                             ring-1 ring-secondary-900/12
+                             transition-[box-shadow,background-color,ring-color] duration-200 ease-out
+                             hover:ring-secondary-900/20
+                             focus:outline-none focus:ring-2 focus:ring-primary-500/45
+                             focus:bg-white
+                             aria-[invalid=true]:ring-2 aria-[invalid=true]:ring-primary-500/60"></textarea>
+            <p class="contact-form__error
+                      hidden mt-1.5
+                      text-[11px] font-medium text-primary-500"
+               id="message-error"></p>
+        </div>
 
-            <div class="flex gap-3">
-                <div class="flex h-6 shrink-0 items-center">
-                <div class="group grid size-4 grid-cols-1">
-                    <input
-                    id="privacy"
-                    aria-describedby="privacy-description"
-                    name="privacy"
-                    type="checkbox"
-                    required
-                    class="col-start-1 row-start-1 appearance-none rounded-sm border border-gray-300 bg-white checked:border-primary-500 checked:bg-primary-500 indeterminate:border-primary-500 indeterminate:bg-primary-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 disabled:border-gray-300 disabled:bg-gray-100 disabled:checked:bg-gray-100 forced-colors:appearance-auto"
-                    >
-                    <svg class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-white group-has-disabled:stroke-gray-950/25" viewBox="0 0 14 14" fill="none">
-                    <path class="opacity-0 group-has-checked:opacity-100" d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                    <path class="opacity-0 group-has-indeterminate:opacity-100" d="M3 7H11" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <div class="contact-form__field contact-form__privacy
+                    flex items-start gap-3
+                    pt-1">
+
+            <label for="privacy"
+                   class="relative inline-flex items-center justify-center shrink-0
+                          mt-0.5
+                          cursor-pointer
+                          group/check">
+                <input id="privacy"
+                       name="privacy"
+                       type="checkbox"
+                       required
+                       aria-describedby="privacy-description"
+                       class="peer sr-only" />
+
+                <span class="contact-form__checkbox
+                             inline-flex items-center justify-center
+                             w-5 h-5 rounded-md
+                             bg-white
+                             ring-1 ring-secondary-900/15
+                             transition-[background-color,box-shadow,ring-color] duration-200 ease-out
+                             group-hover/check:ring-secondary-900/30
+                             peer-checked:bg-primary-500 peer-checked:ring-primary-500
+                             peer-focus-visible:ring-2 peer-focus-visible:ring-primary-500/60
+                             peer-checked:[&_svg]:opacity-100 peer-checked:[&_svg]:scale-100">
+
+                    <svg viewBox="0 0 14 14" fill="none"
+                         class="w-3.5 h-3.5
+                                opacity-0 scale-75
+                                transition-[opacity,transform] duration-200 ease-out">
+                        <path d="M3 7.5 6 10.5 11 4"
+                              stroke="white"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round" />
                     </svg>
-                </div>
-                <p class="text-sm text-red-600 hidden" id="privacy-error"></p>
-                </div>
-                <div class="text-sm/6">
-                <label for="privacy" class="font-medium text-gray-900">Privacy verklaring <span class="text-primary-400">*</span></label>
-                <p id="privacy-description" class="text-gray-500">Ik ga akkoord met de privacy verklaring en verwerking van mijn persoonsgegevens.</p>
-                </div>
-            </div>
+                </span>
+            </label>
 
-            <div>
-                <x-button type="submit" color="primary">
-                    Versturen
-                </x-button>
+            <div class="text-[12px] md:text-[13px] leading-snug">
+                <label for="privacy"
+                       class="block font-medium text-secondary-900 cursor-pointer">
+                    Privacyverklaring
+                    <span class="text-primary-500" aria-hidden="true">*</span>
+                    <span class="sr-only">(verplicht)</span>
+                </label>
+                <p id="privacy-description"
+                   class="text-secondary-900/65 mt-0.5">
+                    Ik ga akkoord met de privacyverklaring en verwerking van mijn persoonsgegevens.
+                </p>
+                <p class="contact-form__error
+                          hidden mt-1
+                          text-[11px] font-medium text-primary-500"
+                   id="privacy-error"></p>
             </div>
+        </div>
 
-        </form>
-    </div>
+        <div class="contact-form__submit mt-3">
+            <x-cta type="submit" class="w-full justify-center">
+                Versturen
+            </x-cta>
+        </div>
+    </form>
 </div>
