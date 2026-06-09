@@ -122,7 +122,7 @@
                                            aspect-[4/3] md:aspect-[16/9]">
 
                                 <img src="{{ $image }}"
-                                     alt="{{ $item['name'] }}"
+                                     alt="{{ !empty($item['alt']) ? $item['alt'] : $item['name'] }}"
                                      class="timeline-item__img
                                             absolute inset-0
                                             w-full h-full

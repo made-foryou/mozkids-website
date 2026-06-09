@@ -60,6 +60,10 @@ class TimelineStrip implements ContentStrip
                             ])
                             ->preserveFilenames(),
 
+                        TextInput::make('alt')
+                            ->label('Alt-tekst afbeelding')
+                            ->helperText('Korte beschrijving van de afbeelding voor toegankelijkheid en SEO.'),
+
                         RichEditor::make('content')
                             ->label('Inhoud')
                             ->toolbarButtons([
