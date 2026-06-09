@@ -15,19 +15,19 @@
     <div
         class="column-text pt-0 @if ($columns === 3) pb-4 @else pb-10 @endif
             text-sm text-secondary-900 font-sans
-            @if ($columns !== 3) @if ($left) md:pb-12.5 md:mr-18 @else md:pb-10 md:ml-18 @endif @endif"
+            @if ($columns !== 3) md:pb-12.5 md:mr-18 @endif"
     >
 @elseif ($count > 1 && $last)
 <div
     class="column-text pb-0 @if ($columns === 3) pt-0 @else pt-0 @endif
         text-sm text-secondary-900 font-sans
-         @if ($columns !== 3) @if ($left) md:pt-0 md:mr-18 @else md:pt-0 md:ml-18 @endif @endif"
+         @if ($columns !== 3) md:pt-0 md:mr-18 @endif"
 >
 @else
 <div
     class="column-text @if ($columns === 3) py-4 @else pb-10 @endif
         text-sm text-secondary-900 font-sans
-        @if ($columns !== 3) @if ($left) md:py-0 md:mr-18 @else md:pb-10 md:ml-18 @endif @endif"
+        @if ($columns !== 3) md:py-0 md:mr-18 @endif"
 >
 @endif
 
