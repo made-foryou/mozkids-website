@@ -1,5 +1,6 @@
 @php
     $currentUrl = rtrim(request()->url(), '/');
+    $delayCounter = 0;
 @endphp
 
 <x-sidebar>
@@ -52,12 +53,20 @@
             @foreach ($items as $item)
                 @php
                     $itemUrl = rtrim(Cms::url($item->linkable), '/');
+                    $hasChildren = $item->children->isNotEmpty();
+                    $childActive = $hasChildren && $item->children->contains(function ($child) use ($currentUrl) {
+                        $url = rtrim(Cms::url($child->linkable), '/');
+                        return $url === $currentUrl
+                            || ($url !== rtrim(url('/'), '/') && str_starts_with($currentUrl, $url . '/'));
+                    });
                     $isActive = $itemUrl === $currentUrl
-                        || ($itemUrl !== rtrim(url('/'), '/') && str_starts_with($currentUrl, $itemUrl . '/'));
+                        || ($itemUrl !== rtrim(url('/'), '/') && str_starts_with($currentUrl, $itemUrl . '/'))
+                        || $childActive;
+                    $delayCounter++;
                 @endphp
 
                 <li class="sidebar-item"
-                    style="--sidebar-delay: {{ 80 + ($loop->index * 60) }}ms">
+                    style="--sidebar-delay: {{ 80 + ($delayCounter * 55) }}ms">
                     <a href="{{ $itemUrl }}"
                        @if ($isActive) aria-current="page" @endif
                        class="sidebar-link group relative
@@ -91,6 +100,68 @@
                             @include('svg.arrow-right')
                         </span>
                     </a>
+
+                    @if ($hasChildren)
+                        <ul role="list"
+                            class="sidebar-sublist relative
+                                   ml-4 mt-1 mb-2 pl-5
+                                   flex flex-col gap-0.5">
+                            <span class="absolute left-0 top-2 bottom-2 w-px
+                                         bg-gradient-to-b from-secondary-900/15 via-secondary-900/10 to-transparent"
+                                  aria-hidden="true"></span>
+
+                            @foreach ($item->children as $child)
+                                @php
+                                    $childUrl = rtrim(Cms::url($child->linkable), '/');
+                                    $isChildActive = $childUrl === $currentUrl
+                                        || ($childUrl !== rtrim(url('/'), '/') && str_starts_with($currentUrl, $childUrl . '/'));
+                                    $delayCounter++;
+                                @endphp
+
+                                <li class="sidebar-item sidebar-subitem relative"
+                                    style="--sidebar-delay: {{ 80 + ($delayCounter * 55) }}ms">
+                                    <span class="absolute -left-5 top-1/2 w-3 h-px
+                                                 bg-secondary-900/12"
+                                          aria-hidden="true"></span>
+
+                                    <a href="{{ $childUrl }}"
+                                       @if ($isChildActive) aria-current="page" @endif
+                                       class="sidebar-sublink group relative
+                                              flex items-center gap-3
+                                              px-3 py-2 rounded-xl
+                                              text-[15px] tracking-[0.005em] font-medium
+                                              text-secondary-900/75
+                                              transition-all duration-300 ease-out
+                                              hover:bg-primary-500/8 hover:text-primary-500
+                                              hover:translate-x-1
+                                              focus-visible:outline-2 focus-visible:outline-offset-2
+                                              focus-visible:outline-primary-500
+                                              {{ $isChildActive ? 'is-active text-primary-500' : '' }}">
+
+                                        <span class="sidebar-sublink__marker inline-flex
+                                                     w-1 h-1 rounded-full
+                                                     bg-primary-500/30
+                                                     transition-all duration-300
+                                                     group-hover:bg-primary-500 group-hover:w-1.5 group-hover:h-1.5
+                                                     {{ $isChildActive ? '!bg-primary-500 !w-1.5 !h-1.5' : '' }}"
+                                              aria-hidden="true"></span>
+
+                                        <span class="flex-1">{{ $child->linkName }}</span>
+
+                                        <span class="sidebar-sublink__arrow inline-flex items-center
+                                                     text-primary-500/55
+                                                     -translate-x-1 opacity-0
+                                                     transition-all duration-300 ease-out
+                                                     group-hover:translate-x-0 group-hover:opacity-100
+                                                     {{ $isChildActive ? '!opacity-100 !translate-x-0' : '' }}"
+                                              aria-hidden="true">
+                                            @include('svg.arrow-right')
+                                        </span>
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    @endif
                 </li>
             @endforeach
 
@@ -98,7 +169,7 @@
 
         @if (!empty($donationPage))
             <div class="sidebar-footer mt-8 pt-8 border-t border-secondary-900/8"
-                 style="--sidebar-delay: {{ 80 + (count($items) * 60) + 60 }}ms">
+                 style="--sidebar-delay: {{ 80 + (($delayCounter + 1) * 55) }}ms">
                 <a
                     href="{{ Cms::url($donationPage) }}"
                     class="sidebar-cta group relative

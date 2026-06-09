@@ -189,12 +189,82 @@ html.sidebar-open .burger .burger__bar--3 {
     width: 100%;
 }
 
+/* -------------------------------------------------------------------------- */
+/*  Submenu — desktop dropdown + mobiele sublijst                             */
+/* -------------------------------------------------------------------------- */
+
+/* Hover-open van het dropdown panel (desktop). focus-within voert hetzelfde
+   gedrag uit voor toetsenbordgebruikers. Een kleine veiligheidsbuffer onder
+   het panel voorkomt dat de muis 'tussen' de parent en het panel raakt. */
+@media (min-width: 1024px) {
+    /* Centrering + initiele lichte upward translate, beide via de moderne
+       `translate`-property zodat we Tailwind v4 niet dubbel uitvoeren. */
+    .nav-item[data-has-children] > .submenu {
+        translate: -50% 4px;
+    }
+
+    .nav-item[data-has-children] > .submenu::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -16px;
+        right: -16px;
+        height: 16px;
+    }
+
+    .nav-item[data-has-children]:hover > .submenu,
+    .nav-item[data-has-children]:focus-within > .submenu {
+        opacity: 1;
+        translate: -50% 0;
+        pointer-events: auto;
+    }
+
+    .nav-item[data-has-children]:hover > .nav-link .nav-link__chevron,
+    .nav-item[data-has-children]:focus-within > .nav-link .nav-link__chevron {
+        transform: rotate(-180deg);
+    }
+}
+
+/* Reveal van submenu items: gestaffeld vanaf boven naar onder. */
+@keyframes submenu-item-in {
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (min-width: 1024px) {
+    .nav-item[data-has-children]:hover > .submenu .submenu-item,
+    .nav-item[data-has-children]:focus-within > .submenu .submenu-item {
+        animation: submenu-item-in 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        animation-delay: var(--submenu-delay, 80ms);
+        opacity: 0;
+    }
+}
+
+/* Actieve submenu link: rustige indicator door achtergrond + kleur — al
+   ingesteld via utility classes; deze laag forceert de achtergrond bij
+   meerdere selectors zonder !important conflicten. */
+.submenu-link.is-active .submenu-link__marker {
+    box-shadow: 0 0 0 3px rgb(228 35 19 / 0.12);
+}
+
+/* Mobiel: sub-items volgen de gestaffelde sidebar-reveal — geen extra regels
+   nodig dankzij dezelfde `--sidebar-delay` variabele die in de blade wordt
+   doorgegeven. */
+
 /* Respecteer reduced-motion-voorkeuren. */
 @media (prefers-reduced-motion: reduce) {
     .nav-list > li,
     .made-sidebar.block .sidebar-item,
     .made-sidebar.block .sidebar-footer,
-    .made-sidebar.block .sidebar-eyebrow {
+    .made-sidebar.block .sidebar-eyebrow,
+    .nav-item[data-has-children]:hover > .submenu .submenu-item,
+    .nav-item[data-has-children]:focus-within > .submenu .submenu-item {
         animation: none;
         opacity: 1;
         transform: none;

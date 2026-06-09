@@ -24,16 +24,27 @@
             @foreach ($items as $item)
                 @php
                     $itemUrl = rtrim(Cms::url($item->linkable), '/');
+                    $hasChildren = $item->children->isNotEmpty();
+                    $childActive = $hasChildren && $item->children->contains(function ($child) use ($currentUrl) {
+                        $url = rtrim(Cms::url($child->linkable), '/');
+                        return $url === $currentUrl
+                            || ($url !== rtrim(url('/'), '/') && str_starts_with($currentUrl, $url . '/'));
+                    });
                     $isActive = $itemUrl === $currentUrl
-                        || ($itemUrl !== rtrim(url('/'), '/') && str_starts_with($currentUrl, $itemUrl . '/'));
+                        || ($itemUrl !== rtrim(url('/'), '/') && str_starts_with($currentUrl, $itemUrl . '/'))
+                        || $childActive;
                 @endphp
 
-                <li class="relative" style="--nav-delay: {{ $loop->index * 60 }}ms">
+                <li class="nav-item relative"
+                    style="--nav-delay: {{ $loop->index * 60 }}ms"
+                    @if ($hasChildren) data-has-children @endif
+                >
                     <a
                         href="{{ $itemUrl }}"
                         title="{{ $item->linkable->meta->title }}"
                         @if ($isActive) aria-current="page" @endif
-                        class="nav-link group relative inline-flex items-center
+                        @if ($hasChildren) aria-haspopup="true" aria-expanded="false" @endif
+                        class="nav-link group relative inline-flex items-center gap-1.5
                                px-4 py-2.5 rounded-full
                                text-[13px] tracking-[0.01em] font-medium
                                text-secondary-900/85
@@ -50,6 +61,17 @@
 
                         <span class="nav-link__label relative z-10">{{ $item->linkName }}</span>
 
+                        @if ($hasChildren)
+                            <span class="nav-link__chevron relative z-10 inline-flex
+                                         transition-transform duration-300 ease-out"
+                                  aria-hidden="true">
+                                <svg viewBox="0 0 12 12" class="w-2.5 h-2.5 fill-none stroke-current"
+                                     stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M3 4.5 6 7.5 9 4.5" />
+                                </svg>
+                            </span>
+                        @endif
+
                         <span class="nav-link__underline absolute left-4 right-4 bottom-1
                                      h-px origin-left scale-x-0
                                      bg-current
@@ -63,6 +85,88 @@
                                   aria-hidden="true"></span>
                         @endif
                     </a>
+
+                    @if ($hasChildren)
+                        <div class="submenu absolute left-1/2 top-full pt-4
+                                    min-w-[260px]
+                                    opacity-0 pointer-events-none
+                                    transition-[opacity,translate] duration-300 ease-out
+                                    z-40"
+                             role="region"
+                             aria-label="Submenu van {{ $item->linkName }}">
+
+                            <div class="submenu__panel relative
+                                        rounded-2xl
+                                        bg-secondary-500/92 backdrop-blur-xl
+                                        ring-1 ring-secondary-900/8
+                                        shadow-[0_24px_60px_-24px_rgba(49,48,47,0.35)]
+                                        p-2">
+
+                                <span class="submenu__tail absolute left-1/2 -top-1.5 -translate-x-1/2
+                                             w-3 h-3 rotate-45
+                                             bg-secondary-500/92
+                                             ring-1 ring-secondary-900/8
+                                             rounded-[3px]"
+                                      aria-hidden="true"></span>
+
+                                <p class="submenu__eyebrow
+                                          px-3 pt-1.5 pb-1
+                                          text-[9px] font-semibold uppercase tracking-[0.22em]
+                                          text-secondary-800/60">
+                                    {{ $item->linkName }}
+                                </p>
+
+                                <ul class="relative flex flex-col gap-px" role="menu">
+                                    @foreach ($item->children as $child)
+                                        @php
+                                            $childUrl = rtrim(Cms::url($child->linkable), '/');
+                                            $isChildActive = $childUrl === $currentUrl
+                                                || ($childUrl !== rtrim(url('/'), '/') && str_starts_with($currentUrl, $childUrl . '/'));
+                                        @endphp
+
+                                        <li role="none"
+                                            class="submenu-item"
+                                            style="--submenu-delay: {{ 80 + ($loop->index * 50) }}ms">
+                                            <a
+                                                href="{{ $childUrl }}"
+                                                role="menuitem"
+                                                @if ($isChildActive) aria-current="page" @endif
+                                                class="submenu-link group/sub relative
+                                                       flex items-center gap-3
+                                                       px-3 py-2.5 rounded-xl
+                                                       text-[13px] font-medium tracking-[0.01em]
+                                                       text-secondary-900/85
+                                                       transition-colors duration-200 ease-out
+                                                       hover:bg-primary-500/8 hover:text-primary-500
+                                                       focus-visible:outline-2 focus-visible:outline-offset-1
+                                                       focus-visible:outline-primary-500
+                                                       {{ $isChildActive ? 'is-active text-primary-500 bg-primary-500/6' : '' }}"
+                                            >
+                                                <span class="submenu-link__marker
+                                                             inline-flex items-center justify-center
+                                                             w-1 h-1 rounded-full bg-primary-500/30
+                                                             transition-all duration-300 ease-out
+                                                             group-hover/sub:bg-primary-500 group-hover/sub:w-1.5 group-hover/sub:h-1.5
+                                                             {{ $isChildActive ? '!bg-primary-500 !w-1.5 !h-1.5' : '' }}"
+                                                      aria-hidden="true"></span>
+
+                                                <span class="flex-1">{{ $child->linkName }}</span>
+
+                                                <span class="submenu-link__arrow inline-flex items-center
+                                                             text-primary-500/55
+                                                             -translate-x-1 opacity-0
+                                                             transition-all duration-300 ease-out
+                                                             group-hover/sub:translate-x-0 group-hover/sub:opacity-100"
+                                                      aria-hidden="true">
+                                                    @include('svg.arrow-right')
+                                                </span>
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                    @endif
                 </li>
             @endforeach
 
