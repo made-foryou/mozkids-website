@@ -4,7 +4,7 @@
                 lg:pt-4 lg:pb-12
                 [&:first-child]:pt-12 lg:[&:first-child]:pt-16">
 
-    <x-container class="max-w-4xl">
+    <x-container class="max-w-6xl">
 
         @if (!empty($title))
             <h1 class="text-strip__title
