@@ -62,3 +62,160 @@ figure > img {
     width: 100%;
     height: 100%;
 }
+
+/* -------------------------------------------------------------------------- */
+/*  Navigation — Verfijnd Warm                                                */
+/* -------------------------------------------------------------------------- */
+
+/* Scroll-aware header: krimpt subtiel met een verfijnde rand & shadow. */
+.site-header.is-scrolled {
+    padding-block: 0.875rem;
+    background-color: rgb(244 241 234 / 0.86);
+    border-bottom-color: rgb(49 48 47 / 0.06);
+    box-shadow: 0 8px 28px -18px rgb(49 48 47 / 0.18);
+}
+
+.site-header .nav-logo svg,
+.site-header .sidebar-logo svg {
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.site-header.is-scrolled .nav-logo svg {
+    transform: scale(0.92);
+}
+
+/* Vermijd horizontale scroll bij open mobiel menu. */
+html.sidebar-open,
+html.sidebar-open body {
+    overflow: hidden;
+}
+
+/* Actieve link: subtiele rust onder de tekst — gebruikt CSS-variabele. */
+.nav-link.is-active .nav-link__underline {
+    transform: scaleX(1);
+    background-color: rgb(228 35 19 / 0.45);
+}
+
+/* Pulse op de actieve dot (en sidebar bullet). */
+@keyframes nav-pulse {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgb(228 35 19 / 0.4);
+    }
+    50% {
+        box-shadow: 0 0 0 6px rgb(228 35 19 / 0);
+    }
+}
+
+.nav-pulse {
+    animation: nav-pulse 2.4s ease-out infinite;
+}
+
+/* Kloppend hartje op de doneer-cta. */
+@keyframes heart-beat {
+    0%, 28%, 100% { transform: scale(1); }
+    14%           { transform: scale(1.18); }
+    42%           { transform: scale(1.12); }
+}
+
+.donate-cta__beat {
+    transform-origin: center;
+    animation: heart-beat 2.4s ease-in-out infinite;
+}
+
+.donate-cta:hover .donate-cta__beat {
+    animation-duration: 1.1s;
+}
+
+/* Subtle entrance op desktop nav items wanneer de pagina laadt. */
+@keyframes nav-item-in {
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (min-width: 1024px) {
+    .nav-list > li {
+        opacity: 0;
+        animation: nav-item-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        animation-delay: calc(120ms + var(--nav-delay, 0ms));
+    }
+}
+
+/* Gestaffelde reveal voor mobiele sidebar items. */
+@keyframes sidebar-item-in {
+    from {
+        opacity: 0;
+        transform: translateX(14px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.made-sidebar.block .sidebar-item,
+.made-sidebar.block .sidebar-footer {
+    opacity: 0;
+    animation: sidebar-item-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: var(--sidebar-delay, 100ms);
+}
+
+.made-sidebar.block .sidebar-eyebrow {
+    opacity: 0;
+    animation: sidebar-item-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: 60ms;
+}
+
+/* Burger → X transformatie wanneer de sidebar open is. */
+html.sidebar-open .burger .burger__bar--1 {
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+    width: 100%;
+}
+
+html.sidebar-open .burger .burger__bar--2 {
+    opacity: 0;
+    transform: translateY(-50%) scaleX(0);
+}
+
+html.sidebar-open .burger .burger__bar--3 {
+    bottom: 50%;
+    transform: translateY(50%) rotate(-45deg);
+    width: 100%;
+}
+
+/* Respecteer reduced-motion-voorkeuren. */
+@media (prefers-reduced-motion: reduce) {
+    .nav-list > li,
+    .made-sidebar.block .sidebar-item,
+    .made-sidebar.block .sidebar-footer,
+    .made-sidebar.block .sidebar-eyebrow {
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+
+    .donate-cta__beat,
+    .nav-pulse {
+        animation: none;
+    }
+
+    .site-header,
+    .nav-logo svg,
+    .nav-link,
+    .nav-link__bg,
+    .nav-link__underline,
+    .donate-cta,
+    .donate-cta__sheen,
+    .donate-cta__arrow,
+    .burger__bar,
+    .sidebar-close svg,
+    .sidebar-link {
+        transition-duration: 0.001ms !important;
+    }
+}

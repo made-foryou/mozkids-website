@@ -23,8 +23,9 @@ const Classes = {
     Flex: 'flex',
     Opacity0: 'opacity-0',
     Opacity100: 'opacity-100',
-    MinusTranslateXFull: '-translate-x-full',
+    TranslateXFull: 'translate-x-full',
     TranslateX0: 'translate-x-0',
+    SidebarOpen: 'sidebar-open',
 }
 
 export default class Sidebar {
@@ -148,18 +149,19 @@ export default class Sidebar {
         this._backdrop.classList.replace(Classes.Hide, Classes.Block);
         this._menu.classList.replace(Classes.Hide, Classes.Flex);
         this._closeButton.classList.replace(Classes.Hide, Classes.Flex);
-        
+        document.documentElement.classList.add(Classes.SidebarOpen);
+
         window.setTimeout(() => {
             this._backdrop.classList.replace(Classes.Opacity0, Classes.Opacity100);
-            this._menu.classList.replace(Classes.MinusTranslateXFull, Classes.TranslateX0);
+            this._menu.classList.replace(Classes.TranslateXFull, Classes.TranslateX0);
             this._closeButton.classList.replace(Classes.Opacity0, Classes.Opacity100);
 
             window.setTimeout(() => {
                 this._state.Open = true;
 
                 this.stopAnimating();
-            }, 300);
-        }, 100);
+            }, 500);
+        }, 60);
     }
 
     close() {
@@ -174,8 +176,9 @@ export default class Sidebar {
         this.startAnimating();
 
         this._backdrop.classList.replace(Classes.Opacity100, Classes.Opacity0);
-        this._menu.classList.replace(Classes.TranslateX0, Classes.MinusTranslateXFull);
+        this._menu.classList.replace(Classes.TranslateX0, Classes.TranslateXFull);
         this._closeButton.classList.replace(Classes.Opacity100, Classes.Opacity0);
+        document.documentElement.classList.remove(Classes.SidebarOpen);
 
         window.setTimeout(() => {
             this._element.classList.replace(Classes.Block, Classes.Hide);
@@ -189,7 +192,7 @@ export default class Sidebar {
                 this.stopAnimating();
             }, 100);
 
-        }, 300);
+        }, 500);
     }
 
     isOpen() {

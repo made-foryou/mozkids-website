@@ -1,6 +1,7 @@
 import './bootstrap';
 
 import Sidebar from './modules/sidebar';
+import Navigation from './modules/navigation';
 import HighlightText, { Highlight } from './modules/highlight-text';
 import PhotoSlider from './modules/photo-slider';
 import MailchimpForm from './modules/mailchim-form';
@@ -12,6 +13,7 @@ import 'swiper/css';
 
 function init() {
     Sidebar.initialize();
+    Navigation.initialize();
     PhotoSlider.initialize();
     MailchimpForm.initialize();
     ButtonRadio.initialize();
