@@ -2,7 +2,7 @@
     "name": "made-foryou/mozkids-website",
     "type": "project",
     "description": "The skeleton application for the Laravel framework.",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "keywords": [
         "laravel",
         "framework"

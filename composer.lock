@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b4a97723fe2be7788db3ea4e91807c6e",
+    "content-hash": "260f809de353c726978319c435de98f8",
     "packages": [
         {
             "name": "anourvalar/eloquent-serialize",
@@ -3879,16 +3879,16 @@
         },
         {
             "name": "made-foryou/cms",
-            "version": "0.16.0",
+            "version": "0.16.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/made-foryou/cms.git",
-                "reference": "8b9e9e9b8e76cd8ea7099cc6a7b76aaefc274acf"
+                "reference": "c601b4ae81e03b378baf0b94812492223b303525"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/made-foryou/cms/zipball/8b9e9e9b8e76cd8ea7099cc6a7b76aaefc274acf",
-                "reference": "8b9e9e9b8e76cd8ea7099cc6a7b76aaefc274acf",
+                "url": "https://api.github.com/repos/made-foryou/cms/zipball/c601b4ae81e03b378baf0b94812492223b303525",
+                "reference": "c601b4ae81e03b378baf0b94812492223b303525",
                 "shasum": ""
             },
             "require": {
@@ -3984,7 +3984,7 @@
                     "url": "https://github.com/made-foryou"
                 }
             ],
-            "time": "2026-06-16T09:37:47+00:00"
+            "time": "2026-06-16T13:13:52+00:00"
         },
         {
             "name": "maennchen/zipstream-php",
