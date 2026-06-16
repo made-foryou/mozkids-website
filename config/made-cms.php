@@ -143,6 +143,7 @@ return [
                 Strips\TimelineStrip::class,
                 Strips\FaqStrip::class,
                 Strips\BoardMembersStrip::class,
+                Strips\CookieDeclarationStrip::class,
             ],
 
             /**
