@@ -30,17 +30,29 @@ export default class PhotoSlider {
         this._element.setAttribute(Data.Identifier, this._identifier);
         PhotoSlider.instances[this._identifier] = this;
 
-        this._originalSlideCount = this._element.querySelectorAll('.swiper-slide:not(.swiper-slide-duplicate)').length;
+        this._originalSlideCount = this._element.querySelectorAll('.swiper-slide').length;
+
+        const enableLoop = this._originalSlideCount > 1;
+
+        // Swiper's loop met slidesPerView: 'auto' + centeredSlides heeft genoeg
+        // slides nodig om aan beide kanten van de actieve slide te kunnen tonen.
+        // Met minder dan 5 foto's plaatst de loop bij het laden alle slides aan
+        // één kant, waardoor de actieve slide tegen de rand staat en de andere
+        // kant leeg blijft. We dupliceren daarom de volledige set tot er genoeg
+        // slides zijn; de teller mapt via modulo terug naar de echte foto's.
+        if (enableLoop && this._originalSlideCount < 5) {
+            const wrapper = this._element.querySelector('.swiper-wrapper');
+            const originals = Array.from(wrapper.children);
+
+            while (wrapper.children.length < 5) {
+                originals.forEach((node) => wrapper.appendChild(node.cloneNode(true)));
+            }
+        }
 
         const next = this._section?.querySelector(Selector.NextElement)
             ?? this._element.querySelector(Selector.NextElement);
         const prev = this._section?.querySelector(Selector.PreviousElement)
             ?? this._element.querySelector(Selector.PreviousElement);
-
-        // Loop heeft genoeg slides nodig om duplicates te maken; met
-        // slidesPerView: 'auto' + centeredSlides werkt loop pas vanaf 3 slides
-        // betrouwbaar — onder dat aantal vallen we terug op een lineaire slider.
-        const enableLoop = this._originalSlideCount >= 3;
 
         this._instance = new Swiper(this._element, {
 
@@ -91,7 +103,7 @@ export default class PhotoSlider {
         }
 
         const update = () => {
-            const index = (this._instance.realIndex ?? 0) + 1;
+            const index = ((this._instance.realIndex ?? 0) % totalCount) + 1;
 
             if (current) {
                 current.textContent = String(index).padStart(2, '0');
