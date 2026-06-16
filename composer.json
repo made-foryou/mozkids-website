@@ -20,7 +20,7 @@
         "laravel/framework": "^11.31",
         "laravel/nightwatch": "^1.10",
         "laravel/tinker": "^2.9",
-        "made-foryou/cms": "^0.15",
+        "made-foryou/cms": "^0.16",
         "mailchimp/marketing": "^3.0",
         "nembie/iban-rule": "^1.0",
         "spatie/laravel-honeypot": "^4.6",
