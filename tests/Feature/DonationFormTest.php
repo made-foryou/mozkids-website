@@ -85,6 +85,30 @@ class DonationFormTest extends TestCase
         });
     }
 
+    #[Test]
+    public function it_renders_the_payment_method_question_with_direct_debit_preselected(): void
+    {
+        $html = (string) $this->blade('<x-columns.donation-form />');
+
+        self::assertStringContainsString('Betaalwijze', $html);
+        self::assertStringContainsString('Hoe wil je de betaling regelen?', $html);
+        self::assertStringContainsString('name="payment-method"', $html);
+        self::assertStringContainsString('Automatische incasso', $html);
+        self::assertStringContainsString('Zelf overmaken', $html);
+
+        self::assertMatchesRegularExpression(
+            '/id="payment-direct-debit"[^>]*checked/',
+            $html,
+            'De automatische incasso hoort voorgeselecteerd te zijn.',
+        );
+
+        self::assertDoesNotMatchRegularExpression(
+            '/id="payment-transfer"[^>]*checked/',
+            $html,
+            'Zelf overmaken hoort niet voorgeselecteerd te zijn.',
+        );
+    }
+
     /**
      * @param  array<string, mixed>  $overrides
      * @return array<string, mixed>

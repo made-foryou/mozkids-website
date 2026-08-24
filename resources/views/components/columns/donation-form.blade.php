@@ -292,6 +292,54 @@
                     @endforeach
                 </div>
             </fieldset>
+
+            {{-- Betaalwijze --}}
+            <fieldset class="donation-field group">
+                <legend class="contact-form__label
+                               block mb-1
+                               text-[12px] md:text-[13px] font-medium
+                               text-secondary-900">
+                    Betaalwijze
+                    <span class="text-primary-500" aria-hidden="true">*</span>
+                    <span class="sr-only">(verplicht)</span>
+                </legend>
+                <p class="text-[12px] text-secondary-900/60 mb-3">
+                    Hoe wil je de betaling regelen?
+                </p>
+
+                <div class="donation-pills flex flex-wrap gap-2">
+                    @foreach (['direct-debit' => 'Automatische incasso', 'transfer' => 'Zelf overmaken'] as $value => $label)
+                        <label class="donation-pill cursor-pointer">
+                            <input type="radio" name="payment-method" id="payment-{{ $value }}" value="{{ $value }}" required
+                                   @if ($value === 'direct-debit') checked @endif
+                                   class="peer sr-only" />
+                            <span class="donation-pill__face
+                                         inline-flex items-center justify-center
+                                         px-5 py-2.5 rounded-full
+                                         text-[13px] font-semibold tracking-[0.02em]
+                                         bg-white text-secondary-900
+                                         ring-1 ring-secondary-900/12
+                                         transition-[background-color,color,box-shadow,ring-color,transform] duration-300 ease-out
+                                         hover:ring-secondary-900/25
+                                         peer-checked:bg-primary-500 peer-checked:text-white peer-checked:ring-primary-500
+                                         peer-checked:shadow-[0_10px_22px_-10px_rgba(228,35,19,0.55)]
+                                         peer-focus-visible:ring-2 peer-focus-visible:ring-primary-500/50">
+                                {{ $label }}
+                            </span>
+                        </label>
+                    @endforeach
+                </div>
+
+                <p class="hidden group-has-[#payment-direct-debit:checked]:block
+                          mt-2.5 text-[11px] text-secondary-900/55">
+                    Ik zou graag gebruik willen maken van een automatische incasso.
+                </p>
+
+                <p class="hidden group-has-[#payment-transfer:checked]:block
+                          mt-2.5 text-[11px] text-secondary-900/55">
+                    Ik wil het bedrag graag zelf overmaken.
+                </p>
+            </fieldset>
         </section>
 
         {{-- ============================================================== --}}
