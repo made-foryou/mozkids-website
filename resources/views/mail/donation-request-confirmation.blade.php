@@ -19,6 +19,7 @@ Voor de verwerking van jouw donatie zullen wij nog contact met je opnemen.
 | Type sponsoring      | {{ $data->type }}                                 |
 | Bedrag               | € {{ number_format($data->amount, 2, ',', ',') }} |
 | Frequentie           | {{ $data->frequency }}                            |
+| Betaalwijze          | {{ $data->paymentMethod }}                        |
 | Voornaam             | {{ $data->firstname }}                            | 
 | Tussenvoegsel(s)     | {{ $data->infix }}                                | 
 | Achternaam           | {{ $data->surname }}                              |

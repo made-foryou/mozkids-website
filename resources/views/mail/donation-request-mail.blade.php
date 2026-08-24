@@ -16,6 +16,7 @@ gegevens die de aanvrager heeft ingevuld.
 | Type sponsoring      | {{ $data->type }}                                 |
 | Bedrag               | € {{ number_format($data->amount, 2, ',', ',') }} |
 | Frequentie           | {{ $data->frequency }}                            |
+| Betaalwijze          | {{ $data->paymentMethod }}                        |
 | Voornaam             | {{ $data->firstname }}                            | 
 | Tussenvoegsel(s)     | {{ $data->infix }}                                | 
 | Achternaam           | {{ $data->surname }}                              |

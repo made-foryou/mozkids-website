@@ -13,10 +13,13 @@ readonly class DonationData
 
     public string $frequency;
 
+    public string $paymentMethod;
+
     public function __construct(
         string $type,
         public float $amount,
         string $frequency,
+        string $paymentMethod,
         public string $firstname,
         public ?string $infix,
         public string $surname,
@@ -38,7 +41,12 @@ readonly class DonationData
             'monthly' => 'Maandelijks',
             'yearly' => 'Jaarlijks',
         };
-     }
+
+        $this->paymentMethod = match ($paymentMethod) {
+            'direct-debit' => 'Automatische incasso',
+            'transfer' => 'Zelf overmaken',
+        };
+    }
 
     public static function fromRequest(DonationFormRequest|Request $request): self
     {
@@ -57,6 +65,7 @@ readonly class DonationData
             type: $request->validated('type'),
             amount: $amount,
             frequency: $request->validated('frequency'),
+            paymentMethod: $request->validated('payment-method'),
             firstname: $request->validated('firstname'),
             infix: $request->validated('infix'),
             surname: $request->validated('surname'),
