@@ -21,6 +21,7 @@ class DonationFormRequest extends FormRequest
             'amount' => ['required', 'string', 'in:20,40,60,other'],
             'other-amount' => ['required_if:amount,other', 'string'],
             'frequency' => ['required', 'string', 'in:monthly,yearly,single'],
+            'payment-method' => ['required', 'string', 'in:direct-debit,transfer'],
             'firstname' => ['required', 'string', 'max:255'],
             'infix' => ['nullable', 'string', 'max:255'],
             'surname' => ['required', 'string', 'max:255'],
