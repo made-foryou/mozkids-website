@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\Feature;
 
+use App\Domains\Donation\Mail\DonationRequestConfirmationMail;
+use App\Domains\Donation\Mail\DonationRequestMail;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Mail;
 use PHPUnit\Framework\Attributes\Test;
@@ -54,6 +56,33 @@ class DonationFormTest extends TestCase
 
             $response->assertStatus(200);
         }
+    }
+
+    #[Test]
+    public function it_mentions_the_payment_method_in_both_mails(): void
+    {
+        Mail::fake();
+
+        $response = $this->postJson(
+            route('api.donate'),
+            $this->validPayload(['payment-method' => 'transfer']),
+        );
+
+        $response->assertStatus(200);
+
+        Mail::assertSent(DonationRequestMail::class, function (DonationRequestMail $mail): bool {
+            $mail->assertSeeInHtml('Betaalwijze');
+            $mail->assertSeeInHtml('Zelf overmaken');
+
+            return true;
+        });
+
+        Mail::assertSent(DonationRequestConfirmationMail::class, function (DonationRequestConfirmationMail $mail): bool {
+            $mail->assertSeeInHtml('Betaalwijze');
+            $mail->assertSeeInHtml('Zelf overmaken');
+
+            return true;
+        });
     }
 
     /**
