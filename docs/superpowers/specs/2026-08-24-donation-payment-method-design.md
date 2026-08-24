@@ -32,10 +32,10 @@ Nieuw fieldset direct onder het "Frequentie"-fieldset, binnen sectie 01:
   - `transfer` → pill "Zelf overmaken"
 - Markup en classes identiek aan het bestaande pill-patroon (zie het Frequentie-fieldset).
 - Onder de pills twee toelichtingsregels waarvan er precies één zichtbaar is, gestuurd door de
-  gekozen optie. Beide regels staan standaard op `hidden` en worden getoond met Tailwind 4's
-  `has-*`-variant op de omhullende container, gekoppeld aan het id van de bijbehorende radio:
-  `has-[#payment-direct-debit:checked]:block` respectievelijk
-  `has-[#payment-transfer:checked]:block`. Geen JavaScript nodig.
+  gekozen optie. Het fieldset krijgt de class `group`; beide regels staan standaard op `hidden`
+  en worden getoond met Tailwind 4's `group-has-*`-variant, gekoppeld aan het id van de
+  bijbehorende radio: `group-has-[#payment-direct-debit:checked]:block` respectievelijk
+  `group-has-[#payment-transfer:checked]:block`. Geen JavaScript nodig.
   - `direct-debit` (id `payment-direct-debit`): "Ik zou graag gebruik willen maken van een
     automatische incasso."
   - `transfer` (id `payment-transfer`): "Ik wil het bedrag graag zelf overmaken."
