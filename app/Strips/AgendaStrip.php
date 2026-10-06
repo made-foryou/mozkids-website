@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Strips;
 
 use App\Domains\Agenda\Models\AgendaItem;
+use App\Enums\HeadingLevel;
+use App\Schemas\HeadingSchema;
 use Filament\Forms\Components\Builder\Block;
 use Filament\Forms\Components\TextInput;
 use Illuminate\Contracts\View\View;
@@ -20,6 +22,8 @@ class AgendaStrip implements ContentStrip
     public static function render(array $attributes = []): View
     {
         $attributes['live'] = true;
+
+        $attributes = HeadingSchema::resolveViewAttributes($attributes, ['title_level' => HeadingLevel::H1]);
 
         $items = AgendaItem::query()
             ->published()
@@ -41,6 +45,8 @@ class AgendaStrip implements ContentStrip
             ->schema([
                 TextInput::make('title')
                     ->label('Titel'),
+
+                HeadingSchema::level('title_level', HeadingLevel::H1),
             ]);
     }
 }

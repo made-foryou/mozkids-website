@@ -32,12 +32,12 @@
             @endif
 
             @if (!empty($title))
-                <h2 class="faq-strip__title
+                <x-heading :level="$title_level" class="faq-strip__title
                            text-2xl md:text-3xl lg:text-4xl
                            text-secondary-900 font-semibold
                            tracking-[-0.018em] leading-[1.15] text-balance">
                     {{ $title }}
-                </h2>
+                </x-heading>
             @endif
         </x-container>
     @endif
@@ -68,6 +68,16 @@
                            hover:ring-secondary-900/10"
                     data-reveal="fade-up"
                     style="--reveal-delay: {{ 60 + ($index * 70) }}ms">
+
+                    @php
+                        // Een kop mag niet in een <button>; bij een kopniveau
+                        // komt de kop daarom om de button heen.
+                        $questionLevel = \App\Enums\HeadingLevel::resolve($item['title_level'] ?? null);
+                    @endphp
+
+                    @if ($questionLevel !== \App\Enums\HeadingLevel::None)
+                        <{{ $questionLevel->tag() }} class="faq-item__heading m-0">
+                    @endif
 
                     <button type="button"
                             class="faq-item__question
@@ -121,6 +131,10 @@
                             </svg>
                         </span>
                     </button>
+
+                    @if ($questionLevel !== \App\Enums\HeadingLevel::None)
+                        </{{ $questionLevel->tag() }}>
+                    @endif
 
                     <div class="faq-item__answer relative"
                          data-faq-content>

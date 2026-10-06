@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Schemas;
 
+use App\Enums\HeadingLevel;
 use Filament\Forms\Components\CheckboxList;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Repeater;
@@ -67,6 +68,12 @@ class ColumnSchema
             TextInput::make("subtitle")
                 ->label("Subtitel")
                 ->hidden(fn(Get $get): bool => $get("type") !== "text"),
+
+            HeadingSchema::level(
+                "subtitle_level",
+                HeadingLevel::None,
+                "Kopniveau subtitel"
+            )->hidden(fn(Get $get): bool => $get("type") !== "text"),
 
             RichEditor::make("content")
                 ->label("Inhoud")
@@ -167,6 +174,10 @@ class ColumnSchema
 
     public static function resolveViewAttributes(array $attributes): array
     {
+        $attributes = HeadingSchema::resolveViewAttributes($attributes, [
+            "subtitle_level" => HeadingLevel::None,
+        ]);
+
         if (isset($attributes["address"]) && !empty($attributes["address"])) {
             $attributes["address"] = self::resolveAddress(
                 $attributes["address"]

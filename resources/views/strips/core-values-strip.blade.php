@@ -37,14 +37,14 @@
                       aria-hidden="true"></span>
             </span>
 
-            <div class="core-card__title
+            <x-heading :level="$title_level" fallback="div" class="core-card__title
                         flex-1
                         text-2xl md:text-[1.55rem]
                         text-secondary-900 font-semibold
                         tracking-[-0.018em] leading-[1.18] text-balance"
                  data-highlightable>
-                {!! str($title)->sanitizeHtml() !!}
-            </div>
+                {{ $title }}
+            </x-heading>
 
             <span class="core-card__mark
                          pointer-events-none absolute -bottom-3 -right-3
@@ -95,13 +95,13 @@
                         </span>
                     </figure>
 
-                    <h3 class="core-card__title
+                    <x-heading :level="$value['title_level'] ?? 'h3'" class="core-card__title
                                flex-1
                                text-lg md:text-xl
                                text-secondary-900 font-semibold
                                tracking-[-0.01em] leading-snug">
                         {{ $value['title'] }}
-                    </h3>
+                    </x-heading>
                 </div>
 
                 <div class="core-card__content

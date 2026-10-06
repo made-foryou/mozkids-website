@@ -13,6 +13,7 @@
         :last="$loop->last"
         :left="$isLeft()"
         :subtitle="$item['subtitle']"
+        :subtitle-level="$item['subtitle_level'] ?? null"
         :content="$item['content']"
         :buttons="$item['buttons']"
         :columns="$columns"

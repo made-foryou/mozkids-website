@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Strips;
 
+use App\Enums\HeadingLevel;
+use App\Schemas\HeadingSchema;
 use Filament\Forms\Components\Builder\Block;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Repeater;
@@ -23,6 +25,8 @@ class BoardMembersStrip implements ContentStrip
     {
         $attributes['live'] = true;
 
+        $attributes = HeadingSchema::resolveViewAttributes($attributes, ['title_level' => HeadingLevel::H2, 'members.*.name_level' => HeadingLevel::H3]);
+
         return view('strips.' . self::id(), $attributes);
     }
 
@@ -39,6 +43,8 @@ class BoardMembersStrip implements ContentStrip
                 TextInput::make('title')
                     ->label('Titel')
                     ->helperText('Optionele display titel boven de bestuursleden.'),
+
+                HeadingSchema::level('title_level', HeadingLevel::H2),
 
                 RichEditor::make('description')
                     ->label('Omschrijving')
@@ -64,6 +70,8 @@ class BoardMembersStrip implements ContentStrip
                         TextInput::make('name')
                             ->label('Naam')
                             ->required(),
+
+                        HeadingSchema::level('name_level', HeadingLevel::H3, 'Kopniveau naam'),
 
                         FileUpload::make('image')
                             ->label('Foto')

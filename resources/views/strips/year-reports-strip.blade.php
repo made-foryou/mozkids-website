@@ -34,13 +34,13 @@
                 @endif
 
                 @if (!empty($title))
-                    <h2 class="year-reports-strip__title
+                    <x-heading :level="$title_level" class="year-reports-strip__title
                                text-2xl md:text-3xl
                                text-secondary-900 font-semibold
                                tracking-[-0.018em] leading-[1.15] text-balance"
                         data-highlightable>
                         {{ $title }}
-                    </h2>
+                    </x-heading>
                 @endif
             </header>
         @endif

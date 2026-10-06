@@ -25,13 +25,13 @@
                       aria-hidden="true"></span>
             </span>
 
-            <h1 class="agenda-strip__title
+            <x-heading :level="$title_level" class="agenda-strip__title
                        text-2xl md:text-3xl lg:text-4xl
                        text-secondary-900 font-semibold
                        tracking-[-0.018em] leading-[1.15] text-balance"
                 data-highlightable>
                 {{ $title }}
-            </h1>
+            </x-heading>
         </x-container>
     @endif
 
