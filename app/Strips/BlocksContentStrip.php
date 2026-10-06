@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Strips;
 
+use App\Enums\HeadingLevel;
+use App\Schemas\HeadingSchema;
 use Filament\Forms\Components\Builder\Block;
 use Filament\Forms;
 use Illuminate\Contracts\View\View;
@@ -19,6 +21,8 @@ class BlocksContentStrip implements ContentStrip
     public static function render(array $attributes = []): View
     {
         $attributes["live"] = true;
+
+        $attributes = HeadingSchema::resolveViewAttributes($attributes, ["items.*.title_level" => HeadingLevel::H3]);
 
         return view("strips." . self::id(), $attributes);
     }
@@ -55,6 +59,11 @@ class BlocksContentStrip implements ContentStrip
 
                             Forms\Components\TextInput::make("title")->label(
                                 "Titel"
+                            ),
+
+                            HeadingSchema::level(
+                                "title_level",
+                                HeadingLevel::H3
                             ),
 
                             Forms\Components\RichEditor::make("content")

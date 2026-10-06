@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Strips;
 
+use App\Enums\HeadingLevel;
+use App\Schemas\HeadingSchema;
 use Filament\Forms\Components\Builder\Block;
 use Filament\Forms\Components\TextInput;
 use Illuminate\Contracts\View\View;
@@ -19,6 +21,8 @@ class CookieDeclarationStrip implements ContentStrip
     public static function render(array $attributes = []): View
     {
         $attributes['live'] = true;
+
+        $attributes = HeadingSchema::resolveViewAttributes($attributes, ['title_level' => HeadingLevel::H1]);
 
         return view('strips.' . self::id(), $attributes);
     }
@@ -36,6 +40,8 @@ class CookieDeclarationStrip implements ContentStrip
                 TextInput::make('title')
                     ->label('Titel')
                     ->helperText('Optionele titel boven de cookieverklaring.'),
+
+                HeadingSchema::level('title_level', HeadingLevel::H1),
 
                 TextInput::make('url')
                     ->label('Cookiebot URL')

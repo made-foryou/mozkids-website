@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Strips;
 
+use App\Enums\HeadingLevel;
+use App\Schemas\HeadingSchema;
 use Filament\Forms\Components\Builder\Block;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Repeater;
@@ -23,6 +25,8 @@ class FaqStrip implements ContentStrip
     {
         $attributes['live'] = true;
 
+        $attributes = HeadingSchema::resolveViewAttributes($attributes, ['title_level' => HeadingLevel::H2, 'items.*.title_level' => HeadingLevel::None]);
+
         return view('strips.' . self::id(), $attributes);
     }
 
@@ -40,6 +44,8 @@ class FaqStrip implements ContentStrip
                     ->label('Titel')
                     ->helperText('Optionele display titel boven de FAQ.'),
 
+                HeadingSchema::level('title_level', HeadingLevel::H2),
+
                 Repeater::make('items')
                     ->label('Vragen')
                     ->addActionLabel('Nieuwe vraag toevoegen')
@@ -47,6 +53,8 @@ class FaqStrip implements ContentStrip
                         TextInput::make('title')
                             ->label('Vraag')
                             ->required(),
+
+                        HeadingSchema::level('title_level', HeadingLevel::None, 'Kopniveau vraag'),
 
                         FileUpload::make('image')
                             ->label('Afbeelding')

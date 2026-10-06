@@ -119,13 +119,13 @@
                             @endif
 
                             @if (!empty($item['title']))
-                                <h3 class="block-card__title
+                                <x-heading :level="$item['title_level'] ?? 'h3'" class="block-card__title
                                            mb-3
                                            text-lg md:text-xl
                                            text-secondary-900 font-semibold
                                            tracking-[-0.012em] leading-snug text-balance">
                                     {{ $item['title'] }}
-                                </h3>
+                                </x-heading>
                             @endif
 
                             <div class="block-card__content

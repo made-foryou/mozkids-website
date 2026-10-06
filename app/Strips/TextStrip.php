@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Strips;
 
+use App\Enums\HeadingLevel;
+use App\Schemas\HeadingSchema;
 use Filament\Forms\Components\Builder\Block;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\TextInput;
@@ -21,6 +23,8 @@ class TextStrip implements ContentStrip
     {
         $attributes["live"] = true;
 
+        $attributes = HeadingSchema::resolveViewAttributes($attributes, ["title_level" => HeadingLevel::H1]);
+
         return view("strips." . self::id(), $attributes);
     }
 
@@ -30,7 +34,9 @@ class TextStrip implements ContentStrip
             ->label("Tekst")
             ->icon("heroicon-s-document-text")
             ->schema([
-                TextInput::make("title"),
+                TextInput::make("title")->label("Titel"),
+
+                HeadingSchema::level("title_level", HeadingLevel::H1),
 
                 RichEditor::make("content")
                     ->label("Inhoud")

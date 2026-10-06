@@ -5,6 +5,7 @@
     'left' => true,
 
     'subtitle' => '',
+    'subtitleLevel' => null,
     'content' => '',
     'buttons' => [],
 
@@ -32,7 +33,8 @@
 @endif
 
     @if (!empty($subtitle))
-        <span
+        <x-heading
+            :level="$subtitleLevel"
             class="column-text__eyebrow
                    inline-flex items-center gap-2
                    mb-5
@@ -47,7 +49,7 @@
                          inline-block w-6 h-px
                          bg-gradient-to-r from-primary-500/40 to-transparent"
                   aria-hidden="true"></span>
-        </span>
+        </x-heading>
     @endif
 
     <div class="prose column-text__prose" data-highlightable>

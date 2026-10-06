@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Strips;
 
+use App\Enums\HeadingLevel;
+use App\Schemas\HeadingSchema;
 use Filament\Forms\Components\Builder\Block;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
@@ -17,6 +19,8 @@ class PageFillableContentStrip implements ContentStrip
     public static function render(array $attributes = []): View
     {
         $attributes["live"] = true;
+
+        $attributes = HeadingSchema::resolveViewAttributes($attributes, ["title_level" => HeadingLevel::None]);
 
         if (!empty($attributes["link"])) {
             $attributes["linkModel"] = Page::findOrFail(
@@ -39,6 +43,8 @@ class PageFillableContentStrip implements ContentStrip
             ->icon("heroicon-s-command-line")
             ->schema([
                 TextInput::make("title")->label("Titel"),
+
+                HeadingSchema::level("title_level", HeadingLevel::None),
 
                 RichEditor::make("content")
                     ->label("Inhoud")

@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Strips;
 
 use App\Components\UsesIcons;
+use App\Enums\HeadingLevel;
+use App\Schemas\HeadingSchema;
 use Filament\Forms\Components\Builder\Block;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\RichEditor;
@@ -26,7 +28,17 @@ class CoreValuesStrip implements ContentStrip
     {
         $attributes["live"] = true;
 
-        if ($attributes["values"]) {
+        // De titel was eerder een RichEditor; oude HTML wordt hier platgeslagen.
+        $attributes["title"] = trim(
+            html_entity_decode(strip_tags((string) ($attributes["title"] ?? "")))
+        );
+
+        $attributes = HeadingSchema::resolveViewAttributes($attributes, [
+            "title_level" => HeadingLevel::None,
+            "values.*.title_level" => HeadingLevel::H3,
+        ]);
+
+        if (!empty($attributes["values"])) {
             foreach ($attributes["values"] as &$value) {
                 if ($value["icon"]) {
                     $value["icon"] = self::resolveIconValue($value["icon"]);
@@ -46,26 +58,9 @@ class CoreValuesStrip implements ContentStrip
                 components: [
                     TextInput::make("subtitle")->label("Subtitel"),
 
-                    RichEditor::make("title")
-                        ->label("Titel")
-                        ->toolbarButtons([
-                            "attachFiles",
-                            "blockquote",
-                            "bold",
-                            "bulletList",
-                            "codeBlock",
-                            "h1",
-                            "h2",
-                            "h3",
-                            "h4",
-                            "italic",
-                            "link",
-                            "orderedList",
-                            "redo",
-                            "strike",
-                            "underline",
-                            "undo",
-                        ]),
+                    TextInput::make("title")->label("Titel"),
+
+                    HeadingSchema::level("title_level", HeadingLevel::None),
 
                     Repeater::make("values")
                         ->label("Onderdelen")
@@ -77,6 +72,11 @@ class CoreValuesStrip implements ContentStrip
                                     ->label("Icoon"),
 
                                 TextInput::make("title")->label("Titel"),
+
+                                HeadingSchema::level(
+                                    "title_level",
+                                    HeadingLevel::H3
+                                ),
 
                                 RichEditor::make("content")
                                     ->label("Omschrijving")

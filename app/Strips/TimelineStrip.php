@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Strips;
 
+use App\Enums\HeadingLevel;
+use App\Schemas\HeadingSchema;
 use Filament\Forms\Components\Builder\Block;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Repeater;
@@ -23,6 +25,8 @@ class TimelineStrip implements ContentStrip
     {
         $attributes['live'] = true;
 
+        $attributes = HeadingSchema::resolveViewAttributes($attributes, ['title_level' => HeadingLevel::H2, 'items.*.name_level' => HeadingLevel::None]);
+
         return view('strips.' . self::id(), $attributes);
     }
 
@@ -40,6 +44,8 @@ class TimelineStrip implements ContentStrip
                     ->label('Titel')
                     ->helperText('Optionele display titel boven de tijdlijn.'),
 
+                HeadingSchema::level('title_level', HeadingLevel::H2),
+
                 Repeater::make('items')
                     ->label('Tijdlijn items')
                     ->addActionLabel('Nieuw item toevoegen')
@@ -48,6 +54,8 @@ class TimelineStrip implements ContentStrip
                             ->label('Naam / Jaartal')
                             ->helperText('Bijvoorbeeld een jaartal (2020) of een mijlpaal-naam.')
                             ->required(),
+
+                        HeadingSchema::level('name_level', HeadingLevel::None, 'Kopniveau naam / jaartal'),
 
                         FileUpload::make('image')
                             ->label('Afbeelding')

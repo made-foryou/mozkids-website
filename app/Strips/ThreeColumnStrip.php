@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace App\Strips;
 
+use App\Enums\HeadingLevel;
 use App\Schemas\ButtonSchema;
 use App\Schemas\ColumnSchema;
+use App\Schemas\HeadingSchema;
 use Filament\Forms\Components\Builder\Block;
 use Filament\Forms\Components\Repeater;
 use Illuminate\Contracts\View\View;
@@ -24,14 +26,17 @@ class ThreeColumnStrip implements ContentStrip
 
         foreach ($attributes['left_columns'] as &$column) {
             $column = ButtonSchema::resolveViewAttributes($column);
+            $column = HeadingSchema::resolveViewAttributes($column, ['subtitle_level' => HeadingLevel::None]);
         }
 
         foreach ($attributes['middle_columns'] as &$column) {
             $column = ButtonSchema::resolveViewAttributes($column);
+            $column = HeadingSchema::resolveViewAttributes($column, ['subtitle_level' => HeadingLevel::None]);
         }
 
         foreach ($attributes['right_columns'] as &$column) {
             $column = ButtonSchema::resolveViewAttributes($column);
+            $column = HeadingSchema::resolveViewAttributes($column, ['subtitle_level' => HeadingLevel::None]);
         }
 
         return view('strips.'. self::id(), $attributes);

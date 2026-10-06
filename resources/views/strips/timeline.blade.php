@@ -36,12 +36,12 @@
                 @endif
 
                 @if (!empty($title))
-                    <h2 class="timeline-strip__title
+                    <x-heading :level="$title_level" class="timeline-strip__title
                                text-2xl md:text-3xl lg:text-4xl
                                text-secondary-900 font-semibold
                                tracking-[-0.018em] leading-[1.15] text-balance">
                         {{ $title }}
-                    </h2>
+                    </x-heading>
                 @endif
             </header>
         @endif
@@ -96,14 +96,14 @@
                                      group-hover:shadow-[0_0_0_4px_rgba(228,35,19,0.18)]"></span>
                     </span>
 
-                    <span class="timeline-item__name
+                    <x-heading :level="$item['name_level'] ?? null" class="timeline-item__name
                                  flex items-center gap-2
                                  mb-3
                                  {{ $isLeft ? 'md:justify-end' : 'md:justify-start' }}
                                  text-[11px] md:text-xs font-semibold uppercase tracking-[0.18em]
                                  text-primary-500">
                         {{ $item['name'] }}
-                    </span>
+                    </x-heading>
 
                     <article class="timeline-item__card relative
                                     overflow-hidden

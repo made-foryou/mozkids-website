@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "260f809de353c726978319c435de98f8",
+    "content-hash": "de4c64c12d82658eb03ac95c7897be31",
     "packages": [
         {
             "name": "anourvalar/eloquent-serialize",
@@ -3882,12 +3882,12 @@
             "version": "0.16.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/made-foryou/cms.git",
+                "url": "https://github.com/made-foryou/cms-old.git",
                 "reference": "c601b4ae81e03b378baf0b94812492223b303525"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/made-foryou/cms/zipball/c601b4ae81e03b378baf0b94812492223b303525",
+                "url": "https://api.github.com/repos/made-foryou/cms-old/zipball/c601b4ae81e03b378baf0b94812492223b303525",
                 "reference": "c601b4ae81e03b378baf0b94812492223b303525",
                 "shasum": ""
             },

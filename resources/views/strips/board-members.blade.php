@@ -35,12 +35,12 @@
             @endif
 
             @if (!empty($title))
-                <h2 class="board-members-strip__title
+                <x-heading :level="$title_level" class="board-members-strip__title
                            text-2xl md:text-3xl lg:text-4xl
                            text-secondary-900 font-semibold
                            tracking-[-0.018em] leading-[1.15] text-balance">
                     {{ $title }}
-                </h2>
+                </x-heading>
             @endif
 
             @if ($hasHeaderDescription)
@@ -154,12 +154,12 @@
                                 </span>
                             @endif
 
-                            <h3 class="team-member__name
+                            <x-heading :level="$member['name_level'] ?? 'h3'" class="team-member__name
                                        text-xl md:text-2xl lg:text-[1.6rem]
                                        text-secondary-900 font-semibold
                                        tracking-[-0.018em] leading-[1.15] text-balance">
                                 {{ $member['name'] ?? '' }}
-                            </h3>
+                            </x-heading>
 
                             @if ($hasDescription)
                                 <div class="team-member__bio

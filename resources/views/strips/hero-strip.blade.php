@@ -24,30 +24,9 @@
                          bg-gradient-to-r from-secondary-900/25 to-transparent"></span>
         </span>
 
-        @if ($heading)
-            @switch($heading_number)
-                @case('1')
-                <h1 class="{{ $headingClasses }}" data-highlightable>{{ $content }}</h1>
-                @break
-                @case('2')
-                <h2 class="{{ $headingClasses }}" data-highlightable>{{ $content }}</h2>
-                @break
-                @case('3')
-                <h3 class="{{ $headingClasses }}" data-highlightable>{{ $content }}</h3>
-                @break
-                @case('4')
-                <h4 class="{{ $headingClasses }}" data-highlightable>{{ $content }}</h4>
-                @break
-                @case('5')
-                <h5 class="{{ $headingClasses }}" data-highlightable>{{ $content }}</h5>
-                @break
-                @case('6')
-                <h6 class="{{ $headingClasses }}" data-highlightable>{{ $content }}</h6>
-                @break
-            @endswitch
-        @else
-            <span class="{{ $headingClasses }}" data-highlightable>{{ $content }}</span>
-        @endif
+        <x-heading :level="$heading_level ?? null"
+                   class="{{ $headingClasses }}"
+                   data-highlightable>{{ $content }}</x-heading>
 
         @if (!empty($buttons))
             <div class="hero-buttons
