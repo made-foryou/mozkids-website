@@ -12,6 +12,7 @@ use App\View\Composers\MainMenuItemsComposer;
 use App\View\Composers\StatementsMenuItemsComposer;
 use Illuminate\Support\Facades;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Str;
 use MailchimpMarketing\ApiClient;
 
 class AppServiceProvider extends ServiceProvider
@@ -24,9 +25,19 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(ApiClient::class, function ($app) {
             $client = new ApiClient();
 
+            $apiKey = (string) config("services.mailchimp.api_key");
+
+            // Mailchimp API keys end with their datacenter (e.g. "...-us21"), which
+            // is also the server prefix. Fall back to it when no prefix is configured.
+            $server = config("services.mailchimp.server_prefix")
+                ?: (str_contains($apiKey, '-') ? Str::afterLast($apiKey, '-') : null);
+
+            // The SDK waits 120 seconds by default, which keeps a PHP worker busy
+            // for two minutes whenever Mailchimp is unreachable.
             $client->setConfig([
-                "apiKey" => config("services.mailchimp.api_key"),
-                "server" => config("services.mailchimp.server_prefix"),
+                "apiKey" => $apiKey,
+                "server" => $server,
+                "timeout" => 10,
             ]);
 
             return $client;

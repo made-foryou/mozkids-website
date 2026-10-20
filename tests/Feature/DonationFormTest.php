@@ -6,8 +6,14 @@ namespace Tests\Feature;
 
 use App\Domains\Donation\Mail\DonationRequestConfirmationMail;
 use App\Domains\Donation\Mail\DonationRequestMail;
+use GuzzleHttp\Exception\ConnectException;
+use GuzzleHttp\Psr7\Request;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Mail;
+use MailchimpMarketing\Api\ListsApi;
+use MailchimpMarketing\ApiClient;
+use Mockery;
+use Mockery\MockInterface;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
@@ -86,6 +92,48 @@ class DonationFormTest extends TestCase
     }
 
     #[Test]
+    public function it_subscribes_to_the_newsletter_with_infix_and_surname_as_lastname(): void
+    {
+        Mail::fake();
+
+        $lists = $this->mockMailchimpLists();
+        $lists->shouldReceive('setListMember')
+            ->once()
+            ->withArgs(fn (string $listId, string $hash, array $body): bool => $body['merge_fields']['FNAME'] === 'Sanne'
+                && $body['merge_fields']['LNAME'] === 'de Vries');
+
+        $response = $this->postJson(
+            route('api.donate'),
+            $this->validPayload(['infix' => 'de', 'surname' => 'Vries', 'newsletter' => '1']),
+        );
+
+        $response->assertStatus(200);
+    }
+
+    #[Test]
+    public function it_still_succeeds_when_the_newsletter_subscription_fails(): void
+    {
+        Mail::fake();
+
+        $lists = $this->mockMailchimpLists();
+        $lists->shouldReceive('setListMember')
+            ->once()
+            ->andThrow(new ConnectException(
+                'cURL error 6: Could not resolve host',
+                new Request('PUT', 'https://.api.mailchimp.com/3.0/lists'),
+            ));
+
+        $response = $this->postJson(
+            route('api.donate'),
+            $this->validPayload(['newsletter' => '1']),
+        );
+
+        $response->assertStatus(200);
+        Mail::assertSent(DonationRequestMail::class);
+        Mail::assertSent(DonationRequestConfirmationMail::class);
+    }
+
+    #[Test]
     public function it_renders_the_payment_method_question_with_direct_debit_preselected(): void
     {
         $html = (string) $this->blade('<x-columns.donation-form />');
@@ -107,6 +155,18 @@ class DonationFormTest extends TestCase
             $html,
             'Zelf overmaken hoort niet voorgeselecteerd te zijn.',
         );
+    }
+
+    protected function mockMailchimpLists(): MockInterface
+    {
+        $lists = Mockery::mock(ListsApi::class);
+
+        $client = new ApiClient;
+        $client->lists = $lists;
+
+        $this->app->instance(ApiClient::class, $client);
+
+        return $lists;
     }
 
     /**

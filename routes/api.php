@@ -8,7 +8,10 @@ use Spatie\Honeypot\ProtectAgainstSpam;
 
 Route::post('subscribe-to-newsletter', SubscribeToNewsletterController::class)
     ->name('api.subscribe-to-newsletter')
-    ->middleware('throttle:5,1');
+    ->middleware([
+        'throttle:5,1',
+        ProtectAgainstSpam::class,
+    ]);
 
 Route::post('donate', DonationFormHandleController::class)
     ->name('api.donate')
