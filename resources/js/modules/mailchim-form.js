@@ -24,6 +24,12 @@ export default class MailchimpForm {
         this._success = document.querySelector('.made-mailchimp-success');
 
         /**
+         * @type {HTMLElement|null}
+         * @private
+         */
+        this._error = this._form.querySelector('.made-mailchimp-error');
+
+        /**
          * @type {boolean}
          * @private
          */
@@ -41,14 +47,24 @@ export default class MailchimpForm {
         }
 
         this.startLoading();
+        this.hideError();
 
-        const result = await fetch(this._form.action, {
-            method: this._form.method,
-            body: new FormData(this._form),
-            headers: {
-                'Accept': 'application/json'
-            }
-        });
+        let result;
+
+        try {
+            result = await fetch(this._form.action, {
+                method: this._form.method,
+                body: new FormData(this._form),
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+        } catch (error) {
+            this.showError();
+            this.stopLoading();
+
+            return false;
+        }
 
         if (result.status === 200) {
             this.success();
@@ -57,6 +73,8 @@ export default class MailchimpForm {
         } else if (result.status === 422) {
             const response = await result.json();
             this.processValidationErrors(response.errors);
+        } else {
+            this.showError();
         }
 
         this.stopLoading();
@@ -98,6 +116,14 @@ export default class MailchimpForm {
 
             this._success.classList.remove('opacity-0');
         }, 450);
+    }
+
+    showError() {
+        this._error?.classList.remove('hidden');
+    }
+
+    hideError() {
+        this._error?.classList.add('hidden');
     }
 
     processValidationErrors(errors) {

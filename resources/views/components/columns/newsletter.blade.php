@@ -88,6 +88,14 @@
                           transition-[background-color,box-shadow] duration-200
                           focus:bg-white/18 focus:outline-none focus:ring-2 focus:ring-white/40" />
 
+            <p class="made-mailchimp-error hidden
+                      px-4 py-3 rounded-xl
+                      bg-white/12 ring-1 ring-white/25
+                      text-[13px] text-white leading-relaxed"
+               role="alert">
+                Het aanmelden is niet gelukt. Probeer het later nog eens.
+            </p>
+
             <button type="submit"
                     class="newsletter-submit group/btn relative
                            mt-3
