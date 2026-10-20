@@ -32,9 +32,12 @@ class AppServiceProvider extends ServiceProvider
             $server = config("services.mailchimp.server_prefix")
                 ?: (str_contains($apiKey, '-') ? Str::afterLast($apiKey, '-') : null);
 
+            // The SDK waits 120 seconds by default, which keeps a PHP worker busy
+            // for two minutes whenever Mailchimp is unreachable.
             $client->setConfig([
                 "apiKey" => $apiKey,
                 "server" => $server,
+                "timeout" => 10,
             ]);
 
             return $client;

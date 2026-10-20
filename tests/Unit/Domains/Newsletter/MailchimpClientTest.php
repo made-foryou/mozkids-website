@@ -31,4 +31,10 @@ class MailchimpClientTest extends TestCase
 
         self::assertSame('https://us21.api.mailchimp.com/3.0', app(ApiClient::class)->getHost());
     }
+
+    #[Test]
+    public function it_limits_the_request_timeout(): void
+    {
+        self::assertSame(10, app(ApiClient::class)->getTimeout());
+    }
 }
