@@ -52,6 +52,8 @@
               action="{{ route('api.subscribe-to-newsletter') }}"
               method="POST">
 
+            <x-honeypot />
+
             <input name="firstname"
                    type="text"
                    placeholder="Voornaam"
