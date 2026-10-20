@@ -14,6 +14,7 @@ use App\Http\Requests\Api\DonationFormRequest;
 use App\Models\WebsiteSetting;
 use Illuminate\Support\Facades\Mail;
 use Made\Cms\Facades\Cms;
+use Throwable;
 
 class DonationFormHandleController extends Controller
 {
@@ -37,14 +38,20 @@ class DonationFormHandleController extends Controller
             new DonationRequestConfirmationMail($data)
         );
 
+        // The donation mails are already sent at this point, so a failing newsletter
+        // subscription must not turn the request into an error for the donor.
         if ($data->newsletter) {
-            SubscribeToNewsletterAction::run(
-                new SubscribingData(
-                    $data->email,
-                    $data->firstname,
-                    !empty($data->infix) ? $data->infix . ' ' : '' . $data->surname,
-                ),
-            );
+            try {
+                SubscribeToNewsletterAction::run(
+                    new SubscribingData(
+                        $data->email,
+                        $data->firstname,
+                        (!empty($data->infix) ? $data->infix . ' ' : '') . $data->surname,
+                    ),
+                );
+            } catch (Throwable $exception) {
+                report($exception);
+            }
         }
 
         // @todo conversie plaatsen - voor het bijhouden van de gebruiker zijn sessie.
