@@ -30,6 +30,12 @@ export default class MailchimpForm {
         this._error = this._form.querySelector('.made-mailchimp-error');
 
         /**
+         * @type {string}
+         * @private
+         */
+        this._defaultError = this._error?.textContent.trim() ?? '';
+
+        /**
          * @type {boolean}
          * @private
          */
@@ -73,6 +79,7 @@ export default class MailchimpForm {
         } else if (result.status === 422) {
             const response = await result.json();
             this.processValidationErrors(response.errors);
+            this.showError(this.firstErrorMessage(response.errors));
         } else {
             this.showError();
         }
@@ -118,8 +125,26 @@ export default class MailchimpForm {
         }, 450);
     }
 
-    showError() {
-        this._error?.classList.remove('hidden');
+    /**
+     * @param {string|null} message Falls back to the generic message from the template.
+     */
+    showError(message = null) {
+        if (!this._error) {
+            return;
+        }
+
+        this._error.textContent = message ?? this._defaultError;
+        this._error.classList.remove('hidden');
+    }
+
+    /**
+     * @param {Object<string, string[]>|undefined} errors
+     * @returns {string|null}
+     */
+    firstErrorMessage(errors) {
+        const messages = Object.values(errors ?? {})[0];
+
+        return Array.isArray(messages) && messages.length > 0 ? messages[0] : null;
     }
 
     hideError() {

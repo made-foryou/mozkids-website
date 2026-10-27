@@ -6,9 +6,12 @@ namespace Tests\Feature;
 
 use App\Domains\Donation\Mail\DonationRequestConfirmationMail;
 use App\Domains\Donation\Mail\DonationRequestMail;
+use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Psr7\Response;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Exceptions;
 use Illuminate\Support\Facades\Mail;
 use MailchimpMarketing\Api\ListsApi;
 use MailchimpMarketing\ApiClient;
@@ -131,6 +134,34 @@ class DonationFormTest extends TestCase
         $response->assertStatus(200);
         Mail::assertSent(DonationRequestMail::class);
         Mail::assertSent(DonationRequestConfirmationMail::class);
+    }
+
+    #[Test]
+    public function it_does_not_report_an_email_address_that_mailchimp_rejects(): void
+    {
+        Mail::fake();
+        Exceptions::fake();
+
+        $lists = $this->mockMailchimpLists();
+        $lists->shouldReceive('setListMember')
+            ->once()
+            ->andThrow(new ClientException(
+                'Client error: Mailchimp responded with 400',
+                new Request('PUT', 'https://us16.api.mailchimp.com/3.0/lists/list-id/members/hash'),
+                new Response(400, [], json_encode([
+                    'title' => 'Invalid Resource',
+                    'status' => 400,
+                    'detail' => 'sanne@example.com looks fake or invalid, please enter a real email address.',
+                ])),
+            ));
+
+        $response = $this->postJson(
+            route('api.donate'),
+            $this->validPayload(['newsletter' => '1']),
+        );
+
+        $response->assertStatus(200);
+        Exceptions::assertNothingReported();
     }
 
     #[Test]
