@@ -30,4 +30,21 @@ class SubscribeToNewsletterRequest extends FormRequest
             'email' => 'required|email|max:255',
         ];
     }
+
+    /**
+     * The newsletter form shows these messages to the visitor, so they need to be Dutch.
+     *
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
+        return [
+            'firstname.required' => 'Vul je voornaam in.',
+            'lastname.required' => 'Vul je achternaam in.',
+            'email.required' => 'Vul je e-mailadres in.',
+            'email.email' => 'Dit is geen geldig e-mailadres.',
+            'string' => 'Dit is geen geldige tekst.',
+            'max' => 'Dit veld mag maximaal :max tekens bevatten.',
+        ];
+    }
 }
